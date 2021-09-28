@@ -1,0 +1,13 @@
+name: coingecko_api
+description: A Dart Wrapper for the CoinGecko API (V3)
+version: 1.0.0
+repository: https://github.com/yegor-pelykh/coingecko_api
+issue_tracker: https://github.com/yegor-pelykh/coingecko_api/issues
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  dio: ^4.0.0
+  intl: ^0.17.0
+  test: ^1.17.12
