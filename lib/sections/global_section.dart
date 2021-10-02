@@ -4,6 +4,7 @@ import 'package:coingecko_api/data/global_defi_data.dart';
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:dio/dio.dart';
 
+/// The section that brings together the requests that are related to global information
 class GlobalSection {
   final Dio _dio;
 
@@ -12,7 +13,7 @@ class GlobalSection {
   ///
   /// Get cryptocurrency global data.
   ///
-  /// * Coingecko API ( **GET** /global )
+  /// Query: **/global**
   ///
   Future<CoinGeckoResult<GlobalCoinData?>> getGlobalData() async {
     final response = await _dio.get(
@@ -33,9 +34,9 @@ class GlobalSection {
   }
 
   ///
-  /// Get cryptocurrency global decentralized finance(defi) data.
+  /// Get cryptocurrency global decentralized finance (defi) data.
   ///
-  /// * Coingecko API ( **GET** /global/decentralized_finance_defi )
+  /// Query: **/global/decentralized\_finance\_defi**
   ///
   Future<CoinGeckoResult<GlobalDefiData?>> getGlobalDefiData() async {
     final response = await _dio.get(

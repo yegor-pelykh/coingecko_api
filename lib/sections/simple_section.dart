@@ -3,15 +3,34 @@ import 'package:coingecko_api/data/price_info.dart';
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:dio/dio.dart';
 
+/// The section that brings together the requests
+/// that are related to simple coins / currencies
 class SimpleSection {
   final Dio _dio;
 
   const SimpleSection(this._dio);
 
   ///
-  /// Get the current price of any cryptocurrencies in any other supported currencies that you need.
+  /// Get the current price of any cryptocurrencies in any other
+  /// supported currencies that you need.
   ///
-  /// * Coingecko API ( **GET** /simple/price )
+  /// **[ids]** sets identifiers of coins.
+  ///
+  /// **[vsCurrencies]** sets vs currency of coins.
+  ///
+  /// **[includeMarketCap]** sets whether to include market capitalization.
+  /// Default is false.
+  ///
+  /// **[include24hVol]** sets whether to include volume in 24 hours.
+  /// Default is false.
+  ///
+  /// **[include24hChange]** sets whether to include change in 24 hours.
+  /// Default is false.
+  ///
+  /// **[includeLastUpdatedAt]** sets whether to include last updated date.
+  /// Default is false.
+  ///
+  /// Query: **/simple/price**
   ///
   Future<CoinGeckoResult<List<PriceInfo>>> listPrices({
     required List<String> ids,
@@ -52,9 +71,28 @@ class SimpleSection {
   }
 
   ///
-  /// Get current price of tokens (using contract addresses) for a given platform in any other currency that you need.
+  /// Get current price of tokens (using contract addresses) for
+  /// a given platform in any other currency that you need.
   ///
-  /// * Coingecko API ( **GET** /simple/token_price/{id} )
+  /// **[id]** sets the id of the platform issuing tokens.
+  ///
+  /// **[contractAddresses]** sets the contract addresses of tokens.
+  ///
+  /// **[vsCurrencies]** sets vs currencies of coins.
+  ///
+  /// **[includeMarketCap]** sets whether to include market capitalization.
+  /// Default is false.
+  ///
+  /// **[include24hVol]** sets whether to include volume in 24 hours.
+  /// Default is false.
+  ///
+  /// **[include24hChange]** sets whether to include change in 24 hours.
+  /// Default is false.
+  ///
+  /// **[includeLastUpdatedAt]** sets whether to include last updated date.
+  /// Default is false.
+  ///
+  /// Query: **/simple/token\_price/{id}**
   ///
   Future<CoinGeckoResult<List<PriceInfo>>> listTokenPrices({
     required String id,
@@ -98,7 +136,7 @@ class SimpleSection {
   ///
   /// Get list of supported vs currencies.
   ///
-  /// * Coingecko API ( **GET** /simple/supported_vs_currencies )
+  /// Query: **/simple/supported\_vs\_currencies**
   ///
   Future<CoinGeckoResult<List<String>>> listSupportedVsCurrencies() async {
     final response = await _dio.get(
@@ -106,7 +144,8 @@ class SimpleSection {
     );
     if (response.statusCode == 200) {
       final list = Convert.toList(response.data);
-      final List<String> currencyList = list != null ? list.map((e) => e.toString()).toList() : [];
+      final List<String> currencyList =
+          list != null ? list.map((e) => e.toString()).toList() : [];
       return CoinGeckoResult(currencyList);
     } else {
       return CoinGeckoResult(

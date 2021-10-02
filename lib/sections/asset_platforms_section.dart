@@ -3,6 +3,8 @@ import 'package:coingecko_api/data/asset_platform.dart';
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:dio/dio.dart';
 
+/// The section that brings together the requests that are related
+/// to asset platforms
 class AssetPlatformsSection {
   final Dio _dio;
 
@@ -11,7 +13,7 @@ class AssetPlatformsSection {
   ///
   /// List all asset platforms (Blockchain networks).
   ///
-  /// * Coingecko API ( **GET** /asset_platforms )
+  /// Query: **/asset\_platforms**
   ///
   Future<CoinGeckoResult<List<AssetPlatform>>> listAssetPlatforms() async {
     final response = await _dio.get(
@@ -19,8 +21,9 @@ class AssetPlatformsSection {
     );
     if (response.statusCode == 200) {
       final list = Convert.toList(response.data);
-      final List<AssetPlatform> categoryList =
-          list != null ? list.map((e) => AssetPlatform.fromJson(e)).toList() : [];
+      final List<AssetPlatform> categoryList = list != null
+          ? list.map((e) => AssetPlatform.fromJson(e)).toList()
+          : [];
       return CoinGeckoResult(categoryList);
     } else {
       return CoinGeckoResult(

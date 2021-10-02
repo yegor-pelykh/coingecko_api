@@ -3,6 +3,7 @@ import 'package:coingecko_api/data/companies_data.dart';
 import 'package:coingecko_api/data/enumerations.dart';
 import 'package:dio/dio.dart';
 
+/// The section that brings together the requests that are related to companies
 class CompaniesSection {
   final Dio _dio;
 
@@ -11,7 +12,11 @@ class CompaniesSection {
   ///
   /// Get public companies data.
   ///
-  /// * Coingecko API ( **GET** /companies/public_treasury/{coin_id} )
+  /// **[coin_id]** filters companies by specific holding coin
+  /// (ethereum or bitcoin). Use [CompanyHoldingsCoin] enumeration
+  /// as values. Default is [CompanyHoldingsCoin.bitcoin]
+  ///
+  /// Query: **/companies/public\_treasury/{coin\_id}**
   ///
   Future<CoinGeckoResult<CompaniesData?>> getCompaniesData({
     String coin_id = CompanyHoldingsCoin.bitcoin,

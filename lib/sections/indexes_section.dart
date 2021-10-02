@@ -5,6 +5,7 @@ import 'package:coingecko_api/data/market_index_short.dart';
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:dio/dio.dart';
 
+/// The section that brings together the requests that are related to indexes
 class IndexesSection {
   final Dio _dio;
 
@@ -13,15 +14,19 @@ class IndexesSection {
   ///
   /// List all market indexes.
   ///
-  /// * Coingecko API ( **GET** /indexes )
+  /// **[itemsPerPage]** sets total results per page.
+  ///
+  /// **[page]** sets page through results.
+  ///
+  /// Query: **/indexes**
   ///
   Future<CoinGeckoResult<List<MarketIndexIdentified>>> listMarketIndexes({
-    int? perPage,
+    int? itemsPerPage,
     int? page,
   }) async {
     final Map<String, dynamic> queryParameters = {};
-    if (perPage is int) {
-      queryParameters['per_page'] = perPage;
+    if (itemsPerPage is int) {
+      queryParameters['per_page'] = itemsPerPage;
     }
     if (page is int) {
       queryParameters['page'] = page;
@@ -47,7 +52,11 @@ class IndexesSection {
   ///
   /// Get market index by market id and index id.
   ///
-  /// * Coingecko API ( **GET** /indexes/{market_id}/{id} )
+  /// **[marketId]** sets the market id.
+  ///
+  /// **[indexId]** sets the index id.
+  ///
+  /// Query: **/indexes/{market\_id}/{id}**
   ///
   Future<CoinGeckoResult<MarketIndex?>> getMarketIndex({
     required String marketId,
@@ -70,11 +79,12 @@ class IndexesSection {
   }
 
   ///
-  /// list market indexes id and name.
+  /// List market indexes id and name.
   ///
-  /// * Coingecko API ( **GET** /indexes/list )
+  /// Query: **/indexes/list**
   ///
-  Future<CoinGeckoResult<List<MarketIndexShort>>> listMarketIndexesShort() async {
+  Future<CoinGeckoResult<List<MarketIndexShort>>>
+      listMarketIndexesShort() async {
     final response = await _dio.get(
       '/indexes/list',
     );

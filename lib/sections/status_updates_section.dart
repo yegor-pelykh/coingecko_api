@@ -3,6 +3,7 @@ import 'package:coingecko_api/data/status_update.dart';
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:dio/dio.dart';
 
+/// The section that brings together the requests that are related to status updates
 class StatusUpdatesSection {
   final Dio _dio;
 
@@ -11,12 +12,22 @@ class StatusUpdatesSection {
   ///
   /// List all status_updates with data.
   ///
-  /// * Coingecko API ( **GET** /status_updates )
+  /// **[category]** filters by category. Use [StatusUpdateCategory] enumeration
+  /// as values.
+  ///
+  /// **[projectType]** filters by project type. Use [StatusUpdateProjectType]
+  /// enumeration as values.
+  ///
+  /// **[itemsPerPage]** sets total results per page.
+  ///
+  /// **[page]** sets page through results.
+  ///
+  /// Query: **/status\_updates**
   ///
   Future<CoinGeckoResult<List<StatusUpdate>>> listStatusUpdates({
     String? category,
     String? projectType,
-    int? perPage,
+    int? itemsPerPage,
     int? page,
   }) async {
     final Map<String, dynamic> queryParameters = {};
@@ -26,8 +37,8 @@ class StatusUpdatesSection {
     if (projectType is String) {
       queryParameters['project_type'] = projectType;
     }
-    if (perPage is int) {
-      queryParameters['per_page'] = perPage;
+    if (itemsPerPage is int) {
+      queryParameters['per_page'] = itemsPerPage;
     }
     if (page is int) {
       queryParameters['page'] = page;

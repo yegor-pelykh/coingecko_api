@@ -4,6 +4,7 @@ import 'package:coingecko_api/data/market_chart_data.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 import 'package:dio/dio.dart';
 
+/// The section that brings together the requests that are related to contract tokens
 class ContractSection {
   final Dio _dio;
 
@@ -12,7 +13,11 @@ class ContractSection {
   ///
   /// Get coin info from contract address.
   ///
-  /// * Coingecko API ( **GET** /coins/{id}/contract/{contract_address} )
+  /// **[id]** sets asset platform identifier.
+  ///
+  /// **[contractAddress]** is token's contract address.
+  ///
+  /// Query: **/coins/{id}/contract/{contract\_address}**
   ///
   Future<CoinGeckoResult<Coin?>> getContractTokenData({
     required String id,
@@ -38,7 +43,16 @@ class ContractSection {
   /// Get historical market data include price, market cap, and 24h volume
   /// (granularity auto) from a contract address.
   ///
-  /// * Coingecko API ( **GET** /coins/{id}/contract/{contract_address}/market_chart )
+  /// **[id]** sets the id of the platform issuing tokens.
+  ///
+  /// **[contractAddress]** is token's contract address.
+  ///
+  /// **[vsCurrency]** sets the target currency of market data
+  /// (usd, eur, jpy, etc.).
+  ///
+  /// **[days]** indicates in how many days to include information.
+  ///
+  /// Query: **/coins/{id}/contract/{contract\_address}/market\_chart**
   ///
   Future<CoinGeckoResult<List<MarketChartData>>> getContractMarketChart({
     required String id,
@@ -70,7 +84,18 @@ class ContractSection {
   /// Get historical market data include price, market cap, and 24h volume
   /// within a range of timestamp (granularity auto) from a contract address.
   ///
-  /// * Coingecko API ( **GET** /coins/{id}/contract/{contract_address}/market_chart/range )
+  /// **[id]** sets the id of the platform issuing tokens.
+  ///
+  /// **[contractAddress]** is token's contract address.
+  ///
+  /// **[vsCurrency]** sets the target currency of market data
+  /// (usd, eur, jpy, etc.).
+  ///
+  /// **[from]** sets FROM date.
+  ///
+  /// **[to]** sets TO date.
+  ///
+  /// Query: **/coins/{id}/contract/{contract\_address}/market\_chart/range**
   ///
   Future<CoinGeckoResult<List<MarketChartData>>> getContractMarketChartRanged({
     required String id,

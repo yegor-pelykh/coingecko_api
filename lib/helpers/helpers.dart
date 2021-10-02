@@ -3,21 +3,27 @@ import 'dart:collection';
 import 'package:coingecko_api/data/market_chart_data.dart';
 import 'package:coingecko_api/data/market_data.dart';
 import 'package:coingecko_api/helpers/convert.dart';
+import 'package:coingecko_api/helpers/time_unit.dart';
 
+/// A set of methods for common tasks
 class Helpers {
+  /// Gets the type name of [d]
   static String getTypeName(dynamic d) {
     final Type t = d;
     return t.toString();
   }
 
+  /// Gets the default DateTime instance
   static DateTime defaultDateTime() {
     return DateTime.fromMillisecondsSinceEpoch(0);
   }
 
+  /// Checks if [d] is default DateTime instance
   static bool isDefaultDateTime(DateTime d) {
     return d.millisecondsSinceEpoch == 0;
   }
 
+  /// Parses list of doubles from dynamic
   static List<double> parseListDouble(dynamic json) {
     final jsonList = Convert.toList(json);
     final List<double> result = [];
@@ -32,6 +38,7 @@ class Helpers {
     return result;
   }
 
+  /// Parses list of integers from dynamic
   static List<int> parseListInt(dynamic json) {
     final jsonList = Convert.toList(json);
     final List<int> result = [];
@@ -46,6 +53,7 @@ class Helpers {
     return result;
   }
 
+  /// Parses list of strings from dynamic
   static List<String> parseListString(dynamic json) {
     final jsonList = Convert.toList(json);
     final List<String> result = [];
@@ -60,6 +68,7 @@ class Helpers {
     return result;
   }
 
+  /// Parses map of <String, double> from dynamic
   static Map<String, double>? parseMapStringDouble(Map<String, dynamic> json) {
     final jsonMap = Convert.toMap<String, dynamic>(json);
     final Map<String, double> result = {};
@@ -74,11 +83,15 @@ class Helpers {
     return result;
   }
 
+  /// Parses map of <String, String> from dynamic
   static Map<String, String>? parseMapStringString(Map<String, dynamic> json) {
     final jsonMap = Convert.toMap<String, dynamic>(json);
-    return jsonMap != null ? jsonMap.map((key, value) => MapEntry(key, value.toString())) : null;
+    return jsonMap != null
+        ? jsonMap.map((key, value) => MapEntry(key, value.toString()))
+        : null;
   }
 
+  /// Parses list of [MarketChartData] from dynamic
   static List<MarketChartData> parseMarketChartData(dynamic json) {
     final map = Convert.toMap<String, dynamic>(json);
     if (map == null) {
@@ -141,6 +154,7 @@ class Helpers {
     );
   }
 
+  /// Parses list of [MarketData] from dynamic
   static List<MarketData> parseMarketData(dynamic json) {
     final map = Convert.toMap<String, dynamic>(json);
     if (map == null) {
@@ -353,7 +367,8 @@ class Helpers {
         if (data != null) {
           data.priceChangePercentage24hInCurrency = v;
         } else {
-          marketData[id] = MarketData(id, priceChangePercentage24hInCurrency: v);
+          marketData[id] =
+              MarketData(id, priceChangePercentage24hInCurrency: v);
         }
       }
     });
@@ -381,7 +396,8 @@ class Helpers {
         if (data != null) {
           data.priceChangePercentage14dInCurrency = v;
         } else {
-          marketData[id] = MarketData(id, priceChangePercentage14dInCurrency: v);
+          marketData[id] =
+              MarketData(id, priceChangePercentage14dInCurrency: v);
         }
       }
     });
@@ -395,7 +411,8 @@ class Helpers {
         if (data != null) {
           data.priceChangePercentage30dInCurrency = v;
         } else {
-          marketData[id] = MarketData(id, priceChangePercentage30dInCurrency: v);
+          marketData[id] =
+              MarketData(id, priceChangePercentage30dInCurrency: v);
         }
       }
     });
@@ -409,7 +426,8 @@ class Helpers {
         if (data != null) {
           data.priceChangePercentage60dInCurrency = v;
         } else {
-          marketData[id] = MarketData(id, priceChangePercentage60dInCurrency: v);
+          marketData[id] =
+              MarketData(id, priceChangePercentage60dInCurrency: v);
         }
       }
     });
@@ -423,7 +441,8 @@ class Helpers {
         if (data != null) {
           data.priceChangePercentage200dInCurrency = v;
         } else {
-          marketData[id] = MarketData(id, priceChangePercentage200dInCurrency: v);
+          marketData[id] =
+              MarketData(id, priceChangePercentage200dInCurrency: v);
         }
       }
     });
@@ -456,7 +475,8 @@ class Helpers {
       }
     });
     // market_cap_change_percentage_24h_in_currency
-    workingMap = Convert.toMap(map['market_cap_change_percentage_24h_in_currency']);
+    workingMap =
+        Convert.toMap(map['market_cap_change_percentage_24h_in_currency']);
     workingMap?.forEach((key, value) {
       final id = Convert.toNullableString(key);
       if (id != null) {
@@ -465,7 +485,8 @@ class Helpers {
         if (data != null) {
           data.marketCapChangePercentage24hInCurrency = v;
         } else {
-          marketData[id] = MarketData(id, marketCapChangePercentage24hInCurrency: v);
+          marketData[id] =
+              MarketData(id, marketCapChangePercentage24hInCurrency: v);
         }
       }
     });

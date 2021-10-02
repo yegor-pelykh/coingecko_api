@@ -2,6 +2,8 @@ import 'package:coingecko_api/coingecko_result.dart';
 import 'package:coingecko_api/data/search_trending.dart';
 import 'package:dio/dio.dart';
 
+/// The section that brings together the requests
+/// that are related to trending stats
 class TrendingSection {
   final Dio _dio;
 
@@ -10,7 +12,7 @@ class TrendingSection {
   ///
   /// Get trending search coins (Top-7) on CoinGecko in the last 24 hours.
   ///
-  /// * Coingecko API ( **GET** /search/trending )
+  /// Query: **/search/trending**
   ///
   Future<CoinGeckoResult<SearchTrending?>> getSearchTrending() async {
     final response = await _dio.get(

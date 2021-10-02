@@ -1,8 +1,12 @@
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
+/// Country data wrapper
 class Country {
+  /// Country code
   final String code;
+
+  /// Country name
   final String? country;
 
   Country.fromJson(Map<String, dynamic> json)

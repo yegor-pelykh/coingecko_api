@@ -1,3 +1,4 @@
+/// Provides simple access to the CoinGecko API (Version 3)
 library coingecko_api;
 
 import 'package:coingecko_api/helpers/coingecko_rate_limit_exception.dart';
@@ -19,11 +20,11 @@ import 'package:coingecko_api/sections/status_updates_section.dart';
 import 'package:coingecko_api/sections/trending_section.dart';
 import 'package:dio/dio.dart';
 
+/// The main class for making requests to the CoinGecko API.
 class CoinGeckoApi {
   late Dio _dio;
   int _requestCount = 0;
   DateTime _firstRequest = DateTime.now();
-  bool enableLogging;
 
   // sections
   late PingSection _ping;
@@ -43,27 +44,75 @@ class CoinGeckoApi {
   late GlobalSection _global;
   late CompaniesSection _companies;
 
+  /// The section for ping requests
   PingSection get ping => _ping;
+
+  /// The section that brings together the requests
+  /// that are related to simple coins / currencies
   SimpleSection get simple => _simple;
+
+  /// The section that brings together the requests that are related to coins
   CoinsSection get coins => _coins;
+
+  /// The section that brings together the requests that are related to contract tokens
   ContractSection get contract => _contract;
+
+  /// The section that brings together the requests that are related
+  /// to asset platforms
   AssetPlatformsSection get assetPlatforms => _assetPlatforms;
+
+  /// The section that brings together the requests that are related to categories
   CategoriesSection get categories => _categories;
+
+  /// The section that brings together the requests that are related to exchanges
   ExchangesSection get exchanges => _exchanges;
+
+  /// The section that brings together the requests
+  /// that are related to finance platforms and products
   FinanceSection get finance => _finance;
+
+  /// The section that brings together the requests that are related to indexes
   IndexesSection get indexes => _indexes;
+
+  /// The section that brings together the requests that are related to derivatives
   DerivativesSection get derivatives => _derivatives;
+
+  /// The section that brings together the requests that are related to status updates
   StatusUpdatesSection get statusUpdates => _statusUpdates;
+
+  /// The section that brings together the requests that are related to events
   EventsSection get events => _events;
+
+  /// The section that brings together the requests that are related to exchange rates
   ExchangeRatesSection get exchangeRates => _exchangeRates;
+
+  /// The section that brings together the requests
+  /// that are related to trending stats
   TrendingSection get trending => _trending;
+
+  /// The section that brings together the requests that are related to global information
   GlobalSection get global => _global;
+
+  /// The section that brings together the requests that are related to companies
   CompaniesSection get companies => _companies;
 
+  /// Sets whether logging should be enabled.
+  bool enableLogging;
+
   ///
-  /// used to initialize the http client
-  /// * [connectTimeout] specified in ms controls how long before connection request is timed out
-  /// * [receiveTimeout] specified in ms controls how long before server sends response once request is accepted
+  /// Used to initialize the http client
+  ///
+  /// **[connectTimeout]** sets the timeout (milliseconds) for establishing
+  /// a connection. Default is 30 seconds.
+  ///
+  /// **[receiveTimeout]** sets the timeout (milliseconds) for receiving data
+  /// from server. Default is 10 seconds.
+  ///
+  /// **[rateLimitManagement]** sets whether to monitor the request per
+  /// minute rate. Default is true.
+  ///
+  /// **[enableLogging]** sets whether logging should be enabled.
+  /// Default is true.
   ///
   CoinGeckoApi({
     int connectTimeout = 30000,
@@ -95,8 +144,8 @@ class CoinGeckoApi {
               }
               while (DateTime.now().difference(_firstRequest).inSeconds <= 60) {
                 if (enableLogging) {
-                  print(
-                      'holding all requests for 2 seconds, difference is ${DateTime.now().difference(_firstRequest).inSeconds}');
+                  print('holding all requests for 2 seconds, difference is '
+                      '${DateTime.now().difference(_firstRequest).inSeconds}');
                 }
                 await Future.delayed(
                   Duration(seconds: 2),

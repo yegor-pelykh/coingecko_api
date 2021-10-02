@@ -13,6 +13,7 @@ import 'package:coingecko_api/helpers/helpers.dart';
 import 'package:dio/dio.dart';
 import 'package:intl/intl.dart';
 
+/// The section that brings together the requests that are related to coins
 class CoinsSection {
   final Dio _dio;
 
@@ -21,15 +22,18 @@ class CoinsSection {
   ///
   /// List all supported coins id, name and symbol.
   ///
-  /// * Coingecko API ( **GET** /coins/list )
+  /// **[includePlatforms]** sets whether platform information
+  /// should be included. Default is false.
+  ///
+  /// Query: **/coins/list**
   ///
   Future<CoinGeckoResult<List<CoinShort>>> listCoins({
-    bool includePlatformFlag = false,
+    bool includePlatforms = false,
   }) async {
     final response = await _dio.get(
       '/coins/list',
       queryParameters: {
-        'include_platform': includePlatformFlag,
+        'include_platform': includePlatforms,
       },
     );
     if (response.statusCode == 200) {
@@ -49,9 +53,31 @@ class CoinsSection {
   }
 
   ///
-  /// List all supported coins price, market cap, volume, and market related data.
+  /// List all supported coins price, market cap, volume,
+  /// and market related data.
   ///
-  /// * Coingecko API ( **GET** /coins/markets )
+  /// **[vsCurrency]** sets the target currency of market data
+  /// (usd, eur, jpy, etc.).
+  ///
+  /// **[coinIds]** sets the ids of the coins (cryptocurrency symbols).
+  ///
+  /// **[category]** filters by coin category.
+  ///
+  /// **[order]** sorts results by field. Use [CoinMarketsOrder] enumeration
+  /// as values. Default is [CoinMarketsOrder.marketCapDescending]
+  ///
+  /// **[itemsPerPage]** sets total results per page. Default is 100.
+  ///
+  /// **[page]** sets page through results. Default is 1.
+  ///
+  /// **[sparkline]** sets whether sparkline in 7 days should be included.
+  /// Default is false.
+  ///
+  /// **[priceChangePercentageIntervals]** sets the intervals
+  /// at which the price change percentage should be included.
+  /// Use [PriceChangeInterval] enumeration as values.
+  ///
+  /// Query: **/coins/markets**
   ///
   Future<CoinGeckoResult<List<Market>>> listCoinMarkets({
     required String vsCurrency,
@@ -61,7 +87,7 @@ class CoinsSection {
     int itemsPerPage = 100,
     int page = 1,
     bool sparkline = false,
-    List<String> priceChangePercentage = const [],
+    List<String> priceChangePercentageIntervals = const [],
   }) async {
     final Map<String, dynamic> queryParameters = {
       'vs_currency': vsCurrency,
@@ -76,8 +102,9 @@ class CoinsSection {
     if (coinIds.isNotEmpty) {
       queryParameters['ids'] = coinIds.join(',');
     }
-    if (priceChangePercentage.isNotEmpty) {
-      queryParameters['price_change_percentage'] = priceChangePercentage.join(',');
+    if (priceChangePercentageIntervals.isNotEmpty) {
+      queryParameters['price_change_percentage'] =
+          priceChangePercentageIntervals.join(',');
     }
     final response = await _dio.get(
       '/coins/markets',
@@ -85,8 +112,9 @@ class CoinsSection {
     );
     if (response.statusCode == 200) {
       final list = Convert.toList(response.data);
-      final List<Market> marketList =
-          list != null ? list.map((element) => Market.fromJson(element)).toList() : [];
+      final List<Market> marketList = list != null
+          ? list.map((element) => Market.fromJson(element)).toList()
+          : [];
       return CoinGeckoResult(marketList);
     } else {
       return CoinGeckoResult(
@@ -99,9 +127,27 @@ class CoinsSection {
   }
 
   ///
-  /// Get current data (name, price, market, ... including exchange tickers) for a coin.
+  /// Get current data (name, price, market, ... including exchange tickers)
+  /// for a coin.
   ///
-  /// * Coingecko API ( **GET** /coins/{id} )
+  /// **[id]** sets coin id.
+  ///
+  /// **[localization]** sets whether to include all localized
+  /// languages in response. Default is true.
+  ///
+  /// **[tickers]** sets whether to include tickers data. Default is true.
+  ///
+  /// **[marketData]** sets whether to include market data. Default is true.
+  ///
+  /// **[communityData]** sets whether to include community data.
+  /// Default is true.
+  ///
+  /// **[developerData]** sets whether to include developer data.
+  /// Default is true.
+  ///
+  /// **[sparkline]** sets whether to include sparkline. Default is false.
+  ///
+  /// Query: **/coins/{id}**
   ///
   Future<CoinGeckoResult<Coin?>> getCoinData({
     required String id,
@@ -139,7 +185,21 @@ class CoinsSection {
   ///
   /// Get coin tickers (paginated to 100 items).
   ///
-  /// Coingecko API ( **GET /coins/{id}/tickers** )
+  /// **[id]** sets coin id.
+  ///
+  /// **[exchangeIds]** filters results by exchange ids.
+  ///
+  /// **[includeExchangeLogo]** sets whether to include exchange logo.
+  /// Default is true.
+  ///
+  /// **[page]** sets page through results. Default is 1.
+  ///
+  /// **[order]** sets tickers order. Use [TickersOrder] enumeration
+  /// as values. Default is [TickersOrder.trustScoreDescending].
+  ///
+  /// **[depth]** sets whether to include 2% orderbook depth. Default is true.
+  ///
+  /// Query: **/coins/{id}/tickers**
   ///
   Future<CoinGeckoResult<List<Ticker>>> listCoinTickers({
     required String id,
@@ -162,8 +222,9 @@ class CoinsSection {
     );
     if (response.statusCode == 200) {
       final jsonTickers = Convert.toList(response.data['tickers']);
-      final List<Ticker> tickers =
-          jsonTickers != null ? jsonTickers.map((e) => Ticker.fromJson(e)).toList() : [];
+      final List<Ticker> tickers = jsonTickers != null
+          ? jsonTickers.map((e) => Ticker.fromJson(e)).toList()
+          : [];
       return CoinGeckoResult(tickers);
     } else {
       return CoinGeckoResult(
@@ -176,9 +237,17 @@ class CoinsSection {
   }
 
   ///
-  /// Get historical data (name, price, market, stats) at a given date for a coin.
+  /// Get historical data (name, price, market, stats) at a given
+  /// date for a coin.
   ///
-  /// * Coingecko API ( **GET** /coins/{id}/history )
+  /// **[id]** sets coin id.
+  ///
+  /// **[date]** sets the date of data snapshot.
+  ///
+  /// **[localization]** sets whether to include all localized
+  /// languages in response. Default is true.
+  ///
+  /// Query: **/coins/{id}/history**
   ///
   Future<CoinGeckoResult<CoinHistory?>> getCoinHistory({
     required String id,
@@ -206,9 +275,20 @@ class CoinsSection {
   }
 
   ///
-  /// Get historical market data include price, market cap, and 24h volume (granularity auto).
+  /// Get historical market data include price, market cap
+  /// and 24h volume (granularity auto).
   ///
-  /// * Coingecko API ( **GET** /coins/{id}/market_chart )
+  /// **[id]** sets coin id.
+  ///
+  /// **[vsCurrency]** sets the target currency of market data
+  /// (usd, eur, jpy, etc.).
+  ///
+  /// **[days]** indicates in how many days to include information.
+  ///
+  /// **[interval]** sets data interval. Use [CoinMarketChartInterval]
+  /// enumeration as values.
+  ///
+  /// Query: **/coins/{id}/market\_chart**
   ///
   Future<CoinGeckoResult<List<MarketChartData>>> getCoinMarketChart({
     required String id,
@@ -241,9 +321,19 @@ class CoinsSection {
   }
 
   ///
-  /// Get historical market data include price, market cap, and 24h volume within a range of timestamp (granularity auto).
+  /// Get historical market data include price, market cap
+  /// and 24h volume within a range of timestamp (granularity auto).
   ///
-  /// * Coingecko API ( **GET** /coins/{id}/market_chart/range )
+  /// **[id]** sets coin id.
+  ///
+  /// **[vsCurrency]** sets the target currency of market data
+  /// (usd, eur, jpy, etc.).
+  ///
+  /// **[from]** sets FROM date.
+  ///
+  /// **[to]** sets TO date.
+  ///
+  /// Query: **/coins/{id}/market\_chart/range**
   ///
   Future<CoinGeckoResult<List<MarketChartData>>> getCoinMarketChartRanged({
     required String id,
@@ -275,19 +365,25 @@ class CoinsSection {
   ///
   /// Get status updates for a given coin.
   ///
-  /// * Coingecko API ( **GET** /coins/{id}/status_updates )
+  /// **[id]** sets coin id.
+  ///
+  /// **[itemsPerPage]** sets total results per page.
+  ///
+  /// **[page]** sets page through results.
+  ///
+  /// Query: **/coins/{id}/status\_updates**
   ///
   Future<CoinGeckoResult<List<StatusUpdate>>> listCoinStatusUpdates({
     required String id,
+    int? itemsPerPage,
     int? page,
-    int? perPage,
   }) async {
     final Map<String, dynamic> queryParameters = {};
+    if (itemsPerPage is int) {
+      queryParameters['per_page'] = itemsPerPage;
+    }
     if (page is int) {
       queryParameters['page'] = page;
-    }
-    if (perPage is int) {
-      queryParameters['per_page'] = perPage;
     }
     final response = await _dio.get(
       '/coins/$id/status_updates',
@@ -310,7 +406,14 @@ class CoinsSection {
   ///
   /// Get coin's OHLC.
   ///
-  /// * Coingecko API ( **GET** /coins/{id}/ohlc )
+  /// **[id]** sets coin id.
+  ///
+  /// **[vsCurrency]** sets the target currency of market data
+  /// (usd, eur, jpy, etc.).
+  ///
+  /// **[days]** indicates in how many days to include information.
+  ///
+  /// Query: **/coins/{id}/ohlc**
   ///
   Future<CoinGeckoResult<List<OHLCInfo>>> getCoinOHLC({
     required String id,

@@ -55,7 +55,7 @@ void main() async {
 
   test('check /coins/list', () async {
     final result = await api.coins.listCoins(
-      includePlatformFlag: true,
+      includePlatforms: true,
     );
     final isOk = result.data.any((element) => element.symbol == 'btc');
     expect(isOk, true);
@@ -66,7 +66,7 @@ void main() async {
       vsCurrency: 'usd',
       category: 'stablecoins',
       sparkline: true,
-      priceChangePercentage: [
+      priceChangePercentageIntervals: [
         PriceChangeInterval.h1,
         PriceChangeInterval.h24,
       ],
@@ -203,7 +203,7 @@ void main() async {
   test('check /exchanges', () async {
     final result = await api.exchanges.listExchanges(
       page: 1,
-      perPage: 100,
+      itemsPerPage: 100,
     );
     final isOk = result.data.any((e) => e.id == 'binance');
     expect(isOk, true);
@@ -238,7 +238,7 @@ void main() async {
     final result = await api.exchanges.getExchangeStatusUpdates(
       id: 'binance',
       page: 1,
-      perPage: 100,
+      itemsPerPage: 100,
     );
     final isOk = result.data.length > 0;
     expect(isOk, true);
@@ -255,7 +255,7 @@ void main() async {
 
   test('check /finance_platforms', () async {
     final result = await api.finance.listFinancePlatforms(
-      perPage: 100,
+      itemsPerPage: 100,
     );
     final isOk = result.data.length > 0;
     expect(isOk, true);
@@ -263,7 +263,7 @@ void main() async {
 
   test('check /finance_products', () async {
     final result = await api.finance.listFinanceProducts(
-      perPage: 100,
+      itemsPerPage: 100,
     );
     final isOk = result.data.length > 0;
     expect(isOk, true);
@@ -301,7 +301,7 @@ void main() async {
   test('check /derivatives/exchanges', () async {
     final result = await api.derivatives.listDerivativeExchanges(
       order: DerivativeExchangesOrder.nameAscending,
-      perPage: 10,
+      itemsPerPage: 10,
     );
     final isOk = !result.isError && result.data.length == 10;
     expect(isOk, true);

@@ -1,10 +1,18 @@
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
+/// Exchange rate data wrapper
 class ExchangeRate {
+  /// Exchange rate name
   final String name;
+
+  /// Exchange rate unit
   final String unit;
+
+  /// Exchange rate value
   final double value;
+
+  /// Exchange rate type
   final String type;
 
   ExchangeRate.fromJson(Map<String, dynamic> json)

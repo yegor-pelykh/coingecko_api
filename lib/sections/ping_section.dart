@@ -1,15 +1,16 @@
 import 'package:coingecko_api/coingecko_result.dart';
 import 'package:dio/dio.dart';
 
+/// The section for ping requests
 class PingSection {
   final Dio _dio;
 
   const PingSection(this._dio);
 
   ///
-  /// Check API server status
+  /// Check API server status.
   ///
-  /// * Coingecko API ( **GET** /ping )
+  /// Query: **/ping**
   ///
   Future<CoinGeckoResult<bool>> ping() async {
     final response = await _dio.get(

@@ -1,3 +1,4 @@
+/// Coin markets order
 abstract class CoinMarketsOrder {
   static const String geckoAscending = 'gecko_asc';
   static const String geckoDescending = 'gecko_desc';
@@ -9,6 +10,7 @@ abstract class CoinMarketsOrder {
   static const String idDescending = 'id_desc';
 }
 
+/// Price change interval
 abstract class PriceChangeInterval {
   static const String h1 = '1h';
   static const String h24 = '24h';
@@ -19,23 +21,27 @@ abstract class PriceChangeInterval {
   static const String y1 = '1y';
 }
 
+/// Tickers order
 abstract class TickersOrder {
   static const String trustScoreDescending = 'trust_score_desc';
   static const String trustScoreAscending = 'trust_score_asc';
   static const String volumeDescending = 'volume_desc';
 }
 
+/// Coin market chart interval
 abstract class CoinMarketChartInterval {
   static const String minutely = 'minutely';
   static const String hourly = 'hourly';
   static const String daily = 'daily';
 }
 
+/// Derivative tickers filter
 abstract class DerivativeTickersFilter {
   static const String all = 'all';
   static const String unexpired = 'unexpired';
 }
 
+/// Derivative exchanges order
 abstract class DerivativeExchangesOrder {
   static const String nameAscending = 'name_asc';
   static const String nameDescending = 'name_desc';
@@ -45,6 +51,7 @@ abstract class DerivativeExchangesOrder {
   static const String tradeVolume24hBtcDescending = 'trade_volume_24h_btc_desc';
 }
 
+/// Status update category
 abstract class StatusUpdateCategory {
   static const String general = 'general';
   static const String milestone = 'milestone';
@@ -56,11 +63,13 @@ abstract class StatusUpdateCategory {
   static const String event = 'event';
 }
 
+/// Status update project type
 abstract class StatusUpdateProjectType {
   static const String coin = 'coin';
   static const String market = 'market';
 }
 
+/// Coin of holdings of the company
 abstract class CompanyHoldingsCoin {
   static const String bitcoin = 'bitcoin';
   static const String ethereum = 'ethereum';

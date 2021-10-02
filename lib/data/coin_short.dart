@@ -1,10 +1,18 @@
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
+/// Coin data wrapper in short form
 class CoinShort {
+  /// Coin identifier
   final String id;
+
+  /// Coin symbol
   final String symbol;
+
+  /// Coin name
   final String name;
+
+  /// Platforms on which the coin is presented
   final Map<String, String>? platforms;
 
   CoinShort.fromJson(Map<String, dynamic> json)

@@ -4,6 +4,8 @@ import 'package:coingecko_api/data/category_short.dart';
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:dio/dio.dart';
 
+/// The section that brings together the requests that are
+/// related to categories
 class CategoriesSection {
   final Dio _dio;
 
@@ -12,7 +14,7 @@ class CategoriesSection {
   ///
   /// List all categories.
   ///
-  /// * Coingecko API ( **GET** /coins/categories/list )
+  /// Query: **/coins/categories/list**
   ///
   Future<CoinGeckoResult<List<CategoryShort>>> listCategoriesShort() async {
     final response = await _dio.get(
@@ -20,8 +22,9 @@ class CategoriesSection {
     );
     if (response.statusCode == 200) {
       final list = Convert.toList(response.data);
-      final List<CategoryShort> categoryList =
-          list != null ? list.map((e) => CategoryShort.fromJson(e)).toList() : [];
+      final List<CategoryShort> categoryList = list != null
+          ? list.map((e) => CategoryShort.fromJson(e)).toList()
+          : [];
       return CoinGeckoResult(categoryList);
     } else {
       return CoinGeckoResult(
@@ -36,7 +39,7 @@ class CategoriesSection {
   ///
   /// List all categories with market data.
   ///
-  /// * Coingecko API ( **GET** /coins/categories )
+  /// Query: **/coins/categories**
   ///
   Future<CoinGeckoResult<List<Category>>> listCategories() async {
     final response = await _dio.get(

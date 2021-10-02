@@ -4,6 +4,8 @@ import 'package:coingecko_api/data/finance_product.dart';
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:dio/dio.dart';
 
+/// The section that brings together the requests
+/// that are related to finance platforms and products
 class FinanceSection {
   final Dio _dio;
 
@@ -12,15 +14,19 @@ class FinanceSection {
   ///
   /// List all finance platforms.
   ///
-  /// * Coingecko API ( **GET** /finance_platforms )
+  /// **[itemsPerPage]** sets total results per page.
+  ///
+  /// **[page]** sets the page of results (paginated by 100 by default).
+  ///
+  /// Query: **/finance\_platforms**
   ///
   Future<CoinGeckoResult<List<FinancePlatform>>> listFinancePlatforms({
-    int? perPage,
+    int? itemsPerPage,
     int? page,
   }) async {
     final Map<String, dynamic> queryParameters = {};
-    if (perPage is int) {
-      queryParameters['per_page'] = perPage;
+    if (itemsPerPage is int) {
+      queryParameters['per_page'] = itemsPerPage;
     }
     if (page is int) {
       queryParameters['page'] = page;
@@ -46,17 +52,25 @@ class FinanceSection {
   ///
   /// List all finance products.
   ///
-  /// * Coingecko API ( **GET** /finance_products )
+  /// **[itemsPerPage]** sets total results per page.
+  ///
+  /// **[page]** sets the page of results (paginated by 100 by default).
+  ///
+  /// **[startAt]** sets start date of the financial products.
+  ///
+  /// **[endAt]** sets end date of the financial products.
+  ///
+  /// Query: **/finance\_products**
   ///
   Future<CoinGeckoResult<List<FinanceProduct>>> listFinanceProducts({
-    int? perPage,
+    int? itemsPerPage,
     int? page,
     DateTime? startAt,
     DateTime? endAt,
   }) async {
     final Map<String, dynamic> queryParameters = {};
-    if (perPage is int) {
-      queryParameters['per_page'] = perPage;
+    if (itemsPerPage is int) {
+      queryParameters['per_page'] = itemsPerPage;
     }
     if (page is int) {
       queryParameters['page'] = page;

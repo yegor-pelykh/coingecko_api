@@ -1,16 +1,28 @@
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
+import 'package:coingecko_api/helpers/time_unit.dart';
 
+/// OHLC data wrapper
 class OHLCInfo {
+  /// The moment in time for this OHLC data
   final DateTime timestamp;
+
+  /// Open price
   final double open;
+
+  /// High price
   final double high;
+
+  /// Low price
   final double low;
+
+  /// Close price
   final double close;
 
   OHLCInfo.fromArray(List<dynamic> array)
       : this.timestamp =
-            Convert.toDateTime(array[0], unit: TimeUnit.milliseconds) ?? Helpers.defaultDateTime(),
+            Convert.toDateTime(array[0], unit: TimeUnit.milliseconds) ??
+                Helpers.defaultDateTime(),
         this.open = Convert.toDouble(array[1]) ?? 0,
         this.high = Convert.toDouble(array[2]) ?? 0,
         this.low = Convert.toDouble(array[3]) ?? 0,

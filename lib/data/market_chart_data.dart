@@ -1,9 +1,17 @@
 import 'package:coingecko_api/helpers/helpers.dart';
 
+/// Market chart data wrapper
 class MarketChartData {
-  DateTime date;
+  /// Date
+  final DateTime date;
+
+  /// Price
   double? price;
+
+  /// Market capitalization
   double? marketCap;
+
+  /// Total volume
   double? totalVolume;
 
   MarketChartData(

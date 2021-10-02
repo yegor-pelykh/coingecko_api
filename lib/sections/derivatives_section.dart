@@ -7,6 +7,7 @@ import 'package:coingecko_api/data/enumerations.dart';
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:dio/dio.dart';
 
+/// The section that brings together the requests that are related to derivatives
 class DerivativesSection {
   final Dio _dio;
 
@@ -15,7 +16,11 @@ class DerivativesSection {
   ///
   /// List all derivative tickers.
   ///
-  /// * Coingecko API ( **GET** /derivatives )
+  /// **[includeTickers]** filters tickers by expiration.
+  /// Use [DerivativeTickersFilter] enumeration as values.
+  /// Default is [DerivativeTickersFilter.unexpired].
+  ///
+  /// Query: **/derivatives**
   ///
   Future<CoinGeckoResult<List<Derivative>>> listDerivatives({
     String includeTickers = DerivativeTickersFilter.unexpired,
@@ -43,19 +48,26 @@ class DerivativesSection {
   ///
   /// List all derivative exchanges.
   ///
-  /// * Coingecko API ( **GET** /derivatives/exchanges )
+  /// **[order]** sets results order.
+  /// Use [DerivativeExchangesOrder] enumeration as values.
+  /// Default is [DerivativeExchangesOrder.nameAscending].
+  ///
+  /// **[itemsPerPage]** sets total results per page.
+  ///
+  /// **[page]** sets page through results.
+  ///
+  /// Query: **/derivatives/exchanges**
   ///
   Future<CoinGeckoResult<List<DerivativeExchange>>> listDerivativeExchanges({
-    String? order,
-    int? perPage,
+    String order = DerivativeExchangesOrder.nameAscending,
+    int? itemsPerPage,
     int? page,
   }) async {
-    final Map<String, dynamic> queryParameters = {};
-    if (order is String) {
-      queryParameters['order'] = order;
-    }
-    if (perPage is int) {
-      queryParameters['per_page'] = perPage;
+    final Map<String, dynamic> queryParameters = {
+      'order': order,
+    };
+    if (itemsPerPage is int) {
+      queryParameters['per_page'] = itemsPerPage;
     }
     if (page is int) {
       queryParameters['page'] = page;
@@ -81,7 +93,13 @@ class DerivativesSection {
   ///
   /// Show derivative exchange data.
   ///
-  /// * Coingecko API ( **GET** /derivatives/exchanges/{id} )
+  /// **[id]** sets the exchange identifier.
+  ///
+  /// **[includeTickers]** filters tickers by expiration.
+  /// Use [DerivativeTickersFilter] enumeration as values.
+  /// If null, tickers data in response will be omitted.
+  ///
+  /// Query: **/derivatives/exchanges/{id}**
   ///
   Future<CoinGeckoResult<DerivativeExchangeExtended?>> getDerivativeExchange({
     required String id,
@@ -109,15 +127,17 @@ class DerivativesSection {
   ///
   /// List all derivative exchanges name and identifier.
   ///
-  /// * Coingecko API ( **GET** /derivatives/exchanges/list )
+  /// Query: **/derivatives/exchanges/list**
   ///
-  Future<CoinGeckoResult<List<DerivativeExchangeShort>>> listDerivativeExchangesShort() async {
+  Future<CoinGeckoResult<List<DerivativeExchangeShort>>>
+      listDerivativeExchangesShort() async {
     final response = await _dio.get(
       '/derivatives/exchanges/list',
     );
     if (response.statusCode == 200) {
       final data = Convert.toList(response.data) ?? [];
-      final list = data.map((e) => DerivativeExchangeShort.fromJson(e)).toList();
+      final list =
+          data.map((e) => DerivativeExchangeShort.fromJson(e)).toList();
       return CoinGeckoResult(list);
     } else {
       return CoinGeckoResult(

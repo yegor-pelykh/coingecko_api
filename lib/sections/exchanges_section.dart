@@ -10,6 +10,7 @@ import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 import 'package:dio/dio.dart';
 
+/// The section that brings together the requests that are related to exchanges
 class ExchangesSection {
   final Dio _dio;
 
@@ -18,17 +19,21 @@ class ExchangesSection {
   ///
   /// List all exchanges.
   ///
-  /// * Coingecko API ( **GET** /exchanges )
+  /// **[itemsPerPage]** sets total results per page. Default is 100.
+  ///
+  /// **[page]** sets page through results. Default is 1.
+  ///
+  /// Query: **/exchanges**
   ///
   Future<CoinGeckoResult<List<Exchange>>> listExchanges({
+    int itemsPerPage = 100,
     int page = 1,
-    int perPage = 100,
   }) async {
     final response = await _dio.get(
       '/exchanges',
       queryParameters: {
+        'per_page': itemsPerPage,
         'page': page,
-        'per_page': perPage,
       },
     );
     if (response.statusCode == 200) {
@@ -48,7 +53,7 @@ class ExchangesSection {
   ///
   /// List all supported exchanges: id and name.
   ///
-  /// * Coingecko API ( **GET** /exchanges/list )
+  /// Query: **/exchanges/list**
   ///
   Future<CoinGeckoResult<List<ExchangeShort>>> listExchangesShort() async {
     final response = await _dio.get(
@@ -71,7 +76,9 @@ class ExchangesSection {
   ///
   /// Get exchange volume in BTC and top 100 tickers only.
   ///
-  /// * Coingecko API ( **GET** /exchanges/{id} )
+  /// **[id]** sets the exchange id.
+  ///
+  /// Query: **/exchanges/{id}**
   ///
   Future<CoinGeckoResult<ExchangeExtended?>> getExchangeData({
     required String id,
@@ -95,7 +102,21 @@ class ExchangesSection {
   ///
   /// Get exchange tickers (paginated, 100 tickers per page).
   ///
-  /// * Coingecko API ( **GET** /exchanges/{id}/tickers )
+  /// **[id]** sets the exchange id.
+  ///
+  /// **[coinIds]** filters tickers by coin identifiers.
+  ///
+  /// **[page]** sets page through results.
+  ///
+  /// **[includeExchangeLogo]** sets whether to include exchange logo.
+  /// Default is false.
+  ///
+  /// **[depth]** sets whether to include 2% orderbook depth. Default is false.
+  ///
+  /// **[order]** sets tickers order. Use [TickersOrder] enumeration
+  /// as values. Default is [TickersOrder.trustScoreDescending].
+  ///
+  /// Query: **/exchanges/{id}/tickers**
   ///
   Future<CoinGeckoResult<List<Ticker>>> getExchangeTickers({
     required String id,
@@ -141,19 +162,25 @@ class ExchangesSection {
   ///
   /// Get status updates for a given exchange.
   ///
-  /// * Coingecko API ( **GET** /exchanges/{id}/status_updates )
+  /// **[id]** sets the exchange id.
+  ///
+  /// **[itemsPerPage]** sets total results per page.
+  ///
+  /// **[page]** sets page through results.
+  ///
+  /// Query: **/exchanges/{id}/status\_updates**
   ///
   Future<CoinGeckoResult<List<StatusUpdate>>> getExchangeStatusUpdates({
     required String id,
-    int? perPage,
+    int? itemsPerPage,
     int? page,
   }) async {
     final Map<String, dynamic> queryParameters = {};
+    if (itemsPerPage is int) {
+      queryParameters['per_page'] = itemsPerPage;
+    }
     if (page is int) {
       queryParameters['page'] = page;
-    }
-    if (perPage is int) {
-      queryParameters['per_page'] = perPage;
     }
     final response = await _dio.get(
       '/exchanges/$id/status_updates',
@@ -162,8 +189,10 @@ class ExchangesSection {
     if (response.statusCode == 200) {
       final list = Convert.toList<dynamic>(response.data['status_updates']);
       if (list != null) {
-        List<StatusUpdate> statusUpdateList = list.map((e) => StatusUpdate.fromJson(e)).toList();
-        statusUpdateList.removeWhere((e) => Helpers.isDefaultDateTime(e.createdAt));
+        List<StatusUpdate> statusUpdateList =
+            list.map((e) => StatusUpdate.fromJson(e)).toList();
+        statusUpdateList
+            .removeWhere((e) => Helpers.isDefaultDateTime(e.createdAt));
         return CoinGeckoResult(statusUpdateList);
       } else {
         return CoinGeckoResult([]);
@@ -181,7 +210,11 @@ class ExchangesSection {
   ///
   /// Get volume_chart data for a given exchange.
   ///
-  /// * Coingecko API ( **GET** /exchanges/{id}/volume_chart )
+  /// **[id]** sets the exchange id.
+  ///
+  /// **[days]** indicates in how many days to include information.
+  ///
+  /// Query: **/exchanges/{id}/volume\_chart**
   ///
   Future<CoinGeckoResult<List<ExchangeVolumeData>>> getExchangeVolumeChartData({
     required String id,
@@ -196,7 +229,8 @@ class ExchangesSection {
     if (response.statusCode == 200) {
       final list = Convert.toList(response.data);
       if (list != null) {
-        var volumeList = list.map((e) => ExchangeVolumeData.fromArray(e)).toList();
+        var volumeList =
+            list.map((e) => ExchangeVolumeData.fromArray(e)).toList();
         volumeList.removeWhere((e) => e.date.millisecondsSinceEpoch == 0);
         return CoinGeckoResult(volumeList);
       } else {

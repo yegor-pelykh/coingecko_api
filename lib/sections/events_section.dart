@@ -5,6 +5,7 @@ import 'package:coingecko_api/helpers/convert.dart';
 import 'package:dio/dio.dart';
 import 'package:intl/intl.dart';
 
+/// The section that brings together the requests that are related to events
 class EventsSection {
   final Dio _dio;
 
@@ -13,15 +14,28 @@ class EventsSection {
   ///
   /// Get events, paginated by 100.
   ///
-  /// * Coingecko API ( **GET** /events )
+  /// **[countryCode]** is the country code.
+  ///
+  /// **[type]** is the type of event.
+  ///
+  /// **[page]** sets the page of results (paginated by 100).
+  ///
+  /// **[upcomingEventsOnly]** filters whether to display only
+  /// upcoming events or all events. Default is true.
+  ///
+  /// **[from]** is FROM date.
+  ///
+  /// **[to]** is TO date.
+  ///
+  /// Query: **/events**
   ///
   Future<CoinGeckoResult<List<Event>>> listEvents({
     String? countryCode,
     String? type,
     int? page,
     bool upcomingEventsOnly = true,
-    DateTime? fromDate,
-    DateTime? toDate,
+    DateTime? from,
+    DateTime? to,
   }) async {
     final Map<String, dynamic> queryParameters = {
       'upcoming_events_only': upcomingEventsOnly,
@@ -35,11 +49,11 @@ class EventsSection {
     if (page is int) {
       queryParameters['page'] = page;
     }
-    if (fromDate is DateTime) {
-      queryParameters['from_date'] = DateFormat('dd-MM-yyyy').format(fromDate);
+    if (from is DateTime) {
+      queryParameters['from_date'] = DateFormat('dd-MM-yyyy').format(from);
     }
-    if (toDate is DateTime) {
-      queryParameters['to_date'] = DateFormat('dd-MM-yyyy').format(toDate);
+    if (to is DateTime) {
+      queryParameters['to_date'] = DateFormat('dd-MM-yyyy').format(to);
     }
     final response = await _dio.get(
       '/events',
@@ -62,7 +76,7 @@ class EventsSection {
   ///
   /// Get list of event countries.
   ///
-  /// * Coingecko API ( **GET** /events/countries )
+  /// Query: **/events/countries**
   ///
   Future<CoinGeckoResult<List<Country>>> listEventCountries() async {
     final response = await _dio.get(
@@ -85,7 +99,7 @@ class EventsSection {
   ///
   /// Get list of events types.
   ///
-  /// * Coingecko API ( **GET** /events/types )
+  /// Query: **/events/types**
   ///
   Future<CoinGeckoResult<List<String>>> listEventTypes() async {
     final response = await _dio.get(

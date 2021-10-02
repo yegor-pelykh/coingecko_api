@@ -7,15 +7,33 @@ import 'package:coingecko_api/data/localized_string.dart';
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
+/// Coin history data wrapper
 class CoinHistory {
+  /// Coin identifier
   final String id;
+
+  /// Coin symbol
   final String symbol;
+
+  /// Coin name
   final String name;
+
+  /// Coin name in different localizations
   final LocalizedString? localization;
+
+  /// Coin image
   final ImageInfo? image;
+
+  /// Market data
   final List<MarketData>? marketData;
+
+  /// Community data
   final CoinCommunityData? communityData;
+
+  /// Developer data
   final CoinDeveloperData? developerData;
+
+  /// Public interest stats
   final CoinPublicInterestsStats? publicInterestStats;
 
   CoinHistory.fromJson(Map<String, dynamic> json)
@@ -25,7 +43,9 @@ class CoinHistory {
         this.localization = json.containsKey('localization')
             ? LocalizedString.fromJson(json['localization'])
             : null,
-        this.image = json.containsKey('image') ? ImageInfo.fromJson(json['image']) : null,
+        this.image = json.containsKey('image')
+            ? ImageInfo.fromJson(json['image'])
+            : null,
         this.marketData = Helpers.parseMarketData(json['market_data']),
         this.communityData = json.containsKey('community_data')
             ? CoinCommunityData.fromJson(json['community_data'])

@@ -1,17 +1,39 @@
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
+/// Search trending coin data wrapper
 class SearchTrendingCoin {
+  /// Identifier
   final String id;
+
+  /// Coin identifier
   final int coinId;
+
+  /// Coin name
   final String name;
+
+  /// Coin symbol
   final String symbol;
+
+  /// Market capitalization rank
   final int marketCapRank;
+
+  /// Thumbnail image url
   final String thumb;
+
+  /// Small image url
   final String small;
+
+  /// Large image url
   final String large;
+
+  /// Slug
   final String slug;
+
+  /// Price in BTC
   final double priceBtc;
+
+  /// Score
   final int score;
 
   SearchTrendingCoin.fromJson(Map<String, dynamic> json)
@@ -49,7 +71,8 @@ class SearchTrending {
     return coins;
   }
 
-  SearchTrending.fromJson(Map<String, dynamic> json) : this.coins = _parseCoins(json) {}
+  SearchTrending.fromJson(Map<String, dynamic> json)
+      : this.coins = _parseCoins(json) {}
 
   @override
   String toString() {
