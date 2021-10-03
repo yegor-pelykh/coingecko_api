@@ -24,8 +24,8 @@ class Helpers {
   }
 
   /// Parses list of doubles from dynamic
-  static List<double> parseListDouble(dynamic json) {
-    final jsonList = Convert.toList(json);
+  static List<double> parseListDouble(dynamic d) {
+    final jsonList = Convert.toList(d);
     final List<double> result = [];
     if (jsonList != null) {
       jsonList.forEach((e) {
@@ -39,8 +39,8 @@ class Helpers {
   }
 
   /// Parses list of integers from dynamic
-  static List<int> parseListInt(dynamic json) {
-    final jsonList = Convert.toList(json);
+  static List<int> parseListInt(dynamic d) {
+    final jsonList = Convert.toList(d);
     final List<int> result = [];
     if (jsonList != null) {
       jsonList.forEach((e) {
@@ -54,8 +54,8 @@ class Helpers {
   }
 
   /// Parses list of strings from dynamic
-  static List<String> parseListString(dynamic json) {
-    final jsonList = Convert.toList(json);
+  static List<String> parseListString(dynamic d) {
+    final jsonList = Convert.toList(d);
     final List<String> result = [];
     if (jsonList != null) {
       jsonList.forEach((e) {
@@ -69,8 +69,8 @@ class Helpers {
   }
 
   /// Parses map of <String, double> from dynamic
-  static Map<String, double>? parseMapStringDouble(Map<String, dynamic> json) {
-    final jsonMap = Convert.toMap<String, dynamic>(json);
+  static Map<String, double>? parseMapStringDouble(dynamic d) {
+    final jsonMap = Convert.toMap<String, dynamic>(d);
     final Map<String, double> result = {};
     if (jsonMap != null) {
       jsonMap.forEach((key, value) {
@@ -84,16 +84,16 @@ class Helpers {
   }
 
   /// Parses map of <String, String> from dynamic
-  static Map<String, String>? parseMapStringString(Map<String, dynamic> json) {
-    final jsonMap = Convert.toMap<String, dynamic>(json);
+  static Map<String, String>? parseMapStringString(dynamic d) {
+    final jsonMap = Convert.toMap<String, dynamic>(d);
     return jsonMap != null
         ? jsonMap.map((key, value) => MapEntry(key, value.toString()))
         : null;
   }
 
   /// Parses list of [MarketChartData] from dynamic
-  static List<MarketChartData> parseMarketChartData(dynamic json) {
-    final map = Convert.toMap<String, dynamic>(json);
+  static List<MarketChartData> parseMarketChartData(dynamic d) {
+    final map = Convert.toMap<String, dynamic>(d);
     if (map == null) {
       return [];
     }
@@ -155,8 +155,8 @@ class Helpers {
   }
 
   /// Parses list of [MarketData] from dynamic
-  static List<MarketData> parseMarketData(dynamic json) {
-    final map = Convert.toMap<String, dynamic>(json);
+  static List<MarketData> parseMarketData(dynamic d) {
+    final map = Convert.toMap<String, dynamic>(d);
     if (map == null) {
       return [];
     }
