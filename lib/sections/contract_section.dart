@@ -51,6 +51,7 @@ class ContractSection {
   /// (usd, eur, jpy, etc.).
   ///
   /// **[days]** indicates in how many days to include information.
+  /// If the parameter is not specified, the maximum possible number of days is assumed.
   ///
   /// Query: **/coins/{id}/contract/{contract\_address}/market\_chart**
   ///
@@ -58,14 +59,15 @@ class ContractSection {
     required String id,
     required String contractAddress,
     required String vsCurrency,
-    required int days,
+    int? days,
   }) async {
+    final Map<String, dynamic> queryParameters = {
+      'vs_currency': vsCurrency,
+      'days': days is int ? days : 'max',
+    };
     final response = await _dio.get(
       '/coins/$id/contract/$contractAddress/market_chart',
-      queryParameters: {
-        'vs_currency': vsCurrency,
-        'days': days,
-      },
+      queryParameters: queryParameters,
     );
     if (response.statusCode == 200) {
       final list = Helpers.parseMarketChartData(response.data);
