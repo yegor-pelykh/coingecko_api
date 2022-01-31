@@ -1,6 +1,14 @@
 # Change Log for coingecko_api
 Dart package that provides simple access to the CoinGecko API (Version 3)
 
+## [v1.0.2](https://github.com/yegor-pelykh/coingecko_api/compare/v1.0.1...v1.0.2) - 2022-01-31
+
+### Feature
+* improved methods getCoinMarketChart, getCoinOHLC, getContractMarketChart - support for obtaining information for the maximum number of days [f650010](https://github.com/yegor-pelykh/coingecko_api/commit/f6500103ef7d83a6a056167288687a899812fdc1)
+
+### Docs
+* removed irrelevant information [ae11a79](https://github.com/yegor-pelykh/coingecko_api/commit/ae11a798ad0875fa67f557978187d602d1d178f0)
+
 ## [v1.0.1](https://github.com/yegor-pelykh/coingecko_api/compare/v1.0.0+3...v1.0.1) - 2021-10-03
 
 ### Fixes
