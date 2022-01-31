@@ -20,11 +20,16 @@ void main() async {
       include24hChange: true,
       includeLastUpdatedAt: true,
     );
-    final price = result.data.length > 0 ? result.data[0].getPriceIn('usd') : null;
-    final marketCap = result.data.length > 0 ? result.data[0].getMarketCapIn('usd') : null;
-    final vol = result.data.length > 0 ? result.data[0].get24hVolIn('usd') : null;
-    final change = result.data.length > 0 ? result.data[0].get24hChangeIn('usd') : null;
-    final isOk = price != null && marketCap != null && vol != null && change != null;
+    final price =
+        result.data.length > 0 ? result.data[0].getPriceIn('usd') : null;
+    final marketCap =
+        result.data.length > 0 ? result.data[0].getMarketCapIn('usd') : null;
+    final vol =
+        result.data.length > 0 ? result.data[0].get24hVolIn('usd') : null;
+    final change =
+        result.data.length > 0 ? result.data[0].get24hChangeIn('usd') : null;
+    final isOk =
+        price != null && marketCap != null && vol != null && change != null;
     expect(isOk, true);
   });
 
@@ -39,11 +44,16 @@ void main() async {
       include24hChange: true,
       includeLastUpdatedAt: true,
     );
-    final price = result.data.length > 0 ? result.data[0].getPriceIn('usd') : null;
-    final marketCap = result.data.length > 0 ? result.data[0].getMarketCapIn('usd') : null;
-    final vol = result.data.length > 0 ? result.data[0].get24hVolIn('usd') : null;
-    final change = result.data.length > 0 ? result.data[0].get24hChangeIn('usd') : null;
-    final isOk = price != null && marketCap != null && vol != null && change != null;
+    final price =
+        result.data.length > 0 ? result.data[0].getPriceIn('usd') : null;
+    final marketCap =
+        result.data.length > 0 ? result.data[0].getMarketCapIn('usd') : null;
+    final vol =
+        result.data.length > 0 ? result.data[0].get24hVolIn('usd') : null;
+    final change =
+        result.data.length > 0 ? result.data[0].get24hChangeIn('usd') : null;
+    final isOk =
+        price != null && marketCap != null && vol != null && change != null;
     expect(isOk, true);
   });
 
@@ -170,7 +180,8 @@ void main() async {
     expect(isOk, true);
   });
 
-  test('check /coins/{id}/contract/{contract_address}/market_chart/range', () async {
+  test('check /coins/{id}/contract/{contract_address}/market_chart/range',
+      () async {
     final result = await api.contract.getContractMarketChartRanged(
       id: 'ethereum',
       contractAddress: '0x4fabb145d64652a948d72533023f6e7a623c7c53',
@@ -357,13 +368,16 @@ void main() async {
 
   test('call /search/trending', () async {
     final result = await api.trending.getSearchTrending();
-    bool isOk = !result.isError && result.data != null && result.data!.coins.length > 0;
+    bool isOk =
+        !result.isError && result.data != null && result.data!.coins.length > 0;
     expect(isOk, true);
   });
 
   test('call /global', () async {
     final result = await api.global.getGlobalData();
-    bool isOk = !result.isError && result.data != null && result.data!.activeCryptocurrencies > 0;
+    bool isOk = !result.isError &&
+        result.data != null &&
+        result.data!.activeCryptocurrencies > 0;
     expect(isOk, true);
   });
 
