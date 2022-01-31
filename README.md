@@ -267,6 +267,4 @@ Yegor Pelykh
 
 E-mail:  [yegor.dev@gmail.com](mailto:yegor.dev@gmail.com) 
 
-Telegram: [@yegor_pelykh](https://t.me/yegor_pelykh) 
-
 Project Link: [github.com/yegor-pelykh/coingecko_api](https://github.com/yegor-pelykh/coingecko_api)
