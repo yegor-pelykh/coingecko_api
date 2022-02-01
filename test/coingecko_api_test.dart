@@ -1,7 +1,7 @@
 import 'package:coingecko_api/coingecko_api.dart';
 import 'package:coingecko_api/data/enumerations.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() async {
   CoinGeckoApi api = CoinGeckoApi(rateLimitManagement: false);
