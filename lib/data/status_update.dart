@@ -35,7 +35,7 @@ class StatusUpdate {
         this.pin = Convert.toNullableBoolean(json['pin']),
         this.project = json.containsKey('project')
             ? StatusUpdateProject.fromJson(json['project'])
-            : null {}
+            : null;
 
   @override
   String toString() {

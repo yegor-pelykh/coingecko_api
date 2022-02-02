@@ -19,7 +19,7 @@ class AssetPlatform {
       : this.id = Convert.toNotNullableString(json['id'], ''),
         this.chainIdentifier = Convert.toInt(json['chain_identifier']),
         this.name = Convert.toNotNullableString(json['name'], ''),
-        this.shortName = Convert.toNotNullableString(json['shortName'], '') {}
+        this.shortName = Convert.toNotNullableString(json['shortName'], '');
 
   @override
   String toString() {

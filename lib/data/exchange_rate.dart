@@ -19,7 +19,7 @@ class ExchangeRate {
       : this.name = Convert.toNotNullableString(json['name'], ''),
         this.unit = Convert.toNotNullableString(json['unit'], ''),
         this.value = Convert.toDouble(json['value']) ?? 0,
-        this.type = Convert.toNotNullableString(json['type'], '') {}
+        this.type = Convert.toNotNullableString(json['type'], '');
 
   @override
   String toString() {

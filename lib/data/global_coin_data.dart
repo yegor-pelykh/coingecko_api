@@ -47,7 +47,7 @@ class GlobalCoinData {
             Helpers.parseMapStringDouble(json['market_cap_percentage']),
         this.marketCapChangePercentage24hUsd =
             Convert.toDouble(json['market_cap_change_percentage_24h_usd']),
-        this.updatedAt = Convert.toDateTime(json['updated_at']) {}
+        this.updatedAt = Convert.toDateTime(json['updated_at']);
 
   @override
   String toString() {

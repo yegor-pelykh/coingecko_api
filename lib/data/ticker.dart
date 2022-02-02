@@ -92,7 +92,7 @@ class Ticker {
         this.tradeUrl = Convert.toNotNullableString(json['trade_url'], ''),
         this.tokenInfoUrl = Convert.toNullableString(json['token_info_url']),
         this.coinId = Convert.toNotNullableString(json['coin_id'], ''),
-        this.targetCoinId = Convert.toNullableString(json['target_coin_id']) {}
+        this.targetCoinId = Convert.toNullableString(json['target_coin_id']);
 
   @override
   String toString() {

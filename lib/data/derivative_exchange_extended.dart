@@ -58,7 +58,7 @@ class DerivativeExchangeExtended {
         this.country = Convert.toNullableString(json['country']),
         this.description = Convert.toNotNullableString(json['description'], ''),
         this.url = Convert.toNotNullableString(json['url'], ''),
-        this.tickers = _parseTickers(json['tickers']) {}
+        this.tickers = _parseTickers(json['tickers']);
 
   @override
   String toString() {

@@ -99,7 +99,7 @@ class MarketData {
     this.priceChangePercentage1yInCurrency,
     this.marketCapChange24hInCurrency,
     this.marketCapChangePercentage24hInCurrency,
-  }) {}
+  });
 
   @override
   String toString() {

@@ -19,7 +19,7 @@ class CoinShort {
       : this.id = Convert.toNotNullableString(json['id'], ''),
         this.symbol = Convert.toNotNullableString(json['symbol'], ''),
         this.name = Convert.toNotNullableString(json['name'], ''),
-        this.platforms = Helpers.parseMapStringString(json['platforms']) {}
+        this.platforms = Helpers.parseMapStringString(json['platforms']);
 
   @override
   String toString() {

@@ -19,7 +19,7 @@ class MarketChartData {
     this.price,
     this.marketCap,
     this.totalVolume,
-  }) {}
+  });
 
   @override
   String toString() {

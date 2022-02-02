@@ -33,7 +33,7 @@ class GlobalDefiData {
         this.defiDominance = Convert.toDouble(json['defi_dominance']) ?? 0,
         this.topCoinName = Convert.toNullableString(json['top_coin_name']),
         this.topCoinDefiDominance =
-            Convert.toDouble(json['top_coin_defi_dominance']) ?? 0 {}
+            Convert.toDouble(json['top_coin_defi_dominance']) ?? 0;
 
   @override
   String toString() {

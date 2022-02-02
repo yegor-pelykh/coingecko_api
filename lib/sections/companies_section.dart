@@ -19,10 +19,10 @@ class CompaniesSection {
   /// Query: **/companies/public\_treasury/{coin\_id}**
   ///
   Future<CoinGeckoResult<CompaniesData?>> getCompaniesData({
-    String coin_id = CompanyHoldingsCoin.bitcoin,
+    String coinId = CompanyHoldingsCoin.bitcoin,
   }) async {
     final response = await _dio.get(
-      '/companies/public_treasury/$coin_id',
+      '/companies/public_treasury/$coinId',
     );
     if (response.statusCode == 200) {
       final data = CompaniesData.fromJson(response.data);

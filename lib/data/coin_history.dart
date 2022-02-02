@@ -55,7 +55,7 @@ class CoinHistory {
             : null,
         this.publicInterestStats = json.containsKey('public_interest_stats')
             ? CoinPublicInterestsStats.fromJson(json['public_interest_stats'])
-            : null {}
+            : null;
 
   @override
   String toString() {

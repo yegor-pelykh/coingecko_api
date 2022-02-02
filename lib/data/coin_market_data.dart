@@ -96,7 +96,7 @@ class CoinMarketData {
         this.sparkline7d = json.containsKey('sparkline_7d')
             ? MarketSparkline.fromJson(json['sparkline_7d'])
             : null,
-        this.lastUpdated = Convert.toDateTime(json['last_updated']) {}
+        this.lastUpdated = Convert.toDateTime(json['last_updated']);
 
   @override
   String toString() {

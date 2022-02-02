@@ -47,7 +47,7 @@ class SearchTrendingCoin {
         this.large = Convert.toNotNullableString(json['large'], ''),
         this.slug = Convert.toNotNullableString(json['slug'], ''),
         this.priceBtc = Convert.toDouble(json['price_btc']) ?? 0,
-        this.score = Convert.toInt(json['score']) ?? 0 {}
+        this.score = Convert.toInt(json['score']) ?? 0;
 
   @override
   String toString() {
@@ -72,7 +72,7 @@ class SearchTrending {
   }
 
   SearchTrending.fromJson(Map<String, dynamic> json)
-      : this.coins = _parseCoins(json) {}
+      : this.coins = _parseCoins(json);
 
   @override
   String toString() {

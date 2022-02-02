@@ -11,7 +11,7 @@ class MarketIndexShort {
 
   MarketIndexShort.fromJson(Map<String, dynamic> json)
       : this.id = Convert.toNotNullableString(json['id'], ''),
-        this.name = Convert.toNotNullableString(json['name'], '') {}
+        this.name = Convert.toNotNullableString(json['name'], '');
 
   @override
   String toString() {

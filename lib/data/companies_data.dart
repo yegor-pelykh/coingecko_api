@@ -28,7 +28,7 @@ class CompaniesData {
         this.totalValueUsd = Convert.toDouble(json['total_value_usd']) ?? 0,
         this.marketCapDominance =
             Convert.toDouble(json['market_cap_dominance']) ?? 0,
-        this.companies = _parseCompanies(json['companies']) {}
+        this.companies = _parseCompanies(json['companies']);
 
   @override
   String toString() {

@@ -35,7 +35,7 @@ class CoinCommunityData {
         this.redditAccountsActive48h =
             Convert.toDouble(json['reddit_accounts_active_48h']),
         this.telegramChannelUserCount =
-            Convert.toInt(json['telegram_channel_user_count']) {}
+            Convert.toInt(json['telegram_channel_user_count']);
 
   @override
   String toString() {

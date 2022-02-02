@@ -10,7 +10,7 @@ class CoinReposUrl {
 
   CoinReposUrl.fromJson(Map<String, dynamic> json)
       : this.github = Helpers.parseListString(json['homepage']),
-        this.bitbucket = Helpers.parseListString(json['bitbucket']) {}
+        this.bitbucket = Helpers.parseListString(json['bitbucket']);
 
   @override
   String toString() {

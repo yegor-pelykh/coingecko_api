@@ -28,8 +28,8 @@ class Category {
         this.marketCapChange24h =
             Convert.toDouble(json['market_cap_change_24h']) ?? 0,
         this.volume24h = Convert.toDouble(json['volume_24h']) ?? 0,
-        this.updatedAt = Convert.toDateTime(json['updated_at']) ??
-            Helpers.defaultDateTime() {}
+        this.updatedAt =
+            Convert.toDateTime(json['updated_at']) ?? Helpers.defaultDateTime();
 
   @override
   String toString() {

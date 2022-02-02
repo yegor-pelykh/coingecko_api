@@ -21,13 +21,13 @@ void main() async {
       includeLastUpdatedAt: true,
     );
     final price =
-        result.data.length > 0 ? result.data[0].getPriceIn('usd') : null;
+        result.data.isNotEmpty ? result.data[0].getPriceIn('usd') : null;
     final marketCap =
-        result.data.length > 0 ? result.data[0].getMarketCapIn('usd') : null;
+        result.data.isNotEmpty ? result.data[0].getMarketCapIn('usd') : null;
     final vol =
-        result.data.length > 0 ? result.data[0].get24hVolIn('usd') : null;
+        result.data.isNotEmpty ? result.data[0].get24hVolIn('usd') : null;
     final change =
-        result.data.length > 0 ? result.data[0].get24hChangeIn('usd') : null;
+        result.data.isNotEmpty ? result.data[0].get24hChangeIn('usd') : null;
     final isOk =
         price != null && marketCap != null && vol != null && change != null;
     expect(isOk, true);
@@ -45,13 +45,13 @@ void main() async {
       includeLastUpdatedAt: true,
     );
     final price =
-        result.data.length > 0 ? result.data[0].getPriceIn('usd') : null;
+        result.data.isNotEmpty ? result.data[0].getPriceIn('usd') : null;
     final marketCap =
-        result.data.length > 0 ? result.data[0].getMarketCapIn('usd') : null;
+        result.data.isNotEmpty ? result.data[0].getMarketCapIn('usd') : null;
     final vol =
-        result.data.length > 0 ? result.data[0].get24hVolIn('usd') : null;
+        result.data.isNotEmpty ? result.data[0].get24hVolIn('usd') : null;
     final change =
-        result.data.length > 0 ? result.data[0].get24hChangeIn('usd') : null;
+        result.data.isNotEmpty ? result.data[0].get24hChangeIn('usd') : null;
     final isOk =
         price != null && marketCap != null && vol != null && change != null;
     expect(isOk, true);
@@ -121,7 +121,7 @@ void main() async {
       days: 30,
       interval: CoinMarketChartInterval.daily,
     );
-    final isOk = result.data.length > 0;
+    final isOk = result.data.isNotEmpty;
     expect(isOk, true);
   });
 
@@ -132,7 +132,7 @@ void main() async {
       from: DateTime(2021, 1, 1),
       to: DateTime(2021, 7, 1),
     );
-    final isOk = result.data.length > 0;
+    final isOk = result.data.isNotEmpty;
     expect(isOk, true);
   });
 
@@ -140,7 +140,7 @@ void main() async {
     final result = await api.coins.listCoinStatusUpdates(
       id: 'nem',
     );
-    final isOk = result.data.length > 0;
+    final isOk = result.data.isNotEmpty;
     expect(isOk, true);
   });
 
@@ -150,7 +150,7 @@ void main() async {
       vsCurrency: 'usd',
       days: 7,
     );
-    final isOk = result.data.length > 0 &&
+    final isOk = result.data.isNotEmpty &&
         result.data.every((e) =>
             !Helpers.isDefaultDateTime(e.timestamp) &&
             e.open > 0 &&
@@ -176,7 +176,7 @@ void main() async {
       vsCurrency: 'usd',
       days: 30,
     );
-    final isOk = result.data.length > 0;
+    final isOk = result.data.isNotEmpty;
     expect(isOk, true);
   });
 
@@ -189,13 +189,13 @@ void main() async {
       from: DateTime(2021, 1, 1),
       to: DateTime(2021, 7, 1),
     );
-    final isOk = result.data.length > 0;
+    final isOk = result.data.isNotEmpty;
     expect(isOk, true);
   });
 
   test('check /asset_platforms', () async {
     final result = await api.assetPlatforms.listAssetPlatforms();
-    final isOk = result.data.length > 0;
+    final isOk = result.data.isNotEmpty;
     expect(isOk, true);
   });
 
@@ -241,7 +241,7 @@ void main() async {
       includeExchangeLogo: true,
       depth: true,
     );
-    final isOk = result.data.length > 0;
+    final isOk = result.data.isNotEmpty;
     expect(isOk, true);
   });
 
@@ -251,7 +251,7 @@ void main() async {
       page: 1,
       itemsPerPage: 100,
     );
-    final isOk = result.data.length > 0;
+    final isOk = result.data.isNotEmpty;
     expect(isOk, true);
   });
 
@@ -260,7 +260,7 @@ void main() async {
       id: 'kuna',
       days: 1,
     );
-    final isOk = result.data.length > 0;
+    final isOk = result.data.isNotEmpty;
     expect(isOk, true);
   });
 
@@ -268,7 +268,7 @@ void main() async {
     final result = await api.finance.listFinancePlatforms(
       itemsPerPage: 100,
     );
-    final isOk = result.data.length > 0;
+    final isOk = result.data.isNotEmpty;
     expect(isOk, true);
   });
 
@@ -276,13 +276,13 @@ void main() async {
     final result = await api.finance.listFinanceProducts(
       itemsPerPage: 100,
     );
-    final isOk = result.data.length > 0;
+    final isOk = result.data.isNotEmpty;
     expect(isOk, true);
   });
 
   test('check /indexes', () async {
     final result = await api.indexes.listMarketIndexes();
-    final isOk = result.data.length > 0;
+    final isOk = result.data.isNotEmpty;
     expect(isOk, true);
   });
 
@@ -297,7 +297,7 @@ void main() async {
 
   test('check /indexes/list', () async {
     final result = await api.indexes.listMarketIndexesShort();
-    final isOk = result.data.length > 0;
+    final isOk = result.data.isNotEmpty;
     expect(isOk, true);
   });
 
@@ -305,7 +305,7 @@ void main() async {
     final result = await api.derivatives.listDerivatives(
       includeTickers: DerivativeTickersFilter.all,
     );
-    final isOk = !result.isError && result.data.length > 0;
+    final isOk = !result.isError && result.data.isNotEmpty;
     expect(isOk, true);
   });
 
@@ -329,7 +329,7 @@ void main() async {
 
   test('check /derivatives/exchanges/list', () async {
     final result = await api.derivatives.listDerivativeExchangesShort();
-    final isOk = !result.isError && result.data.length > 0;
+    final isOk = !result.isError && result.data.isNotEmpty;
     expect(isOk, true);
   });
 
@@ -338,38 +338,38 @@ void main() async {
       category: StatusUpdateCategory.general,
       projectType: StatusUpdateProjectType.coin,
     );
-    final isOk = !result.isError && result.data.length > 0;
+    final isOk = !result.isError && result.data.isNotEmpty;
     expect(isOk, true);
   });
 
   test('check /events', () async {
     final result = await api.events.listEvents();
-    final isOk = !result.isError && result.data.length > 0;
+    final isOk = !result.isError && result.data.isNotEmpty;
     expect(isOk, true);
   });
 
   test('check /events/countries', () async {
     final result = await api.events.listEventCountries();
-    final isOk = !result.isError && result.data.length > 0;
+    final isOk = !result.isError && result.data.isNotEmpty;
     expect(isOk, true);
   });
 
   test('check /events/types', () async {
     final result = await api.events.listEventTypes();
-    final isOk = !result.isError && result.data.length > 0;
+    final isOk = !result.isError && result.data.isNotEmpty;
     expect(isOk, true);
   });
 
   test('call /exchange_rates', () async {
     final result = await api.exchangeRates.getBtcExchangeRates();
-    final isOk = !result.isError && result.data.length > 0;
+    final isOk = !result.isError && result.data.isNotEmpty;
     expect(isOk, true);
   });
 
   test('call /search/trending', () async {
     final result = await api.trending.getSearchTrending();
     bool isOk =
-        !result.isError && result.data != null && result.data!.coins.length > 0;
+        !result.isError && result.data != null && result.data!.coins.isNotEmpty;
     expect(isOk, true);
   });
 

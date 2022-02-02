@@ -131,7 +131,7 @@ class ExchangesSection {
       'depth': depth,
       'order': order,
     };
-    if (coinIds.length > 0) {
+    if (coinIds.isNotEmpty) {
       queryParameters['coin_ids'] = coinIds.join(',');
     }
     if (page is int) {

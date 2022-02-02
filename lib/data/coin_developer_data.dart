@@ -50,7 +50,7 @@ class CoinDeveloperData {
                 : null,
         this.commitCount4Weeks = Convert.toInt(json['commit_count_4_weeks']),
         this.last4WeeksCommitActivitySeries =
-            Helpers.parseListInt(json['last_4_weeks_commit_activity_series']) {}
+            Helpers.parseListInt(json['last_4_weeks_commit_activity_series']);
 
   @override
   String toString() {

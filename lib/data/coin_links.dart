@@ -56,7 +56,7 @@ class CoinLinks {
         this.subredditUrl = Convert.toNullableString(json['subreddit_url']),
         this.reposUrl = json.containsKey('repos_url')
             ? CoinReposUrl.fromJson(json['repos_url'])
-            : null {}
+            : null;
 
   @override
   String toString() {

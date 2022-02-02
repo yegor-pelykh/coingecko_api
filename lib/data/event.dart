@@ -57,7 +57,7 @@ class Event {
         this.address = Convert.toNotNullableString(json['address'], ''),
         this.city = Convert.toNotNullableString(json['city'], ''),
         this.country = Convert.toNotNullableString(json['country'], ''),
-        this.screenshot = Convert.toNotNullableString(json['screenshot'], '') {}
+        this.screenshot = Convert.toNotNullableString(json['screenshot'], '');
 
   @override
   String toString() {

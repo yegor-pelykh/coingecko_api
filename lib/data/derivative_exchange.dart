@@ -50,7 +50,7 @@ class DerivativeExchange {
         this.yearEstablished = Convert.toInt(json['year_established']) ?? 0,
         this.country = Convert.toNullableString(json['country']),
         this.description = Convert.toNotNullableString(json['description'], ''),
-        this.url = Convert.toNotNullableString(json['url'], '') {}
+        this.url = Convert.toNotNullableString(json['url'], '');
 
   @override
   String toString() {

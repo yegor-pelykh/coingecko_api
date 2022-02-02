@@ -54,7 +54,7 @@ class Exchange {
         this.tradeVolume24hBtc =
             Convert.toDouble(json['trade_volume_24h_btc']) ?? 0,
         this.tradeVolume24hBtcNormalized =
-            Convert.toDouble(json['trade_volume_24h_btc_normalized']) ?? 0 {}
+            Convert.toDouble(json['trade_volume_24h_btc_normalized']) ?? 0;
 
   @override
   String toString() {

@@ -26,7 +26,7 @@ class OHLCInfo {
         this.open = Convert.toDouble(array[1]) ?? 0,
         this.high = Convert.toDouble(array[2]) ?? 0,
         this.low = Convert.toDouble(array[3]) ?? 0,
-        this.close = Convert.toDouble(array[4]) ?? 0 {}
+        this.close = Convert.toDouble(array[4]) ?? 0;
 
   @override
   String toString() {

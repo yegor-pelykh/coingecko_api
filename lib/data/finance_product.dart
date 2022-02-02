@@ -50,7 +50,7 @@ class FinanceProduct {
         this.startAt = _parseDate(json['start_at']),
         this.endAt = _parseDate(json['end_at']),
         this.valueAt = _parseDate(json['value_at']),
-        this.redeemAt = _parseDate(json['redeem_at']) {}
+        this.redeemAt = _parseDate(json['redeem_at']);
 
   @override
   String toString() {

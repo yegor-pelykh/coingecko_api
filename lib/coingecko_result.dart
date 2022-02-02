@@ -17,7 +17,7 @@ class CoinGeckoResult<T> {
     this.isError = false,
     this.errorMessage,
     this.errorCode,
-  }) {}
+  });
 
   @override
   String toString() {

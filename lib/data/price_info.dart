@@ -36,6 +36,6 @@ class PriceInfo {
 
   @override
   String toString() {
-    return '${Helpers.getTypeName(PriceInfo)}: id = ${id}';
+    return '${Helpers.getTypeName(PriceInfo)}: id = $id';
   }
 }

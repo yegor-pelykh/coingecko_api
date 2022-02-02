@@ -24,8 +24,7 @@ class FinancePlatform {
         this.category = Convert.toNotNullableString(json['category'], ''),
         this.centralized =
             Convert.toNotNullableBoolean(json['centralized'], false),
-        this.websiteUrl =
-            Convert.toNotNullableString(json['website_url'], '') {}
+        this.websiteUrl = Convert.toNotNullableString(json['website_url'], '');
 
   @override
   String toString() {

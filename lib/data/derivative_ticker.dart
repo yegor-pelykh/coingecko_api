@@ -77,7 +77,7 @@ class DerivativeTicker {
             Helpers.parseMapStringDouble(json['converted_last']) ?? {},
         this.lastTraded = Convert.toDateTime(json['last_traded']) ??
             Helpers.defaultDateTime(),
-        this.expiredAt = Convert.toDateTime(json['expired_at']) {}
+        this.expiredAt = Convert.toDateTime(json['expired_at']);
 
   @override
   String toString() {

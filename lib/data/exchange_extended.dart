@@ -120,7 +120,7 @@ class ExchangeExtended {
         this.tradeVolume24hBtcNormalized =
             Convert.toDouble(json['trade_volume_24h_btc_normalized']) ?? 0,
         this.tickers = _parseTickers(json['tickers']),
-        this.statusUpdates = _parseStatusUpdates(json['status_updates']) {}
+        this.statusUpdates = _parseStatusUpdates(json['status_updates']);
 
   @override
   String toString() {

@@ -26,7 +26,7 @@ class StatusUpdateProject {
         this.symbol = Convert.toNullableString(json['symbol']),
         this.image = json.containsKey('image')
             ? ImageInfo.fromJson(json['image'])
-            : null {}
+            : null;
 
   @override
   String toString() {

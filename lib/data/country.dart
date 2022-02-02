@@ -11,7 +11,7 @@ class Country {
 
   Country.fromJson(Map<String, dynamic> json)
       : this.country = Convert.toNullableString(json['country']),
-        this.code = Convert.toNotNullableString(json['code'], '') {}
+        this.code = Convert.toNotNullableString(json['code'], '');
 
   @override
   String toString() {

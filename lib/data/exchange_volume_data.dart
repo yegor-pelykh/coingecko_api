@@ -11,7 +11,7 @@ class ExchangeVolumeData {
 
   ExchangeVolumeData.fromArray(List<dynamic> array)
       : this.date = Convert.toDateTime(array[0]) ?? Helpers.defaultDateTime(),
-        this.volume = Convert.toDouble(array[1]) ?? 0 {}
+        this.volume = Convert.toDouble(array[1]) ?? 0;
 
   @override
   String toString() {

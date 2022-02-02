@@ -24,7 +24,7 @@ class MarketIndexIdentified {
         this.market = Convert.toNotNullableString(json['market'], ''),
         this.last = Convert.toDouble(json['last']) ?? 0,
         this.isMultiAssetComposite =
-            Convert.toNullableBoolean(json['is_multi_asset_composite']) {}
+            Convert.toNullableBoolean(json['is_multi_asset_composite']);
 
   @override
   String toString() {

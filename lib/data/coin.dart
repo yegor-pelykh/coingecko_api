@@ -183,7 +183,7 @@ class Coin {
             : null,
         this.statusUpdates = _parseStatusUpdates(json['status_updates']),
         this.lastUpdated = Convert.toDateTime(json['last_updated']),
-        this.tickers = _parseTickers(json['tickers']) {}
+        this.tickers = _parseTickers(json['tickers']);
 
   @override
   String toString() {

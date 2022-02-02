@@ -62,7 +62,7 @@ class Derivative {
         this.volume24h = Convert.toDouble(json['volume_24h']) ?? 0,
         this.lastTradedAt = Convert.toDateTime(json['last_traded_at']) ??
             Helpers.defaultDateTime(),
-        this.expiredAt = Convert.toDateTime(json['expired_at']) {}
+        this.expiredAt = Convert.toDateTime(json['expired_at']);
 
   @override
   String toString() {

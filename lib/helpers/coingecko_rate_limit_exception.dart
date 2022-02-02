@@ -9,7 +9,7 @@ class CoinGeckoRateLimitException implements Exception {
 
   CoinGeckoRateLimitException()
       : errorMessage =
-            'coingecko_api: $requestPerMinute requests per minute exceeded!' {}
+            'coingecko_api: $requestPerMinute requests per minute exceeded!';
 
   @override
   String toString() {

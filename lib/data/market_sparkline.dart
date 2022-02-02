@@ -6,7 +6,7 @@ class MarketSparkline {
   final List<double> price;
 
   MarketSparkline.fromJson(Map<String, dynamic> json)
-      : this.price = Helpers.parseListDouble(json['price']) {}
+      : this.price = Helpers.parseListDouble(json['price']);
 
   @override
   String toString() {

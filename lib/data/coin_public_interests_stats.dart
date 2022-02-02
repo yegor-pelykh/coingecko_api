@@ -11,7 +11,7 @@ class CoinPublicInterestsStats {
 
   CoinPublicInterestsStats.fromJson(Map<String, dynamic> json)
       : this.alexaRank = Convert.toInt(json['alexa_rank']),
-        this.bingMatches = Convert.toInt(json['bing_matches']) {}
+        this.bingMatches = Convert.toInt(json['bing_matches']);
 
   @override
   String toString() {

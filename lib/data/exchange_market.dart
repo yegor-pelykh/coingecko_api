@@ -20,7 +20,7 @@ class ExchangeMarket {
         this.identifier = Convert.toNotNullableString(json['identifier'], ''),
         this.hasTradingIncentive =
             Convert.toNotNullableBoolean(json['has_trading_incentive'], false),
-        this.logo = Convert.toNullableString(json['logo']) {}
+        this.logo = Convert.toNullableString(json['logo']);
 
   @override
   String toString() {

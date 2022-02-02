@@ -34,7 +34,7 @@ class Company {
         this.totalCurrentValueUsd =
             Convert.toDouble(json['total_current_value_usd']) ?? 0,
         this.percentageOfTotalSupply =
-            Convert.toDouble(json['percentage_of_total_supply']) ?? 0 {}
+            Convert.toDouble(json['percentage_of_total_supply']) ?? 0;
 
   @override
   String toString() {

@@ -20,7 +20,7 @@ class LocalizedString {
 
   LocalizedString.fromJson(Map<String, dynamic> json)
       : this.id = Convert.toNotNullableString(json['id'], ''),
-        this.translations = _parseTranslations(json) {}
+        this.translations = _parseTranslations(json);
 
   @override
   String toString() {

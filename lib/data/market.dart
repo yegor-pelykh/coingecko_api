@@ -152,7 +152,7 @@ class Market {
             Convert.toDouble(json['price_change_percentage_1y_in_currency']),
         this.sparklineIn7d = json.containsKey('sparkline_in_7d')
             ? MarketSparkline.fromJson(json['sparkline_in_7d'])
-            : null {}
+            : null;
 
   @override
   String toString() {
