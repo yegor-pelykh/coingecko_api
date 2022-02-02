@@ -1,6 +1,11 @@
 # Change Log for coingecko_api
 Dart package that provides simple access to the CoinGecko API (Version 3)
 
+## [v1.0.2+2](https://github.com/yegor-pelykh/coingecko_api/compare/v1.0.2+1...v1.0.2+2) - 2022-02-02
+
+### Refactor
+* Bringing the code in line with the linter's suggestions [fce9817](https://github.com/yegor-pelykh/coingecko_api/commit/fce981724cb5e8654ae12a4c04c65cbba2c51331)
+
 ## [v1.0.2+1](https://github.com/yegor-pelykh/coingecko_api/compare/v1.0.2...v1.0.2+1) - 2022-02-01
 
 ### Fixes
