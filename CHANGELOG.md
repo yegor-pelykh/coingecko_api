@@ -1,6 +1,24 @@
 # Change Log for coingecko_api
 Dart package that provides simple access to the CoinGecko API (Version 3)
 
+## [v1.1.0](https://github.com/yegor-pelykh/coingecko_api/compare/v1.0.2+2...v1.1.0) - 2022-09-18
+
+### Feature
+* Added a new section / method for searching data on CoinGecko [9b3e27f](https://github.com/yegor-pelykh/coingecko_api/commit/9b3e27ff856fef3db2598779d5cc5f8b4b057dbb)
+
+### Fixes
+* Removed deprecated methods and data types [69a221b](https://github.com/yegor-pelykh/coingecko_api/commit/69a221bb6b22060bf6b734ddff29ada268510661)
+
+### Docs
+* Updated documentation [e28e05b](https://github.com/yegor-pelykh/coingecko_api/commit/e28e05b37453328d3d5cd98b343107919adc5c1b)
+* Updated documentation [64c1823](https://github.com/yegor-pelykh/coingecko_api/commit/64c18238cc4ec88032a36f2c48b6d24bc7820294)
+
+### Refactor
+* Improvements and standardization of data conversion methods [36da5fe](https://github.com/yegor-pelykh/coingecko_api/commit/36da5fe3ec5e426a7d7ec3695f6bde6f013ba58d)
+
+### Test
+* Updated tests [2073bd8](https://github.com/yegor-pelykh/coingecko_api/commit/2073bd82cc3c5ba38e5aa3a91a77c7fb87d99e3a)
+
 ## [v1.0.2+2](https://github.com/yegor-pelykh/coingecko_api/compare/v1.0.2+1...v1.0.2+2) - 2022-02-02
 
 ### Refactor
