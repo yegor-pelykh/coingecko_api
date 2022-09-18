@@ -46,7 +46,7 @@ Installation
 Add the dependency to your Dart / Flutter project:
 ```yaml
 dependencies:
-  coingecko_api: ^1.0.0
+  coingecko_api: ^1.1.0
 ```
 
 Usage
