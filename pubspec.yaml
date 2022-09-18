@@ -1,6 +1,6 @@
 name: coingecko_api
 description: Dart package that provides simple access to the CoinGecko API (Version 3)
-version: 1.1.0+1
+version: 1.1.0+2
 repository: https://github.com/yegor-pelykh/coingecko_api
 issue_tracker: https://github.com/yegor-pelykh/coingecko_api/issues
 
