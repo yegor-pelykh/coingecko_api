@@ -16,10 +16,10 @@ class ExchangeRate {
   final String type;
 
   ExchangeRate.fromJson(Map<String, dynamic> json)
-      : this.name = Convert.toNotNullableString(json['name'], ''),
-        this.unit = Convert.toNotNullableString(json['unit'], ''),
-        this.value = Convert.toDouble(json['value']) ?? 0,
-        this.type = Convert.toNotNullableString(json['type'], '');
+      : this.name = Convert.toStr(json['name'], ''),
+        this.unit = Convert.toStr(json['unit'], ''),
+        this.value = Convert.toDouble(json['value'], 0),
+        this.type = Convert.toStr(json['type'], '');
 
   @override
   String toString() {

@@ -16,11 +16,11 @@ class ExchangeMarket {
   final String? logo;
 
   ExchangeMarket.fromJson(Map<String, dynamic> json)
-      : this.name = Convert.toNotNullableString(json['name'], ''),
-        this.identifier = Convert.toNotNullableString(json['identifier'], ''),
+      : this.name = Convert.toStr(json['name'], ''),
+        this.identifier = Convert.toStr(json['identifier'], ''),
         this.hasTradingIncentive =
-            Convert.toNotNullableBoolean(json['has_trading_incentive'], false),
-        this.logo = Convert.toNullableString(json['logo']);
+            Convert.toBoolean(json['has_trading_incentive'], false),
+        this.logo = Convert.toStrN(json['logo']);
 
   @override
   String toString() {

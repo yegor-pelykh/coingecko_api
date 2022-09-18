@@ -22,14 +22,14 @@ class Category {
   final DateTime updatedAt;
 
   Category.fromJson(Map<String, dynamic> json)
-      : this.id = Convert.toNotNullableString(json['id'], ''),
-        this.name = Convert.toNotNullableString(json['name'], ''),
-        this.marketCap = Convert.toDouble(json['market_cap']) ?? 0,
+      : this.id = Convert.toStr(json['id'], ''),
+        this.name = Convert.toStr(json['name'], ''),
+        this.marketCap = Convert.toDouble(json['market_cap'], 0),
         this.marketCapChange24h =
-            Convert.toDouble(json['market_cap_change_24h']) ?? 0,
-        this.volume24h = Convert.toDouble(json['volume_24h']) ?? 0,
+            Convert.toDouble(json['market_cap_change_24h'], 0),
+        this.volume24h = Convert.toDouble(json['volume_24h'], 0),
         this.updatedAt =
-            Convert.toDateTime(json['updated_at']) ?? Helpers.defaultDateTime();
+            Convert.toDateTime(json['updated_at'], Helpers.defaultDateTime());
 
   @override
   String toString() {

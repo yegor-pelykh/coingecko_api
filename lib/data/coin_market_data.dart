@@ -67,36 +67,36 @@ class CoinMarketData {
 
   CoinMarketData.fromJson(Map<String, dynamic> json)
       : this.dataByCurrency = Helpers.parseMarketData(json),
-        this.totalValueLocked = Convert.toDouble(json['total_value_locked']),
-        this.mcapToTvlRatio = Convert.toDouble(json['mcap_to_tvl_ratio']),
-        this.fdvToTvlRatio = Convert.toDouble(json['fdv_to_tvl_ratio']),
-        this.roi = Convert.toDouble(json['roi']),
-        this.priceChange24h = Convert.toDouble(json['price_change_24h']),
+        this.totalValueLocked = Convert.toDoubleN(json['total_value_locked']),
+        this.mcapToTvlRatio = Convert.toDoubleN(json['mcap_to_tvl_ratio']),
+        this.fdvToTvlRatio = Convert.toDoubleN(json['fdv_to_tvl_ratio']),
+        this.roi = Convert.toDoubleN(json['roi']),
+        this.priceChange24h = Convert.toDoubleN(json['price_change_24h']),
         this.priceChangePercentage24h =
-            Convert.toDouble(json['price_change_percentage_24h']),
+            Convert.toDoubleN(json['price_change_percentage_24h']),
         this.priceChangePercentage7d =
-            Convert.toDouble(json['price_change_percentage_7d']),
+            Convert.toDoubleN(json['price_change_percentage_7d']),
         this.priceChangePercentage14d =
-            Convert.toDouble(json['price_change_percentage_14d']),
+            Convert.toDoubleN(json['price_change_percentage_14d']),
         this.priceChangePercentage30d =
-            Convert.toDouble(json['price_change_percentage_30d']),
+            Convert.toDoubleN(json['price_change_percentage_30d']),
         this.priceChangePercentage60d =
-            Convert.toDouble(json['price_change_percentage_60d']),
+            Convert.toDoubleN(json['price_change_percentage_60d']),
         this.priceChangePercentage200d =
-            Convert.toDouble(json['price_change_percentage_200d']),
+            Convert.toDoubleN(json['price_change_percentage_200d']),
         this.priceChangePercentage1y =
-            Convert.toDouble(json['price_change_percentage_1y']),
+            Convert.toDoubleN(json['price_change_percentage_1y']),
         this.marketCapChange24h =
-            Convert.toDouble(json['market_cap_change_24h']),
+            Convert.toDoubleN(json['market_cap_change_24h']),
         this.marketCapChangePercentage24h =
-            Convert.toDouble(json['market_cap_change_percentage_24h']),
-        this.totalSupply = Convert.toDouble(json['total_supply']),
-        this.maxSupply = Convert.toDouble(json['max_supply']),
-        this.circulatingSupply = Convert.toDouble(json['circulating_supply']),
+            Convert.toDoubleN(json['market_cap_change_percentage_24h']),
+        this.totalSupply = Convert.toDoubleN(json['total_supply']),
+        this.maxSupply = Convert.toDoubleN(json['max_supply']),
+        this.circulatingSupply = Convert.toDoubleN(json['circulating_supply']),
         this.sparkline7d = json.containsKey('sparkline_7d')
             ? MarketSparkline.fromJson(json['sparkline_7d'])
             : null,
-        this.lastUpdated = Convert.toDateTime(json['last_updated']);
+        this.lastUpdated = Convert.toDateTimeN(json['last_updated']);
 
   @override
   String toString() {

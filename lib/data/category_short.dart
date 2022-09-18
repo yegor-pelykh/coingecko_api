@@ -10,8 +10,8 @@ class CategoryShort {
   final String name;
 
   CategoryShort.fromJson(Map<String, dynamic> json)
-      : this.id = Convert.toNotNullableString(json['category_id'], ''),
-        this.name = Convert.toNotNullableString(json['name'], '');
+      : this.id = Convert.toStr(json['category_id'], ''),
+        this.name = Convert.toStr(json['name'], '');
 
   @override
   String toString() {

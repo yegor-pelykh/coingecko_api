@@ -37,17 +37,17 @@ class SearchTrendingCoin {
   final int score;
 
   SearchTrendingCoin.fromJson(Map<String, dynamic> json)
-      : this.id = Convert.toNotNullableString(json['id'], ''),
-        this.coinId = Convert.toInt(json['coin_id']) ?? 0,
-        this.name = Convert.toNotNullableString(json['name'], ''),
-        this.symbol = Convert.toNotNullableString(json['symbol'], ''),
-        this.marketCapRank = Convert.toInt(json['market_cap_rank']) ?? 0,
-        this.thumb = Convert.toNotNullableString(json['thumb'], ''),
-        this.small = Convert.toNotNullableString(json['small'], ''),
-        this.large = Convert.toNotNullableString(json['large'], ''),
-        this.slug = Convert.toNotNullableString(json['slug'], ''),
-        this.priceBtc = Convert.toDouble(json['price_btc']) ?? 0,
-        this.score = Convert.toInt(json['score']) ?? 0;
+      : this.id = Convert.toStr(json['id'], ''),
+        this.coinId = Convert.toInt(json['coin_id'], 0),
+        this.name = Convert.toStr(json['name'], ''),
+        this.symbol = Convert.toStr(json['symbol'], ''),
+        this.marketCapRank = Convert.toInt(json['market_cap_rank'], 0),
+        this.thumb = Convert.toStr(json['thumb'], ''),
+        this.small = Convert.toStr(json['small'], ''),
+        this.large = Convert.toStr(json['large'], ''),
+        this.slug = Convert.toStr(json['slug'], ''),
+        this.priceBtc = Convert.toDouble(json['price_btc'], 0),
+        this.score = Convert.toInt(json['score'], 0);
 
   @override
   String toString() {
@@ -59,7 +59,7 @@ class SearchTrending {
   final List<SearchTrendingCoin> coins;
 
   static List<SearchTrendingCoin> _parseCoins(Map<String, dynamic> json) {
-    final list = Convert.toList(json['coins']);
+    final list = Convert.toListN(json['coins']);
     final List<SearchTrendingCoin> coins = [];
     if (list != null) {
       list.forEach((element) {

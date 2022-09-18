@@ -35,19 +35,19 @@ class GlobalCoinData {
 
   GlobalCoinData.fromJson(Map<String, dynamic> json)
       : this.activeCryptocurrencies =
-            Convert.toInt(json['active_cryptocurrencies']) ?? 0,
-        this.upcomingIcos = Convert.toInt(json['upcoming_icos']),
-        this.ongoingIcos = Convert.toInt(json['ongoing_icos']),
-        this.endedIcos = Convert.toInt(json['ended_icos']),
-        this.markets = Convert.toInt(json['markets']),
+            Convert.toInt(json['active_cryptocurrencies'], 0),
+        this.upcomingIcos = Convert.toIntN(json['upcoming_icos']),
+        this.ongoingIcos = Convert.toIntN(json['ongoing_icos']),
+        this.endedIcos = Convert.toIntN(json['ended_icos']),
+        this.markets = Convert.toIntN(json['markets']),
         this.totalMarketCap =
-            Helpers.parseMapStringDouble(json['total_market_cap']),
-        this.totalVolume = Helpers.parseMapStringDouble(json['total_volume']),
+            Convert.toMapOfStringDoubleN(json['total_market_cap']),
+        this.totalVolume = Convert.toMapOfStringDoubleN(json['total_volume']),
         this.marketCapPercentage =
-            Helpers.parseMapStringDouble(json['market_cap_percentage']),
+            Convert.toMapOfStringDoubleN(json['market_cap_percentage']),
         this.marketCapChangePercentage24hUsd =
-            Convert.toDouble(json['market_cap_change_percentage_24h_usd']),
-        this.updatedAt = Convert.toDateTime(json['updated_at']);
+            Convert.toDoubleN(json['market_cap_change_percentage_24h_usd']),
+        this.updatedAt = Convert.toDateTimeN(json['updated_at']);
 
   @override
   String toString() {

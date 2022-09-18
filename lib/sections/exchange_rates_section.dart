@@ -20,7 +20,7 @@ class ExchangeRatesSection {
       '/exchange_rates',
     );
     if (response.statusCode == 200) {
-      final responseMap = Convert.toMap(response.data['rates']) ?? {};
+      final responseMap = Convert.toMapN(response.data['rates']) ?? {};
       final map = responseMap.map((key, value) =>
           MapEntry(key.toString(), ExchangeRate.fromJson(value)));
       return CoinGeckoResult(map);

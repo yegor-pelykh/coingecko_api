@@ -110,7 +110,7 @@ class CoinsSection {
       queryParameters: queryParameters,
     );
     if (response.statusCode == 200) {
-      final list = Convert.toList(response.data);
+      final list = Convert.toListN(response.data);
       final List<Market> marketList = list != null
           ? list.map((element) => Market.fromJson(element)).toList()
           : [];
@@ -220,7 +220,7 @@ class CoinsSection {
       },
     );
     if (response.statusCode == 200) {
-      final jsonTickers = Convert.toList(response.data['tickers']);
+      final jsonTickers = Convert.toListN(response.data['tickers']);
       final List<Ticker> tickers = jsonTickers != null
           ? jsonTickers.map((e) => Ticker.fromJson(e)).toList()
           : [];
@@ -389,7 +389,7 @@ class CoinsSection {
       queryParameters: queryParameters,
     );
     if (response.statusCode == 200) {
-      final data = Convert.toList(response.data) ?? [];
+      final data = Convert.toList(response.data, []);
       final list = data.map((e) => OHLCInfo.fromArray(e)).toList();
       return CoinGeckoResult(list);
     } else {

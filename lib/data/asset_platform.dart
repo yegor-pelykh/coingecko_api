@@ -16,10 +16,10 @@ class AssetPlatform {
   final int? chainIdentifier;
 
   AssetPlatform.fromJson(Map<String, dynamic> json)
-      : this.id = Convert.toNotNullableString(json['id'], ''),
-        this.chainIdentifier = Convert.toInt(json['chain_identifier']),
-        this.name = Convert.toNotNullableString(json['name'], ''),
-        this.shortName = Convert.toNotNullableString(json['shortName'], '');
+      : this.id = Convert.toStr(json['id'], ''),
+        this.chainIdentifier = Convert.toIntN(json['chain_identifier']),
+        this.name = Convert.toStr(json['name'], ''),
+        this.shortName = Convert.toStr(json['shortName'], '');
 
   @override
   String toString() {

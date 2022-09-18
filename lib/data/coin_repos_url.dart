@@ -1,3 +1,4 @@
+import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
 /// Repository urls data wrapper
@@ -9,8 +10,8 @@ class CoinReposUrl {
   final List<String>? bitbucket;
 
   CoinReposUrl.fromJson(Map<String, dynamic> json)
-      : this.github = Helpers.parseListString(json['homepage']),
-        this.bitbucket = Helpers.parseListString(json['bitbucket']);
+      : this.github = Convert.toListOfString(json['homepage']),
+        this.bitbucket = Convert.toListOfString(json['bitbucket']);
 
   @override
   String toString() {

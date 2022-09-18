@@ -10,8 +10,8 @@ class CoinDeveloperDataCodeChanges {
   final int? deletions;
 
   CoinDeveloperDataCodeChanges.fromJson(Map<String, dynamic> json)
-      : this.additions = Convert.toInt(json['additions']),
-        this.deletions = Convert.toInt(json['deletions']);
+      : this.additions = Convert.toIntN(json['additions']),
+        this.deletions = Convert.toIntN(json['deletions']);
 
   @override
   String toString() {

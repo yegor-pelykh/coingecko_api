@@ -21,7 +21,7 @@ class CategoriesSection {
       '/coins/categories/list',
     );
     if (response.statusCode == 200) {
-      final list = Convert.toList(response.data);
+      final list = Convert.toListN(response.data);
       final List<CategoryShort> categoryList = list != null
           ? list.map((e) => CategoryShort.fromJson(e)).toList()
           : [];
@@ -46,7 +46,7 @@ class CategoriesSection {
       '/coins/categories',
     );
     if (response.statusCode == 200) {
-      final list = Convert.toList(response.data);
+      final list = Convert.toListN(response.data);
       final List<Category> categoryList =
           list != null ? list.map((e) => Category.fromJson(e)).toList() : [];
       return CoinGeckoResult(categoryList);

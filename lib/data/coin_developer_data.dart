@@ -35,22 +35,22 @@ class CoinDeveloperData {
   final List<int>? last4WeeksCommitActivitySeries;
 
   CoinDeveloperData.fromJson(Map<String, dynamic> json)
-      : this.forks = Convert.toInt(json['forks']),
-        this.stars = Convert.toInt(json['stars']),
-        this.subscribers = Convert.toInt(json['subscribers']),
-        this.totalIssues = Convert.toInt(json['total_issues']),
-        this.closedIssues = Convert.toInt(json['closed_issues']),
-        this.pullRequestsMerged = Convert.toInt(json['pull_requests_merged']),
+      : this.forks = Convert.toIntN(json['forks']),
+        this.stars = Convert.toIntN(json['stars']),
+        this.subscribers = Convert.toIntN(json['subscribers']),
+        this.totalIssues = Convert.toIntN(json['total_issues']),
+        this.closedIssues = Convert.toIntN(json['closed_issues']),
+        this.pullRequestsMerged = Convert.toIntN(json['pull_requests_merged']),
         this.pullRequestContributors =
-            Convert.toInt(json['pull_request_contributors']),
+            Convert.toIntN(json['pull_request_contributors']),
         this.codeAdditionsDeletions4Weeks =
             json.containsKey('code_additions_deletions_4_weeks')
                 ? CoinDeveloperDataCodeChanges.fromJson(
                     json['code_additions_deletions_4_weeks'])
                 : null,
-        this.commitCount4Weeks = Convert.toInt(json['commit_count_4_weeks']),
+        this.commitCount4Weeks = Convert.toIntN(json['commit_count_4_weeks']),
         this.last4WeeksCommitActivitySeries =
-            Helpers.parseListInt(json['last_4_weeks_commit_activity_series']);
+            Convert.toListOfInt(json['last_4_weeks_commit_activity_series']);
 
   @override
   String toString() {

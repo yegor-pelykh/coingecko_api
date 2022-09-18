@@ -10,8 +10,8 @@ class ExchangeShort {
   final String name;
 
   ExchangeShort.fromJson(Map<String, dynamic> json)
-      : this.id = Convert.toNotNullableString(json['id'], ''),
-        this.name = Convert.toNotNullableString(json['name'], '');
+      : this.id = Convert.toStr(json['id'], ''),
+        this.name = Convert.toStr(json['name'], '');
 
   @override
   String toString() {

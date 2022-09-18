@@ -16,11 +16,11 @@ class MarketIndex {
   final bool? isMultiAssetComposite;
 
   MarketIndex.fromJson(Map<String, dynamic> json)
-      : this.name = Convert.toNotNullableString(json['name'], ''),
-        this.market = Convert.toNotNullableString(json['market'], ''),
-        this.last = Convert.toDouble(json['last']) ?? 0,
+      : this.name = Convert.toStr(json['name'], ''),
+        this.market = Convert.toStr(json['market'], ''),
+        this.last = Convert.toDouble(json['last'], 0),
         this.isMultiAssetComposite =
-            Convert.toNullableBoolean(json['is_multi_asset_composite']);
+            Convert.toBooleanN(json['is_multi_asset_composite']);
 
   @override
   String toString() {

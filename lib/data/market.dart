@@ -107,49 +107,49 @@ class Market {
   final double? priceChangePercentage1yInCurrency;
 
   Market.fromJson(Map<String, dynamic> json)
-      : id = Convert.toNotNullableString(json['id'], ''),
-        symbol = Convert.toNotNullableString(json['symbol'], ''),
-        name = Convert.toNotNullableString(json['name'], ''),
-        image = Convert.toNullableString(json['image']),
-        currentPrice = Convert.toDouble(json['current_price']),
-        marketCap = Convert.toDouble(json['market_cap']),
-        marketCapRank = Convert.toInt(json['market_cap_rank']),
+      : id = Convert.toStr(json['id'], ''),
+        symbol = Convert.toStr(json['symbol'], ''),
+        name = Convert.toStr(json['name'], ''),
+        image = Convert.toStrN(json['image']),
+        currentPrice = Convert.toDoubleN(json['current_price']),
+        marketCap = Convert.toDoubleN(json['market_cap']),
+        marketCapRank = Convert.toIntN(json['market_cap_rank']),
         fullyDilutedValuation =
-            Convert.toDouble(json['fully_diluted_valuation']),
-        totalVolume = Convert.toDouble(json['total_volume']),
-        high24h = Convert.toDouble(json['high_24h']),
-        low24h = Convert.toDouble(json['low_24h']),
-        priceChange24h = Convert.toDouble(json['price_change_24h']),
+            Convert.toDoubleN(json['fully_diluted_valuation']),
+        totalVolume = Convert.toDoubleN(json['total_volume']),
+        high24h = Convert.toDoubleN(json['high_24h']),
+        low24h = Convert.toDoubleN(json['low_24h']),
+        priceChange24h = Convert.toDoubleN(json['price_change_24h']),
         priceChangePercentage24h =
-            Convert.toDouble(json['price_change_percentage_24h']),
-        marketCapChange24h = Convert.toDouble(json['market_cap_change_24h']),
+            Convert.toDoubleN(json['price_change_percentage_24h']),
+        marketCapChange24h = Convert.toDoubleN(json['market_cap_change_24h']),
         marketCapChangePercentage24h =
-            Convert.toDouble(json['market_cap_percentage_change_24h']),
-        circulatingSupply = Convert.toDouble(json['circulating_supply']),
-        totalSupply = Convert.toDouble(json['total_supply']),
-        maxSupply = Convert.toDouble(json['max_supply']),
-        ath = Convert.toDouble(json['ath']),
-        athChangePercentage = Convert.toDouble(json['ath_change_percentage']),
-        athDate = Convert.toDateTime(json['ath_date']),
-        atl = Convert.toDouble(json['atl']),
-        lastUpdated = Convert.toDateTime(json['last_updated']),
-        atlChangePercentage = Convert.toDouble(json['atl_change_percentage']),
-        atlDate = Convert.toDateTime(json['atl_date']),
-        roi = Convert.toDouble(json['roi']),
+            Convert.toDoubleN(json['market_cap_percentage_change_24h']),
+        circulatingSupply = Convert.toDoubleN(json['circulating_supply']),
+        totalSupply = Convert.toDoubleN(json['total_supply']),
+        maxSupply = Convert.toDoubleN(json['max_supply']),
+        ath = Convert.toDoubleN(json['ath']),
+        athChangePercentage = Convert.toDoubleN(json['ath_change_percentage']),
+        athDate = Convert.toDateTimeN(json['ath_date']),
+        atl = Convert.toDoubleN(json['atl']),
+        lastUpdated = Convert.toDateTimeN(json['last_updated']),
+        atlChangePercentage = Convert.toDoubleN(json['atl_change_percentage']),
+        atlDate = Convert.toDateTimeN(json['atl_date']),
+        roi = Convert.toDoubleN(json['roi']),
         priceChangePercentage1hInCurrency =
-            Convert.toDouble(json['price_change_percentage_1h_in_currency']),
+            Convert.toDoubleN(json['price_change_percentage_1h_in_currency']),
         priceChangePercentage24hInCurrency =
-            Convert.toDouble(json['price_change_percentage_24h_in_currency']),
+            Convert.toDoubleN(json['price_change_percentage_24h_in_currency']),
         priceChangePercentage7dInCurrency =
-            Convert.toDouble(json['price_change_percentage_7d_in_currency']),
+            Convert.toDoubleN(json['price_change_percentage_7d_in_currency']),
         priceChangePercentage14dInCurrency =
-            Convert.toDouble(json['price_change_percentage_14d_in_currency']),
+            Convert.toDoubleN(json['price_change_percentage_14d_in_currency']),
         priceChangePercentage30dInCurrency =
-            Convert.toDouble(json['price_change_percentage_30d_in_currency']),
+            Convert.toDoubleN(json['price_change_percentage_30d_in_currency']),
         priceChangePercentage200dInCurrency =
-            Convert.toDouble(json['price_change_percentage_200d_in_currency']),
+            Convert.toDoubleN(json['price_change_percentage_200d_in_currency']),
         priceChangePercentage1yInCurrency =
-            Convert.toDouble(json['price_change_percentage_1y_in_currency']),
+            Convert.toDoubleN(json['price_change_percentage_1y_in_currency']),
         this.sparklineIn7d = json.containsKey('sparkline_in_7d')
             ? MarketSparkline.fromJson(json['sparkline_in_7d'])
             : null;

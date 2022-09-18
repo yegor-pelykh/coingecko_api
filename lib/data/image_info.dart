@@ -13,9 +13,9 @@ class ImageInfo {
   final String? large;
 
   ImageInfo.fromJson(Map<String, dynamic> json)
-      : this.thumb = Convert.toNullableString(json['thumb']),
-        this.small = Convert.toNullableString(json['small']),
-        this.large = Convert.toNullableString(json['large']);
+      : this.thumb = Convert.toStrN(json['thumb']),
+        this.small = Convert.toStrN(json['small']),
+        this.large = Convert.toStrN(json['large']);
 
   @override
   String toString() {

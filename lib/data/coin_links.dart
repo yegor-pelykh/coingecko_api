@@ -38,22 +38,19 @@ class CoinLinks {
   final CoinReposUrl? reposUrl;
 
   CoinLinks.fromJson(Map<String, dynamic> json)
-      : this.homepage = Helpers.parseListString(json['homepage']),
-        this.blockchainSite = Helpers.parseListString(json['blockchain_site']),
+      : this.homepage = Convert.toListOfString(json['homepage']),
+        this.blockchainSite = Convert.toListOfString(json['blockchain_site']),
         this.officialForumUrl =
-            Helpers.parseListString(json['official_forum_url']),
-        this.chatUrl = Helpers.parseListString(json['chat_url']),
-        this.announcementUrl =
-            Helpers.parseListString(json['announcement_url']),
-        this.twitterScreenName =
-            Convert.toNullableString(json['twitter_screen_name']),
-        this.facebookUsername =
-            Convert.toNullableString(json['facebook_username']),
+            Convert.toListOfString(json['official_forum_url']),
+        this.chatUrl = Convert.toListOfString(json['chat_url']),
+        this.announcementUrl = Convert.toListOfString(json['announcement_url']),
+        this.twitterScreenName = Convert.toStrN(json['twitter_screen_name']),
+        this.facebookUsername = Convert.toStrN(json['facebook_username']),
         this.bitcointalkThreadIdentifier =
-            Convert.toNullableString(json['bitcointalk_thread_identifier']),
+            Convert.toStrN(json['bitcointalk_thread_identifier']),
         this.telegramChannelIdentifier =
-            Convert.toNullableString(json['telegram_channel_identifier']),
-        this.subredditUrl = Convert.toNullableString(json['subreddit_url']),
+            Convert.toStrN(json['telegram_channel_identifier']),
+        this.subredditUrl = Convert.toStrN(json['subreddit_url']),
         this.reposUrl = json.containsKey('repos_url')
             ? CoinReposUrl.fromJson(json['repos_url'])
             : null;

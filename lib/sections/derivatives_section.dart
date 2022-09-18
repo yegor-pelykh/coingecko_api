@@ -32,7 +32,7 @@ class DerivativesSection {
       },
     );
     if (response.statusCode == 200) {
-      final data = Convert.toList(response.data) ?? [];
+      final data = Convert.toList(response.data, []);
       final list = data.map((e) => Derivative.fromJson(e)).toList();
       return CoinGeckoResult(list);
     } else {
@@ -77,7 +77,7 @@ class DerivativesSection {
       queryParameters: queryParameters,
     );
     if (response.statusCode == 200) {
-      final data = Convert.toList(response.data) ?? [];
+      final data = Convert.toList(response.data, []);
       final list = data.map((e) => DerivativeExchange.fromJson(e)).toList();
       return CoinGeckoResult(list);
     } else {
@@ -135,7 +135,7 @@ class DerivativesSection {
       '/derivatives/exchanges/list',
     );
     if (response.statusCode == 200) {
-      final data = Convert.toList(response.data) ?? [];
+      final data = Convert.toList(response.data, []);
       final list =
           data.map((e) => DerivativeExchangeShort.fromJson(e)).toList();
       return CoinGeckoResult(list);

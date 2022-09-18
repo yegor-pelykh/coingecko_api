@@ -38,26 +38,26 @@ class DerivativeExchangeExtended {
   final List<DerivativeTicker>? tickers;
 
   static List<DerivativeTicker>? _parseTickers(dynamic json) {
-    final jsonList = Convert.toList(json);
+    final jsonList = Convert.toListN(json);
     return jsonList != null
         ? jsonList.map((e) => DerivativeTicker.fromJson(e)).toList()
         : null;
   }
 
   DerivativeExchangeExtended.fromJson(Map<String, dynamic> json)
-      : this.name = Convert.toNotNullableString(json['name'], ''),
-        this.openInterestBtc = Convert.toDouble(json['open_interest_btc']),
+      : this.name = Convert.toStr(json['name'], ''),
+        this.openInterestBtc = Convert.toDoubleN(json['open_interest_btc']),
         this.tradeVolume24hBtc =
-            Convert.toDouble(json['trade_volume_24h_btc']) ?? 0,
+            Convert.toDouble(json['trade_volume_24h_btc'], 0),
         this.numberOfPerpetualPairs =
-            Convert.toInt(json['number_of_perpetual_pairs']) ?? 0,
+            Convert.toInt(json['number_of_perpetual_pairs'], 0),
         this.numberOfFuturesPairs =
-            Convert.toInt(json['number_of_futures_pairs']) ?? 0,
-        this.image = Convert.toNotNullableString(json['image'], ''),
-        this.yearEstablished = Convert.toInt(json['year_established']) ?? 0,
-        this.country = Convert.toNullableString(json['country']),
-        this.description = Convert.toNotNullableString(json['description'], ''),
-        this.url = Convert.toNotNullableString(json['url'], ''),
+            Convert.toInt(json['number_of_futures_pairs'], 0),
+        this.image = Convert.toStr(json['image'], ''),
+        this.yearEstablished = Convert.toInt(json['year_established'], 0),
+        this.country = Convert.toStrN(json['country']),
+        this.description = Convert.toStr(json['description'], ''),
+        this.url = Convert.toStr(json['url'], ''),
         this.tickers = _parseTickers(json['tickers']);
 
   @override

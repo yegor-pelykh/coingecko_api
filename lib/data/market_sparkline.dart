@@ -1,3 +1,4 @@
+import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
 /// Market sparkline data wrapper
@@ -6,7 +7,7 @@ class MarketSparkline {
   final List<double> price;
 
   MarketSparkline.fromJson(Map<String, dynamic> json)
-      : this.price = Helpers.parseListDouble(json['price']);
+      : this.price = Convert.toListOfDouble(json['price']);
 
   @override
   String toString() {

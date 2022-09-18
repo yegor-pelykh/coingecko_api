@@ -55,29 +55,28 @@ class DerivativeTicker {
   final DateTime? expiredAt;
 
   DerivativeTicker.fromJson(Map<String, dynamic> json)
-      : this.symbol = Convert.toNotNullableString(json['symbol'], ''),
-        this.base = Convert.toNotNullableString(json['base'], ''),
-        this.target = Convert.toNotNullableString(json['target'], ''),
-        this.tradeUrl = Convert.toNotNullableString(json['trade_url'], ''),
-        this.contractType =
-            Convert.toNotNullableString(json['contract_type'], ''),
-        this.last = Convert.toDouble(json['last']) ?? 0,
+      : this.symbol = Convert.toStr(json['symbol'], ''),
+        this.base = Convert.toStr(json['base'], ''),
+        this.target = Convert.toStr(json['target'], ''),
+        this.tradeUrl = Convert.toStr(json['trade_url'], ''),
+        this.contractType = Convert.toStr(json['contract_type'], ''),
+        this.last = Convert.toDouble(json['last'], 0),
         this.h24PercentageChange =
-            Convert.toDouble(json['h24_percentage_change']) ?? 0,
-        this.index = Convert.toDouble(json['index']),
+            Convert.toDouble(json['h24_percentage_change'], 0),
+        this.index = Convert.toDoubleN(json['index']),
         this.indexBasisPercentage =
-            Convert.toDouble(json['index_basis_percentage']) ?? 0,
-        this.bidAskSpread = Convert.toDouble(json['bid_ask_spread']) ?? 0,
-        this.fundingRate = Convert.toDouble(json['funding_rate']) ?? 0,
-        this.openInterestUsd = Convert.toDouble(json['open_interest_usd']) ?? 0,
-        this.h24Volume = Convert.toDouble(json['h24_volume']) ?? 0,
+            Convert.toDouble(json['index_basis_percentage'], 0),
+        this.bidAskSpread = Convert.toDouble(json['bid_ask_spread'], 0),
+        this.fundingRate = Convert.toDouble(json['funding_rate'], 0),
+        this.openInterestUsd = Convert.toDouble(json['open_interest_usd'], 0),
+        this.h24Volume = Convert.toDouble(json['h24_volume'], 0),
         this.convertedVolume =
-            Helpers.parseMapStringDouble(json['converted_volume']) ?? {},
+            Convert.toMapOfStringDouble(json['converted_volume'], {}),
         this.convertedLast =
-            Helpers.parseMapStringDouble(json['converted_last']) ?? {},
-        this.lastTraded = Convert.toDateTime(json['last_traded']) ??
-            Helpers.defaultDateTime(),
-        this.expiredAt = Convert.toDateTime(json['expired_at']);
+            Convert.toMapOfStringDouble(json['converted_last'], {}),
+        this.lastTraded =
+            Convert.toDateTime(json['last_traded'], Helpers.defaultDateTime()),
+        this.expiredAt = Convert.toDateTimeN(json['expired_at']);
 
   @override
   String toString() {

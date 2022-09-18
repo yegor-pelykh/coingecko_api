@@ -36,7 +36,7 @@ class IndexesSection {
       queryParameters: queryParameters,
     );
     if (response.statusCode == 200) {
-      final data = Convert.toList(response.data) ?? [];
+      final data = Convert.toList(response.data, []);
       final list = data.map((e) => MarketIndexIdentified.fromJson(e)).toList();
       return CoinGeckoResult(list);
     } else {
@@ -89,7 +89,7 @@ class IndexesSection {
       '/indexes/list',
     );
     if (response.statusCode == 200) {
-      final data = Convert.toList(response.data) ?? [];
+      final data = Convert.toList(response.data, []);
       final list = data.map((e) => MarketIndexShort.fromJson(e)).toList();
       return CoinGeckoResult(list);
     } else {

@@ -26,13 +26,13 @@ class StatusUpdate {
   final StatusUpdateProject? project;
 
   StatusUpdate.fromJson(Map<String, dynamic> json)
-      : this.description = Convert.toNotNullableString(json['description'], ''),
-        this.category = Convert.toNotNullableString(json['category'], ''),
+      : this.description = Convert.toStr(json['description'], ''),
+        this.category = Convert.toStr(json['category'], ''),
         this.createdAt =
-            Convert.toDateTime(json['created_at']) ?? Helpers.defaultDateTime(),
-        this.user = Convert.toNotNullableString(json['user'], ''),
-        this.userTitle = Convert.toNotNullableString(json['user_title'], ''),
-        this.pin = Convert.toNullableBoolean(json['pin']),
+            Convert.toDateTime(json['created_at'], Helpers.defaultDateTime()),
+        this.user = Convert.toStr(json['user'], ''),
+        this.userTitle = Convert.toStr(json['user_title'], ''),
+        this.pin = Convert.toBooleanN(json['pin']),
         this.project = json.containsKey('project')
             ? StatusUpdateProject.fromJson(json['project'])
             : null;

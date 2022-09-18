@@ -17,17 +17,17 @@ class CompaniesData {
   final List<Company> companies;
 
   static List<Company> _parseCompanies(dynamic json) {
-    final jsonList = Convert.toList(json);
+    final jsonList = Convert.toListN(json);
     return jsonList != null
         ? jsonList.map((e) => Company.fromJson(e)).toList()
         : [];
   }
 
   CompaniesData.fromJson(Map<String, dynamic> json)
-      : this.totalHoldings = Convert.toDouble(json['total_holdings']) ?? 0,
-        this.totalValueUsd = Convert.toDouble(json['total_value_usd']) ?? 0,
+      : this.totalHoldings = Convert.toDouble(json['total_holdings'], 0),
+        this.totalValueUsd = Convert.toDouble(json['total_value_usd'], 0),
         this.marketCapDominance =
-            Convert.toDouble(json['market_cap_dominance']) ?? 0,
+            Convert.toDouble(json['market_cap_dominance'], 0),
         this.companies = _parseCompanies(json['companies']);
 
   @override

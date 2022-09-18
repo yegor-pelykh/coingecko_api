@@ -20,7 +20,7 @@ class GlobalSection {
       '/global',
     );
     if (response.statusCode == 200) {
-      final data = Convert.toMap<String, dynamic>(response.data['data']);
+      final data = Convert.toMapN<String, dynamic>(response.data['data']);
       final result = data != null ? GlobalCoinData.fromJson(data) : null;
       return CoinGeckoResult(result);
     } else {
@@ -43,7 +43,7 @@ class GlobalSection {
       '/global/decentralized_finance_defi',
     );
     if (response.statusCode == 200) {
-      final data = Convert.toMap<String, dynamic>(response.data['data']);
+      final data = Convert.toMapN<String, dynamic>(response.data['data']);
       final result = data != null ? GlobalDefiData.fromJson(data) : null;
       return CoinGeckoResult(result);
     } else {

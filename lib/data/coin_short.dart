@@ -16,10 +16,10 @@ class CoinShort {
   final Map<String, String>? platforms;
 
   CoinShort.fromJson(Map<String, dynamic> json)
-      : this.id = Convert.toNotNullableString(json['id'], ''),
-        this.symbol = Convert.toNotNullableString(json['symbol'], ''),
-        this.name = Convert.toNotNullableString(json['name'], ''),
-        this.platforms = Helpers.parseMapStringString(json['platforms']);
+      : this.id = Convert.toStr(json['id'], ''),
+        this.symbol = Convert.toStr(json['symbol'], ''),
+        this.name = Convert.toStr(json['name'], ''),
+        this.platforms = Convert.toMapOfStringStringN(json['platforms']);
 
   @override
   String toString() {

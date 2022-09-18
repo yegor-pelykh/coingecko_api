@@ -53,7 +53,7 @@ class SimpleSection {
     );
     if (response.statusCode == 200) {
       List<PriceInfo> priceInfo = [];
-      final map = Convert.toMap<String, dynamic>(response.data);
+      final map = Convert.toMapN<String, dynamic>(response.data);
       if (map != null) {
         map.forEach((key, value) {
           priceInfo.add(PriceInfo.fromJson(key, value));
@@ -116,7 +116,7 @@ class SimpleSection {
     );
     if (response.statusCode == 200) {
       List<PriceInfo> priceInfo = [];
-      final map = Convert.toMap<String, dynamic>(response.data);
+      final map = Convert.toMapN<String, dynamic>(response.data);
       if (map != null) {
         map.forEach((key, value) {
           priceInfo.add(PriceInfo.fromJson(key, value));
@@ -143,7 +143,7 @@ class SimpleSection {
       '/simple/supported_vs_currencies',
     );
     if (response.statusCode == 200) {
-      final list = Convert.toList(response.data);
+      final list = Convert.toListN(response.data);
       final List<String> currencyList =
           list != null ? list.map((e) => e.toString()).toList() : [];
       return CoinGeckoResult(currencyList);

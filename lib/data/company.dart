@@ -25,16 +25,16 @@ class Company {
   final double percentageOfTotalSupply;
 
   Company.fromJson(Map<String, dynamic> json)
-      : this.name = Convert.toNotNullableString(json['name'], ''),
-        this.symbol = Convert.toNotNullableString(json['symbol'], ''),
-        this.country = Convert.toNotNullableString(json['country'], ''),
-        this.totalHoldings = Convert.toDouble(json['total_holdings']) ?? 0,
+      : this.name = Convert.toStr(json['name'], ''),
+        this.symbol = Convert.toStr(json['symbol'], ''),
+        this.country = Convert.toStr(json['country'], ''),
+        this.totalHoldings = Convert.toDouble(json['total_holdings'], 0),
         this.totalEntryValueUsd =
-            Convert.toDouble(json['total_entry_value_usd']) ?? 0,
+            Convert.toDouble(json['total_entry_value_usd'], 0),
         this.totalCurrentValueUsd =
-            Convert.toDouble(json['total_current_value_usd']) ?? 0,
+            Convert.toDouble(json['total_current_value_usd'], 0),
         this.percentageOfTotalSupply =
-            Convert.toDouble(json['percentage_of_total_supply']) ?? 0;
+            Convert.toDouble(json['percentage_of_total_supply'], 0);
 
   @override
   String toString() {

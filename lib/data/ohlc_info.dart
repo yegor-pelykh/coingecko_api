@@ -20,13 +20,12 @@ class OHLCInfo {
   final double close;
 
   OHLCInfo.fromArray(List<dynamic> array)
-      : this.timestamp =
-            Convert.toDateTime(array[0], unit: TimeUnit.milliseconds) ??
-                Helpers.defaultDateTime(),
-        this.open = Convert.toDouble(array[1]) ?? 0,
-        this.high = Convert.toDouble(array[2]) ?? 0,
-        this.low = Convert.toDouble(array[3]) ?? 0,
-        this.close = Convert.toDouble(array[4]) ?? 0;
+      : this.timestamp = Convert.toDateTime(array[0], Helpers.defaultDateTime(),
+            unit: TimeUnit.milliseconds),
+        this.open = Convert.toDouble(array[1], 0),
+        this.high = Convert.toDouble(array[2], 0),
+        this.low = Convert.toDouble(array[3], 0),
+        this.close = Convert.toDouble(array[4], 0);
 
   @override
   String toString() {

@@ -1,5 +1,4 @@
 import 'dart:collection';
-
 import 'package:coingecko_api/data/market_chart_data.dart';
 import 'package:coingecko_api/data/market_data.dart';
 import 'package:coingecko_api/helpers/convert.dart';
@@ -23,89 +22,21 @@ class Helpers {
     return d.millisecondsSinceEpoch == 0;
   }
 
-  /// Parses list of doubles from dynamic
-  static List<double> parseListDouble(dynamic d) {
-    final jsonList = Convert.toList(d);
-    final List<double> result = [];
-    if (jsonList != null) {
-      jsonList.forEach((e) {
-        final d = Convert.toDouble(e);
-        if (d != null) {
-          result.add(d);
-        }
-      });
-    }
-    return result;
-  }
-
-  /// Parses list of integers from dynamic
-  static List<int> parseListInt(dynamic d) {
-    final jsonList = Convert.toList(d);
-    final List<int> result = [];
-    if (jsonList != null) {
-      jsonList.forEach((e) {
-        final i = Convert.toInt(e);
-        if (i != null) {
-          result.add(i);
-        }
-      });
-    }
-    return result;
-  }
-
-  /// Parses list of strings from dynamic
-  static List<String> parseListString(dynamic d) {
-    final jsonList = Convert.toList(d);
-    final List<String> result = [];
-    if (jsonList != null) {
-      jsonList.forEach((e) {
-        final s = Convert.toNullableString(e);
-        if (s != null) {
-          result.add(s);
-        }
-      });
-    }
-    return result;
-  }
-
-  /// Parses map of <String, double> from dynamic
-  static Map<String, double>? parseMapStringDouble(dynamic d) {
-    final jsonMap = Convert.toMap<String, dynamic>(d);
-    final Map<String, double> result = {};
-    if (jsonMap != null) {
-      jsonMap.forEach((key, value) {
-        final d = Convert.toDouble(value);
-        if (d != null) {
-          result[key] = d;
-        }
-      });
-    }
-    return result;
-  }
-
-  /// Parses map of <String, String> from dynamic
-  static Map<String, String>? parseMapStringString(dynamic d) {
-    final jsonMap = Convert.toMap<String, dynamic>(d);
-    return jsonMap != null
-        ? jsonMap.map((key, value) => MapEntry(key, value.toString()))
-        : null;
-  }
-
   /// Parses list of [MarketChartData] from dynamic
   static List<MarketChartData> parseMarketChartData(dynamic d) {
-    final map = Convert.toMap<String, dynamic>(d);
+    final map = Convert.toMapN<String, dynamic>(d);
     if (map == null) {
       return [];
     }
     // prices
     final coinData = SplayTreeMap<DateTime, MarketChartData>();
-    var workingList = Convert.toList(map['prices']);
+    var workingList = Convert.toListN(map['prices']);
     workingList?.forEach((e) {
-      final item = Convert.toList(e);
+      final item = Convert.toListN(e);
       if (item != null) {
-        final date = Convert.toDateTime(item[0], unit: TimeUnit.milliseconds);
+        final date = Convert.toDateTimeN(item[0], unit: TimeUnit.milliseconds);
         if (date != null) {
-          final price = Convert.toDouble(item[1]);
+          final price = Convert.toDoubleN(item[1]);
           var data = coinData[date];
           if (data != null) {
             data.price = price;
@@ -116,13 +47,13 @@ class Helpers {
       }
     });
     // market_caps
-    workingList = Convert.toList(map['market_caps']);
+    workingList = Convert.toListN(map['market_caps']);
     workingList?.forEach((e) {
-      final item = Convert.toList(e);
+      final item = Convert.toListN(e);
       if (item != null) {
-        final date = Convert.toDateTime(item[0], unit: TimeUnit.milliseconds);
+        final date = Convert.toDateTimeN(item[0], unit: TimeUnit.milliseconds);
         if (date != null) {
-          final marketCap = Convert.toDouble(item[1]);
+          final marketCap = Convert.toDoubleN(item[1]);
           var data = coinData[date];
           if (data != null) {
             data.marketCap = marketCap;
@@ -133,13 +64,13 @@ class Helpers {
       }
     });
     // total_volumes
-    workingList = Convert.toList(map['total_volumes']);
+    workingList = Convert.toListN(map['total_volumes']);
     workingList?.forEach((e) {
-      final item = Convert.toList(e);
+      final item = Convert.toListN(e);
       if (item != null) {
-        final date = Convert.toDateTime(item[0], unit: TimeUnit.milliseconds);
+        final date = Convert.toDateTimeN(item[0], unit: TimeUnit.milliseconds);
         if (date != null) {
-          final totalVolume = Convert.toDouble(item[1]);
+          final totalVolume = Convert.toDoubleN(item[1]);
           var data = coinData[date];
           if (data != null) {
             data.totalVolume = totalVolume;
@@ -156,17 +87,17 @@ class Helpers {
 
   /// Parses list of [MarketData] from dynamic
   static List<MarketData> parseMarketData(dynamic d) {
-    final map = Convert.toMap<String, dynamic>(d);
+    final map = Convert.toMapN<String, dynamic>(d);
     if (map == null) {
       return [];
     }
     // current_price
     final marketData = SplayTreeMap<String, MarketData>();
-    var workingMap = Convert.toMap(map['current_price']);
+    var workingMap = Convert.toMapN(map['current_price']);
     workingMap?.forEach((key, value) {
-      final id = Convert.toNullableString(key);
+      final id = Convert.toStrN(key);
       if (id != null) {
-        final v = Convert.toDouble(value);
+        final v = Convert.toDoubleN(value);
         final data = marketData[id];
         if (data != null) {
           data.currentPrice = v;
@@ -176,11 +107,11 @@ class Helpers {
       }
     });
     // market_cap
-    workingMap = Convert.toMap(map['market_cap']);
+    workingMap = Convert.toMapN(map['market_cap']);
     workingMap?.forEach((key, value) {
-      final id = Convert.toNullableString(key);
+      final id = Convert.toStrN(key);
       if (id != null) {
-        final v = Convert.toDouble(value);
+        final v = Convert.toDoubleN(value);
         final data = marketData[id];
         if (data != null) {
           data.marketCap = v;
@@ -190,11 +121,11 @@ class Helpers {
       }
     });
     // total_volume
-    workingMap = Convert.toMap(map['total_volume']);
+    workingMap = Convert.toMapN(map['total_volume']);
     workingMap?.forEach((key, value) {
-      final id = Convert.toNullableString(key);
+      final id = Convert.toStrN(key);
       if (id != null) {
-        final v = Convert.toDouble(value);
+        final v = Convert.toDoubleN(value);
         final data = marketData[id];
         if (data != null) {
           data.totalVolume = v;
@@ -204,11 +135,11 @@ class Helpers {
       }
     });
     // ath
-    workingMap = Convert.toMap(map['ath']);
+    workingMap = Convert.toMapN(map['ath']);
     workingMap?.forEach((key, value) {
-      final id = Convert.toNullableString(key);
+      final id = Convert.toStrN(key);
       if (id != null) {
-        final v = Convert.toDouble(value);
+        final v = Convert.toDoubleN(value);
         final data = marketData[id];
         if (data != null) {
           data.ath = v;
@@ -218,11 +149,11 @@ class Helpers {
       }
     });
     // ath_change_percentage
-    workingMap = Convert.toMap(map['ath_change_percentage']);
+    workingMap = Convert.toMapN(map['ath_change_percentage']);
     workingMap?.forEach((key, value) {
-      final id = Convert.toNullableString(key);
+      final id = Convert.toStrN(key);
       if (id != null) {
-        final v = Convert.toDouble(value);
+        final v = Convert.toDoubleN(value);
         final data = marketData[id];
         if (data != null) {
           data.athChangePercentage = v;
@@ -232,11 +163,11 @@ class Helpers {
       }
     });
     // ath_date
-    workingMap = Convert.toMap(map['ath_date']);
+    workingMap = Convert.toMapN(map['ath_date']);
     workingMap?.forEach((key, value) {
-      final id = Convert.toNullableString(key);
+      final id = Convert.toStrN(key);
       if (id != null) {
-        final v = Convert.toDateTime(value);
+        final v = Convert.toDateTimeN(value);
         final data = marketData[id];
         if (data != null) {
           data.athDate = v;
@@ -246,11 +177,11 @@ class Helpers {
       }
     });
     // atl
-    workingMap = Convert.toMap(map['atl']);
+    workingMap = Convert.toMapN(map['atl']);
     workingMap?.forEach((key, value) {
-      final id = Convert.toNullableString(key);
+      final id = Convert.toStrN(key);
       if (id != null) {
-        final v = Convert.toDouble(value);
+        final v = Convert.toDoubleN(value);
         final data = marketData[id];
         if (data != null) {
           data.atl = v;
@@ -260,11 +191,11 @@ class Helpers {
       }
     });
     // atl_change_percentage
-    workingMap = Convert.toMap(map['atl_change_percentage']);
+    workingMap = Convert.toMapN(map['atl_change_percentage']);
     workingMap?.forEach((key, value) {
-      final id = Convert.toNullableString(key);
+      final id = Convert.toStrN(key);
       if (id != null) {
-        final v = Convert.toDouble(value);
+        final v = Convert.toDoubleN(value);
         final data = marketData[id];
         if (data != null) {
           data.atlChangePercentage = v;
@@ -274,11 +205,11 @@ class Helpers {
       }
     });
     // atl_date
-    workingMap = Convert.toMap(map['atl_date']);
+    workingMap = Convert.toMapN(map['atl_date']);
     workingMap?.forEach((key, value) {
-      final id = Convert.toNullableString(key);
+      final id = Convert.toStrN(key);
       if (id != null) {
-        final v = Convert.toDateTime(value);
+        final v = Convert.toDateTimeN(value);
         final data = marketData[id];
         if (data != null) {
           data.atlDate = v;
@@ -288,11 +219,11 @@ class Helpers {
       }
     });
     // fully_diluted_valuation
-    workingMap = Convert.toMap(map['fully_diluted_valuation']);
+    workingMap = Convert.toMapN(map['fully_diluted_valuation']);
     workingMap?.forEach((key, value) {
-      final id = Convert.toNullableString(key);
+      final id = Convert.toStrN(key);
       if (id != null) {
-        final v = Convert.toDouble(value);
+        final v = Convert.toDoubleN(value);
         final data = marketData[id];
         if (data != null) {
           data.fullyDilutedValuation = v;
@@ -302,11 +233,11 @@ class Helpers {
       }
     });
     // high_24h
-    workingMap = Convert.toMap(map['high_24h']);
+    workingMap = Convert.toMapN(map['high_24h']);
     workingMap?.forEach((key, value) {
-      final id = Convert.toNullableString(key);
+      final id = Convert.toStrN(key);
       if (id != null) {
-        final v = Convert.toDouble(value);
+        final v = Convert.toDoubleN(value);
         final data = marketData[id];
         if (data != null) {
           data.high24h = v;
@@ -316,11 +247,11 @@ class Helpers {
       }
     });
     // low_24h
-    workingMap = Convert.toMap(map['low_24h']);
+    workingMap = Convert.toMapN(map['low_24h']);
     workingMap?.forEach((key, value) {
-      final id = Convert.toNullableString(key);
+      final id = Convert.toStrN(key);
       if (id != null) {
-        final v = Convert.toDouble(value);
+        final v = Convert.toDoubleN(value);
         final data = marketData[id];
         if (data != null) {
           data.low24h = v;
@@ -330,11 +261,11 @@ class Helpers {
       }
     });
     // price_change_24h_in_currency
-    workingMap = Convert.toMap(map['price_change_24h_in_currency']);
+    workingMap = Convert.toMapN(map['price_change_24h_in_currency']);
     workingMap?.forEach((key, value) {
-      final id = Convert.toNullableString(key);
+      final id = Convert.toStrN(key);
       if (id != null) {
-        final v = Convert.toDouble(value);
+        final v = Convert.toDoubleN(value);
         final data = marketData[id];
         if (data != null) {
           data.priceChange24hInCurrency = v;
@@ -344,11 +275,11 @@ class Helpers {
       }
     });
     // price_change_percentage_1h_in_currency
-    workingMap = Convert.toMap(map['price_change_percentage_1h_in_currency']);
+    workingMap = Convert.toMapN(map['price_change_percentage_1h_in_currency']);
     workingMap?.forEach((key, value) {
-      final id = Convert.toNullableString(key);
+      final id = Convert.toStrN(key);
       if (id != null) {
-        final v = Convert.toDouble(value);
+        final v = Convert.toDoubleN(value);
         final data = marketData[id];
         if (data != null) {
           data.priceChangePercentage1hInCurrency = v;
@@ -358,11 +289,11 @@ class Helpers {
       }
     });
     // price_change_percentage_24h_in_currency
-    workingMap = Convert.toMap(map['price_change_percentage_24h_in_currency']);
+    workingMap = Convert.toMapN(map['price_change_percentage_24h_in_currency']);
     workingMap?.forEach((key, value) {
-      final id = Convert.toNullableString(key);
+      final id = Convert.toStrN(key);
       if (id != null) {
-        final v = Convert.toDouble(value);
+        final v = Convert.toDoubleN(value);
         final data = marketData[id];
         if (data != null) {
           data.priceChangePercentage24hInCurrency = v;
@@ -373,11 +304,11 @@ class Helpers {
       }
     });
     // price_change_percentage_7d_in_currency
-    workingMap = Convert.toMap(map['price_change_percentage_7d_in_currency']);
+    workingMap = Convert.toMapN(map['price_change_percentage_7d_in_currency']);
     workingMap?.forEach((key, value) {
-      final id = Convert.toNullableString(key);
+      final id = Convert.toStrN(key);
       if (id != null) {
-        final v = Convert.toDouble(value);
+        final v = Convert.toDoubleN(value);
         final data = marketData[id];
         if (data != null) {
           data.priceChangePercentage7dInCurrency = v;
@@ -387,11 +318,11 @@ class Helpers {
       }
     });
     // price_change_percentage_14d_in_currency
-    workingMap = Convert.toMap(map['price_change_percentage_14d_in_currency']);
+    workingMap = Convert.toMapN(map['price_change_percentage_14d_in_currency']);
     workingMap?.forEach((key, value) {
-      final id = Convert.toNullableString(key);
+      final id = Convert.toStrN(key);
       if (id != null) {
-        final v = Convert.toDouble(value);
+        final v = Convert.toDoubleN(value);
         final data = marketData[id];
         if (data != null) {
           data.priceChangePercentage14dInCurrency = v;
@@ -402,11 +333,11 @@ class Helpers {
       }
     });
     // price_change_percentage_30d_in_currency
-    workingMap = Convert.toMap(map['price_change_percentage_30d_in_currency']);
+    workingMap = Convert.toMapN(map['price_change_percentage_30d_in_currency']);
     workingMap?.forEach((key, value) {
-      final id = Convert.toNullableString(key);
+      final id = Convert.toStrN(key);
       if (id != null) {
-        final v = Convert.toDouble(value);
+        final v = Convert.toDoubleN(value);
         final data = marketData[id];
         if (data != null) {
           data.priceChangePercentage30dInCurrency = v;
@@ -417,11 +348,11 @@ class Helpers {
       }
     });
     // price_change_percentage_60d_in_currency
-    workingMap = Convert.toMap(map['price_change_percentage_60d_in_currency']);
+    workingMap = Convert.toMapN(map['price_change_percentage_60d_in_currency']);
     workingMap?.forEach((key, value) {
-      final id = Convert.toNullableString(key);
+      final id = Convert.toStrN(key);
       if (id != null) {
-        final v = Convert.toDouble(value);
+        final v = Convert.toDoubleN(value);
         final data = marketData[id];
         if (data != null) {
           data.priceChangePercentage60dInCurrency = v;
@@ -432,11 +363,12 @@ class Helpers {
       }
     });
     // price_change_percentage_200d_in_currency
-    workingMap = Convert.toMap(map['price_change_percentage_200d_in_currency']);
+    workingMap =
+        Convert.toMapN(map['price_change_percentage_200d_in_currency']);
     workingMap?.forEach((key, value) {
-      final id = Convert.toNullableString(key);
+      final id = Convert.toStrN(key);
       if (id != null) {
-        final v = Convert.toDouble(value);
+        final v = Convert.toDoubleN(value);
         final data = marketData[id];
         if (data != null) {
           data.priceChangePercentage200dInCurrency = v;
@@ -447,11 +379,11 @@ class Helpers {
       }
     });
     // price_change_percentage_1y_in_currency
-    workingMap = Convert.toMap(map['price_change_percentage_1y_in_currency']);
+    workingMap = Convert.toMapN(map['price_change_percentage_1y_in_currency']);
     workingMap?.forEach((key, value) {
-      final id = Convert.toNullableString(key);
+      final id = Convert.toStrN(key);
       if (id != null) {
-        final v = Convert.toDouble(value);
+        final v = Convert.toDoubleN(value);
         final data = marketData[id];
         if (data != null) {
           data.priceChangePercentage1yInCurrency = v;
@@ -461,11 +393,11 @@ class Helpers {
       }
     });
     // market_cap_change_24h_in_currency
-    workingMap = Convert.toMap(map['market_cap_change_24h_in_currency']);
+    workingMap = Convert.toMapN(map['market_cap_change_24h_in_currency']);
     workingMap?.forEach((key, value) {
-      final id = Convert.toNullableString(key);
+      final id = Convert.toStrN(key);
       if (id != null) {
-        final v = Convert.toDouble(value);
+        final v = Convert.toDoubleN(value);
         final data = marketData[id];
         if (data != null) {
           data.marketCapChange24hInCurrency = v;
@@ -476,11 +408,11 @@ class Helpers {
     });
     // market_cap_change_percentage_24h_in_currency
     workingMap =
-        Convert.toMap(map['market_cap_change_percentage_24h_in_currency']);
+        Convert.toMapN(map['market_cap_change_percentage_24h_in_currency']);
     workingMap?.forEach((key, value) {
-      final id = Convert.toNullableString(key);
+      final id = Convert.toStrN(key);
       if (id != null) {
-        final v = Convert.toDouble(value);
+        final v = Convert.toDoubleN(value);
         final data = marketData[id];
         if (data != null) {
           data.marketCapChangePercentage24hInCurrency = v;

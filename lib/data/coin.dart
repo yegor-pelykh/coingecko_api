@@ -112,35 +112,32 @@ class Coin {
   final List<Ticker>? tickers;
 
   static List<StatusUpdate>? _parseStatusUpdates(dynamic json) {
-    final jsonList = Convert.toList(json);
+    final jsonList = Convert.toListN(json);
     return jsonList != null
         ? jsonList.map((e) => StatusUpdate.fromJson(e)).toList()
         : null;
   }
 
   static List<Ticker>? _parseTickers(dynamic json) {
-    final jsonList = Convert.toList(json);
+    final jsonList = Convert.toListN(json);
     return jsonList != null
         ? jsonList.map((e) => Ticker.fromJson(e)).toList()
         : null;
   }
 
   Coin.fromJson(Map<String, dynamic> json)
-      : this.id = Convert.toNotNullableString(json['id'], ''),
-        this.symbol = Convert.toNotNullableString(json['symbol'], ''),
-        this.name = Convert.toNotNullableString(json['name'], ''),
-        this.assetPlatformId =
-            Convert.toNullableString(json['asset_platform_id']),
-        this.platforms = Helpers.parseMapStringString(json['platforms']),
+      : this.id = Convert.toStr(json['id'], ''),
+        this.symbol = Convert.toStr(json['symbol'], ''),
+        this.name = Convert.toStr(json['name'], ''),
+        this.assetPlatformId = Convert.toStrN(json['asset_platform_id']),
+        this.platforms = Convert.toMapOfStringStringN(json['platforms']),
         this.blockTimeInMinutes =
-            Convert.toDouble(json['block_time_in_minutes']) ?? 0,
-        this.hashingAlgorithm =
-            Convert.toNotNullableString(json['hashing_algorithm'], ''),
-        this.categories = Helpers.parseListString(json['categories']),
-        this.publicNotice =
-            Convert.toNotNullableString(json['public_notice'], ''),
+            Convert.toDouble(json['block_time_in_minutes'], 0),
+        this.hashingAlgorithm = Convert.toStr(json['hashing_algorithm'], ''),
+        this.categories = Convert.toListOfString(json['categories']),
+        this.publicNotice = Convert.toStr(json['public_notice'], ''),
         this.additionalNotices =
-            Helpers.parseListString(json['additional_notices']),
+            Convert.toListOfString(json['additional_notices']),
         this.localization = json.containsKey('localization')
             ? LocalizedString.fromJson(json['localization'])
             : null,
@@ -153,22 +150,21 @@ class Coin {
         this.image = json.containsKey('image')
             ? ImageInfo.fromJson(json['image'])
             : null,
-        this.countryOrigin = Convert.toNullableString(json['country_origin']),
-        this.genesisDate = Convert.toDateTime(json['genesis_date']),
-        this.contractAddress =
-            Convert.toNullableString(json['contract_address']),
+        this.countryOrigin = Convert.toStrN(json['country_origin']),
+        this.genesisDate = Convert.toDateTimeN(json['genesis_date']),
+        this.contractAddress = Convert.toStrN(json['contract_address']),
         this.sentimentVotesUpPercentage =
-            Convert.toDouble(json['sentiment_votes_up_percentage']),
+            Convert.toDoubleN(json['sentiment_votes_up_percentage']),
         this.sentimentVotesDownPercentage =
-            Convert.toDouble(json['sentiment_votes_down_percentage']),
-        this.marketCapRank = Convert.toInt(json['market_cap_rank']),
-        this.coingeckoRank = Convert.toInt(json['coingecko_rank']),
-        this.coingeckoScore = Convert.toDouble(json['coingecko_score']),
-        this.developerScore = Convert.toDouble(json['developer_score']),
-        this.communityScore = Convert.toDouble(json['community_score']),
-        this.liquidityScore = Convert.toDouble(json['liquidity_score']),
+            Convert.toDoubleN(json['sentiment_votes_down_percentage']),
+        this.marketCapRank = Convert.toIntN(json['market_cap_rank']),
+        this.coingeckoRank = Convert.toIntN(json['coingecko_rank']),
+        this.coingeckoScore = Convert.toDoubleN(json['coingecko_score']),
+        this.developerScore = Convert.toDoubleN(json['developer_score']),
+        this.communityScore = Convert.toDoubleN(json['community_score']),
+        this.liquidityScore = Convert.toDoubleN(json['liquidity_score']),
         this.publicInterestScore =
-            Convert.toDouble(json['public_interest_score']),
+            Convert.toDoubleN(json['public_interest_score']),
         this.marketData = json.containsKey('market_data')
             ? CoinMarketData.fromJson(json['market_data'])
             : null,
@@ -182,7 +178,7 @@ class Coin {
             ? CoinPublicInterestsStats.fromJson(json['public_interest_stats'])
             : null,
         this.statusUpdates = _parseStatusUpdates(json['status_updates']),
-        this.lastUpdated = Convert.toDateTime(json['last_updated']),
+        this.lastUpdated = Convert.toDateTimeN(json['last_updated']),
         this.tickers = _parseTickers(json['tickers']);
 
   @override

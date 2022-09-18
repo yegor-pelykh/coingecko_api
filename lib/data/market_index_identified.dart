@@ -19,12 +19,12 @@ class MarketIndexIdentified {
   final bool? isMultiAssetComposite;
 
   MarketIndexIdentified.fromJson(Map<String, dynamic> json)
-      : this.id = Convert.toNotNullableString(json['id'], ''),
-        this.name = Convert.toNotNullableString(json['name'], ''),
-        this.market = Convert.toNotNullableString(json['market'], ''),
-        this.last = Convert.toDouble(json['last']) ?? 0,
+      : this.id = Convert.toStr(json['id'], ''),
+        this.name = Convert.toStr(json['name'], ''),
+        this.market = Convert.toStr(json['market'], ''),
+        this.last = Convert.toDouble(json['last'], 0),
         this.isMultiAssetComposite =
-            Convert.toNullableBoolean(json['is_multi_asset_composite']);
+            Convert.toBooleanN(json['is_multi_asset_composite']);
 
   @override
   String toString() {

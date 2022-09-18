@@ -20,10 +20,10 @@ class StatusUpdateProject {
   final ImageInfo? image;
 
   StatusUpdateProject.fromJson(Map<String, dynamic> json)
-      : this.type = Convert.toNotNullableString(json['type'], ''),
-        this.id = Convert.toNotNullableString(json['id'], ''),
-        this.name = Convert.toNotNullableString(json['name'], ''),
-        this.symbol = Convert.toNullableString(json['symbol']),
+      : this.type = Convert.toStr(json['type'], ''),
+        this.id = Convert.toStr(json['id'], ''),
+        this.name = Convert.toStr(json['name'], ''),
+        this.symbol = Convert.toStrN(json['symbol']),
         this.image = json.containsKey('image')
             ? ImageInfo.fromJson(json['image'])
             : null;

@@ -37,9 +37,9 @@ class CoinHistory {
   final CoinPublicInterestsStats? publicInterestStats;
 
   CoinHistory.fromJson(Map<String, dynamic> json)
-      : this.id = Convert.toNotNullableString(json['id'], ''),
-        this.symbol = Convert.toNotNullableString(json['symbol'], ''),
-        this.name = Convert.toNotNullableString(json['name'], ''),
+      : this.id = Convert.toStr(json['id'], ''),
+        this.symbol = Convert.toStr(json['symbol'], ''),
+        this.name = Convert.toStr(json['name'], ''),
         this.localization = json.containsKey('localization')
             ? LocalizedString.fromJson(json['localization'])
             : null,

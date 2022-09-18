@@ -20,7 +20,7 @@ class AssetPlatformsSection {
       '/asset_platforms',
     );
     if (response.statusCode == 200) {
-      final list = Convert.toList(response.data);
+      final list = Convert.toListN(response.data);
       final List<AssetPlatform> categoryList = list != null
           ? list.map((e) => AssetPlatform.fromJson(e)).toList()
           : [];

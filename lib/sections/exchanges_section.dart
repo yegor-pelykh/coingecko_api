@@ -35,7 +35,7 @@ class ExchangesSection {
       },
     );
     if (response.statusCode == 200) {
-      final data = Convert.toList(response.data) ?? [];
+      final data = Convert.toList(response.data, []);
       final list = data.map((e) => Exchange.fromJson(e)).toList();
       return CoinGeckoResult(list);
     } else {
@@ -58,7 +58,7 @@ class ExchangesSection {
       '/exchanges/list',
     );
     if (response.statusCode == 200) {
-      final data = Convert.toList(response.data) ?? [];
+      final data = Convert.toList(response.data, []);
       final list = data.map((e) => ExchangeShort.fromJson(e)).toList();
       return CoinGeckoResult(list);
     } else {
@@ -140,7 +140,7 @@ class ExchangesSection {
       queryParameters: queryParameters,
     );
     if (response.statusCode == 200) {
-      final list = Convert.toList(response.data['tickers']);
+      final list = Convert.toListN(response.data['tickers']);
       if (list != null) {
         final tickerList = list.map((e) => Ticker.fromJson(e)).toList();
         return CoinGeckoResult(tickerList);
@@ -177,7 +177,7 @@ class ExchangesSection {
       },
     );
     if (response.statusCode == 200) {
-      final list = Convert.toList(response.data);
+      final list = Convert.toListN(response.data);
       if (list != null) {
         var volumeList =
             list.map((e) => ExchangeVolumeData.fromArray(e)).toList();
