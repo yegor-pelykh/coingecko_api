@@ -153,15 +153,7 @@ Each section will contain a table indicating the method, a short description of 
 | listExchangesShort | List all supported exchanges: id and name. | /exchanges/list |
 | getExchangeData | Get exchange volume in BTC and top 100 tickers only. | /exchanges/{id} |
 | getExchangeTickers | Get exchange tickers (paginated, 100 tickers per page). | /exchanges/{id}/tickers |
-| getExchangeStatusUpdates | Get status updates for a given exchange. | /exchanges/{id}/status_updates |
 | getExchangeVolumeChartData | Get volume_chart data for a given exchange. | /exchanges/{id}/volume_chart |
-
-## finance
-
-| Method name | Description | Query string |
-| - | - | - |
-| listFinancePlatforms | List all finance platforms. | /finance_platforms |
-| listFinanceProducts | List all finance products. | /finance_products |
 
 ## indexes
 
@@ -179,20 +171,6 @@ Each section will contain a table indicating the method, a short description of 
 | listDerivativeExchanges | List all derivative exchanges. | /derivatives/exchanges |
 | getDerivativeExchange | Show derivative exchange data. | /derivatives/exchanges/{id} |
 | listDerivativeExchangesShort | List all derivative exchanges name and identifier. | /derivatives/exchanges/list |
-
-## status_updates
-
-| Method name | Description | Query string |
-| - | - | - |
-| listStatusUpdates | List all status_updates with data. | /status_updates |
-
-## events
-
-| Method name | Description | Query string |
-| - | - | - |
-| listEvents | Get events, paginated by 100. | /events |
-| listEventCountries | Get list of event countries. | /events/countries |
-| listEventTypes | Get list of events types. | /events/types |
 
 ## exchange_rates
 
