@@ -1,12 +1,12 @@
 import 'package:coingecko_api/coingecko_api.dart';
 import 'package:coingecko_api/data/enumerations.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:test/test.dart';
 
 void main() async {
   CoinGeckoApi api = CoinGeckoApi(rateLimitManagement: false);
 
-  test('call /ping', () async {
+  test('check /ping', () async {
     final result = await api.ping.ping();
     expect(result.data, true);
   });
@@ -59,7 +59,7 @@ void main() async {
 
   test('check /simple/supported_vs_currencies', () async {
     final result = await api.simple.listSupportedVsCurrencies();
-    final isOk = result.data.contains('usd');
+    final isOk = !result.isError && result.data.contains('usd');
     expect(isOk, true);
   });
 
@@ -67,7 +67,8 @@ void main() async {
     final result = await api.coins.listCoins(
       includePlatforms: true,
     );
-    final isOk = result.data.any((element) => element.symbol == 'btc');
+    final isOk = !result.isError &&
+        result.data.any((element) => element.symbol == 'btc');
     expect(isOk, true);
   });
 
@@ -81,7 +82,7 @@ void main() async {
         PriceChangeInterval.h24,
       ],
     );
-    final isOk = result.data.any((e) => e.id == 'tether');
+    final isOk = !result.isError && result.data.any((e) => e.id == 'tether');
     expect(isOk, true);
   });
 
@@ -100,7 +101,8 @@ void main() async {
       id: 'bitcoin',
       includeExchangeLogo: true,
     );
-    bool isOk = result.data.any((e) => e.base.toLowerCase() == 'btc');
+    bool isOk = !result.isError &&
+        result.data.any((e) => e.base.toLowerCase() == 'btc');
     expect(isOk, true);
   });
 
@@ -121,7 +123,7 @@ void main() async {
       days: 30,
       interval: CoinMarketChartInterval.daily,
     );
-    final isOk = result.data.isNotEmpty;
+    final isOk = !result.isError && result.data.isNotEmpty;
     expect(isOk, true);
   });
 
@@ -132,7 +134,7 @@ void main() async {
       from: DateTime(2021, 1, 1),
       to: DateTime(2021, 7, 1),
     );
-    final isOk = result.data.isNotEmpty;
+    final isOk = !result.isError && result.data.isNotEmpty;
     expect(isOk, true);
   });
 
@@ -142,7 +144,8 @@ void main() async {
       vsCurrency: 'usd',
       days: 7,
     );
-    final isOk = result.data.isNotEmpty &&
+    final isOk = !result.isError &&
+        result.data.isNotEmpty &&
         result.data.every((e) =>
             !Helpers.isDefaultDateTime(e.timestamp) &&
             e.open > 0 &&
@@ -168,7 +171,7 @@ void main() async {
       vsCurrency: 'usd',
       days: 30,
     );
-    final isOk = result.data.isNotEmpty;
+    final isOk = !result.isError && result.data.isNotEmpty;
     expect(isOk, true);
   });
 
@@ -181,25 +184,27 @@ void main() async {
       from: DateTime(2021, 1, 1),
       to: DateTime(2021, 7, 1),
     );
-    final isOk = result.data.isNotEmpty;
+    final isOk = !result.isError && result.data.isNotEmpty;
     expect(isOk, true);
   });
 
   test('check /asset_platforms', () async {
     final result = await api.assetPlatforms.listAssetPlatforms();
-    final isOk = result.data.isNotEmpty;
+    final isOk = !result.isError && result.data.isNotEmpty;
     expect(isOk, true);
   });
 
   test('check /coins/categories/list', () async {
-    final result = await api.categories.listCategories();
-    final isOk = result.data.any((element) => element.id == 'stablecoins');
+    final result = await api.categories.listCategoriesShort();
+    final isOk = !result.isError &&
+        result.data.any((element) => element.id == 'stablecoins');
     expect(isOk, true);
   });
 
   test('check /coins/categories', () async {
     final result = await api.categories.listCategories();
-    final isOk = result.data.any((element) => element.id == 'stablecoins');
+    final isOk = !result.isError &&
+        result.data.any((element) => element.id == 'stablecoins');
     expect(isOk, true);
   });
 
@@ -208,13 +213,13 @@ void main() async {
       page: 1,
       itemsPerPage: 100,
     );
-    final isOk = result.data.any((e) => e.id == 'binance');
+    final isOk = !result.isError && result.data.any((e) => e.id == 'binance');
     expect(isOk, true);
   });
 
   test('check /exchanges/list', () async {
     final result = await api.exchanges.listExchangesShort();
-    final isOk = result.data.any((e) => e.id == 'binance');
+    final isOk = !result.isError && result.data.any((e) => e.id == 'binance');
     expect(isOk, true);
   });
 
@@ -222,7 +227,9 @@ void main() async {
     final result = await api.exchanges.getExchangeData(
       id: 'binance',
     );
-    final isOk = result.data != null && result.data!.yearEstablished == 2017;
+    final isOk = result.data != null &&
+        !result.isError &&
+        result.data!.yearEstablished == 2017;
     expect(isOk, true);
   });
 
@@ -233,7 +240,7 @@ void main() async {
       includeExchangeLogo: true,
       depth: true,
     );
-    final isOk = result.data.isNotEmpty;
+    final isOk = !result.isError && result.data.isNotEmpty;
     expect(isOk, true);
   });
 
@@ -242,13 +249,13 @@ void main() async {
       id: 'kuna',
       days: 1,
     );
-    final isOk = result.data.isNotEmpty;
+    final isOk = !result.isError && result.data.isNotEmpty;
     expect(isOk, true);
   });
 
   test('check /indexes', () async {
     final result = await api.indexes.listMarketIndexes();
-    final isOk = result.data.isNotEmpty;
+    final isOk = !result.isError && result.data.isNotEmpty;
     expect(isOk, true);
   });
 
@@ -263,7 +270,7 @@ void main() async {
 
   test('check /indexes/list', () async {
     final result = await api.indexes.listMarketIndexesShort();
-    final isOk = result.data.isNotEmpty;
+    final isOk = !result.isError && result.data.isNotEmpty;
     expect(isOk, true);
   });
 
@@ -299,20 +306,28 @@ void main() async {
     expect(isOk, true);
   });
 
-  test('call /exchange_rates', () async {
+  test('check /exchange_rates', () async {
     final result = await api.exchangeRates.getBtcExchangeRates();
     final isOk = !result.isError && result.data.isNotEmpty;
     expect(isOk, true);
   });
 
-  test('call /search/trending', () async {
+  test('check /search', () async {
+    final result = await api.search.searchFor(
+      query: 'search',
+    );
+    bool isOk = !result.isError && result.data != null;
+    expect(isOk, true);
+  });
+
+  test('check /search/trending', () async {
     final result = await api.trending.getSearchTrending();
     bool isOk =
         !result.isError && result.data != null && result.data!.coins.isNotEmpty;
     expect(isOk, true);
   });
 
-  test('call /global', () async {
+  test('check /global', () async {
     final result = await api.global.getGlobalData();
     bool isOk = !result.isError &&
         result.data != null &&
@@ -320,7 +335,7 @@ void main() async {
     expect(isOk, true);
   });
 
-  test('call /global/defi', () async {
+  test('check /global/decentralized_finance_defi', () async {
     final result = await api.global.getGlobalDefiData();
     bool isOk = !result.isError &&
         result.data != null &&
@@ -329,7 +344,7 @@ void main() async {
     expect(isOk, true);
   });
 
-  test('call /companies/public_treasury/{coin_id}', () async {
+  test('check /companies/public_treasury/{coin_id}', () async {
     final result = await api.companies.getCompaniesData();
     bool isOk = !result.isError && result.data != null;
     expect(isOk, true);
