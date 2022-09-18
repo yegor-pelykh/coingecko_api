@@ -8,15 +8,12 @@ import 'package:coingecko_api/sections/coins_section.dart';
 import 'package:coingecko_api/sections/companies_section.dart';
 import 'package:coingecko_api/sections/contract_section.dart';
 import 'package:coingecko_api/sections/derivatives_section.dart';
-import 'package:coingecko_api/sections/events_section.dart';
 import 'package:coingecko_api/sections/exchange_rates_section.dart';
 import 'package:coingecko_api/sections/exchanges_section.dart';
-import 'package:coingecko_api/sections/finance_section.dart';
 import 'package:coingecko_api/sections/global_section.dart';
 import 'package:coingecko_api/sections/indexes_section.dart';
 import 'package:coingecko_api/sections/ping_section.dart';
 import 'package:coingecko_api/sections/simple_section.dart';
-import 'package:coingecko_api/sections/status_updates_section.dart';
 import 'package:coingecko_api/sections/trending_section.dart';
 import 'package:dio/dio.dart';
 
@@ -34,11 +31,8 @@ class CoinGeckoApi {
   late AssetPlatformsSection _assetPlatforms;
   late CategoriesSection _categories;
   late ExchangesSection _exchanges;
-  late FinanceSection _finance;
   late IndexesSection _indexes;
   late DerivativesSection _derivatives;
-  late StatusUpdatesSection _statusUpdates;
-  late EventsSection _events;
   late ExchangeRatesSection _exchangeRates;
   late TrendingSection _trending;
   late GlobalSection _global;
@@ -67,21 +61,11 @@ class CoinGeckoApi {
   /// The section that brings together the requests that are related to exchanges
   ExchangesSection get exchanges => _exchanges;
 
-  /// The section that brings together the requests
-  /// that are related to finance platforms and products
-  FinanceSection get finance => _finance;
-
   /// The section that brings together the requests that are related to indexes
   IndexesSection get indexes => _indexes;
 
   /// The section that brings together the requests that are related to derivatives
   DerivativesSection get derivatives => _derivatives;
-
-  /// The section that brings together the requests that are related to status updates
-  StatusUpdatesSection get statusUpdates => _statusUpdates;
-
-  /// The section that brings together the requests that are related to events
-  EventsSection get events => _events;
 
   /// The section that brings together the requests that are related to exchange rates
   ExchangeRatesSection get exchangeRates => _exchangeRates;
@@ -168,11 +152,8 @@ class CoinGeckoApi {
     _assetPlatforms = AssetPlatformsSection(_dio);
     _categories = CategoriesSection(_dio);
     _exchanges = ExchangesSection(_dio);
-    _finance = FinanceSection(_dio);
     _indexes = IndexesSection(_dio);
     _derivatives = DerivativesSection(_dio);
-    _statusUpdates = StatusUpdatesSection(_dio);
-    _events = EventsSection(_dio);
     _exchangeRates = ExchangeRatesSection(_dio);
     _trending = TrendingSection(_dio);
     _global = GlobalSection(_dio);

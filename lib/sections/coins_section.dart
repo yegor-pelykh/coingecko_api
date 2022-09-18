@@ -7,7 +7,6 @@ import 'package:coingecko_api/data/ticker.dart';
 import 'package:coingecko_api/data/market.dart';
 import 'package:coingecko_api/data/market_chart_data.dart';
 import 'package:coingecko_api/data/ohlc_info.dart';
-import 'package:coingecko_api/data/status_update.dart';
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 import 'package:dio/dio.dart';
@@ -352,47 +351,6 @@ class CoinsSection {
     );
     if (response.statusCode == 200) {
       final list = Helpers.parseMarketChartData(response.data);
-      return CoinGeckoResult(list);
-    } else {
-      return CoinGeckoResult(
-        [],
-        errorCode: response.statusCode ?? null,
-        errorMessage: '${response.statusMessage} - ${response.data.toString()}',
-        isError: true,
-      );
-    }
-  }
-
-  ///
-  /// Get status updates for a given coin.
-  ///
-  /// **[id]** sets coin id.
-  ///
-  /// **[itemsPerPage]** sets total results per page.
-  ///
-  /// **[page]** sets page through results.
-  ///
-  /// Query: **/coins/{id}/status\_updates**
-  ///
-  Future<CoinGeckoResult<List<StatusUpdate>>> listCoinStatusUpdates({
-    required String id,
-    int? itemsPerPage,
-    int? page,
-  }) async {
-    final Map<String, dynamic> queryParameters = {};
-    if (itemsPerPage is int) {
-      queryParameters['per_page'] = itemsPerPage;
-    }
-    if (page is int) {
-      queryParameters['page'] = page;
-    }
-    final response = await _dio.get(
-      '/coins/$id/status_updates',
-      queryParameters: queryParameters,
-    );
-    if (response.statusCode == 200) {
-      final data = Convert.toList(response.data['status_updates']) ?? [];
-      final list = data.map((e) => StatusUpdate.fromJson(e)).toList();
       return CoinGeckoResult(list);
     } else {
       return CoinGeckoResult(

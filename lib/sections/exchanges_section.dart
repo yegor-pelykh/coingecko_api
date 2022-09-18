@@ -5,9 +5,7 @@ import 'package:coingecko_api/data/exchange_short.dart';
 import 'package:coingecko_api/data/exchange.dart';
 import 'package:coingecko_api/data/ticker.dart';
 import 'package:coingecko_api/data/exchange_volume_data.dart';
-import 'package:coingecko_api/data/status_update.dart';
 import 'package:coingecko_api/helpers/convert.dart';
-import 'package:coingecko_api/helpers/helpers.dart';
 import 'package:dio/dio.dart';
 
 /// The section that brings together the requests that are related to exchanges
@@ -146,54 +144,6 @@ class ExchangesSection {
       if (list != null) {
         final tickerList = list.map((e) => Ticker.fromJson(e)).toList();
         return CoinGeckoResult(tickerList);
-      } else {
-        return CoinGeckoResult([]);
-      }
-    } else {
-      return CoinGeckoResult(
-        [],
-        errorCode: response.statusCode ?? null,
-        errorMessage: '${response.statusMessage} - ${response.data.toString()}',
-        isError: true,
-      );
-    }
-  }
-
-  ///
-  /// Get status updates for a given exchange.
-  ///
-  /// **[id]** sets the exchange id.
-  ///
-  /// **[itemsPerPage]** sets total results per page.
-  ///
-  /// **[page]** sets page through results.
-  ///
-  /// Query: **/exchanges/{id}/status\_updates**
-  ///
-  Future<CoinGeckoResult<List<StatusUpdate>>> getExchangeStatusUpdates({
-    required String id,
-    int? itemsPerPage,
-    int? page,
-  }) async {
-    final Map<String, dynamic> queryParameters = {};
-    if (itemsPerPage is int) {
-      queryParameters['per_page'] = itemsPerPage;
-    }
-    if (page is int) {
-      queryParameters['page'] = page;
-    }
-    final response = await _dio.get(
-      '/exchanges/$id/status_updates',
-      queryParameters: queryParameters,
-    );
-    if (response.statusCode == 200) {
-      final list = Convert.toList<dynamic>(response.data['status_updates']);
-      if (list != null) {
-        List<StatusUpdate> statusUpdateList =
-            list.map((e) => StatusUpdate.fromJson(e)).toList();
-        statusUpdateList
-            .removeWhere((e) => Helpers.isDefaultDateTime(e.createdAt));
-        return CoinGeckoResult(statusUpdateList);
       } else {
         return CoinGeckoResult([]);
       }

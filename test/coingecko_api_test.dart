@@ -136,14 +136,6 @@ void main() async {
     expect(isOk, true);
   });
 
-  test('check /coins/{id}/status_updates', () async {
-    final result = await api.coins.listCoinStatusUpdates(
-      id: 'nem',
-    );
-    final isOk = result.data.isNotEmpty;
-    expect(isOk, true);
-  });
-
   test('check /coins/{id}/ohlc', () async {
     final result = await api.coins.getCoinOHLC(
       id: 'bitcoin',
@@ -245,36 +237,10 @@ void main() async {
     expect(isOk, true);
   });
 
-  test('check /exchanges/{id}/status_updates', () async {
-    final result = await api.exchanges.getExchangeStatusUpdates(
-      id: 'binance',
-      page: 1,
-      itemsPerPage: 100,
-    );
-    final isOk = result.data.isNotEmpty;
-    expect(isOk, true);
-  });
-
   test('check /exchanges/{id}/volume_chart', () async {
     final result = await api.exchanges.getExchangeVolumeChartData(
       id: 'kuna',
       days: 1,
-    );
-    final isOk = result.data.isNotEmpty;
-    expect(isOk, true);
-  });
-
-  test('check /finance_platforms', () async {
-    final result = await api.finance.listFinancePlatforms(
-      itemsPerPage: 100,
-    );
-    final isOk = result.data.isNotEmpty;
-    expect(isOk, true);
-  });
-
-  test('check /finance_products', () async {
-    final result = await api.finance.listFinanceProducts(
-      itemsPerPage: 100,
     );
     final isOk = result.data.isNotEmpty;
     expect(isOk, true);
@@ -329,33 +295,6 @@ void main() async {
 
   test('check /derivatives/exchanges/list', () async {
     final result = await api.derivatives.listDerivativeExchangesShort();
-    final isOk = !result.isError && result.data.isNotEmpty;
-    expect(isOk, true);
-  });
-
-  test('check /status_updates', () async {
-    final result = await api.statusUpdates.listStatusUpdates(
-      category: StatusUpdateCategory.general,
-      projectType: StatusUpdateProjectType.coin,
-    );
-    final isOk = !result.isError && result.data.isNotEmpty;
-    expect(isOk, true);
-  });
-
-  test('check /events', () async {
-    final result = await api.events.listEvents();
-    final isOk = !result.isError && result.data.isNotEmpty;
-    expect(isOk, true);
-  });
-
-  test('check /events/countries', () async {
-    final result = await api.events.listEventCountries();
-    final isOk = !result.isError && result.data.isNotEmpty;
-    expect(isOk, true);
-  });
-
-  test('check /events/types', () async {
-    final result = await api.events.listEventTypes();
     final isOk = !result.isError && result.data.isNotEmpty;
     expect(isOk, true);
   });
