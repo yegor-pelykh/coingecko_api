@@ -13,6 +13,7 @@ import 'package:coingecko_api/sections/exchanges_section.dart';
 import 'package:coingecko_api/sections/global_section.dart';
 import 'package:coingecko_api/sections/indexes_section.dart';
 import 'package:coingecko_api/sections/ping_section.dart';
+import 'package:coingecko_api/sections/search_section.dart';
 import 'package:coingecko_api/sections/simple_section.dart';
 import 'package:coingecko_api/sections/trending_section.dart';
 import 'package:dio/dio.dart';
@@ -34,6 +35,7 @@ class CoinGeckoApi {
   late IndexesSection _indexes;
   late DerivativesSection _derivatives;
   late ExchangeRatesSection _exchangeRates;
+  late SearchSection _search;
   late TrendingSection _trending;
   late GlobalSection _global;
   late CompaniesSection _companies;
@@ -69,6 +71,10 @@ class CoinGeckoApi {
 
   /// The section that brings together the requests that are related to exchange rates
   ExchangeRatesSection get exchangeRates => _exchangeRates;
+
+  /// The section that brings together the requests
+  /// that are related to search
+  SearchSection get search => _search;
 
   /// The section that brings together the requests
   /// that are related to trending stats
@@ -155,6 +161,7 @@ class CoinGeckoApi {
     _indexes = IndexesSection(_dio);
     _derivatives = DerivativesSection(_dio);
     _exchangeRates = ExchangeRatesSection(_dio);
+    _search = SearchSection(_dio);
     _trending = TrendingSection(_dio);
     _global = GlobalSection(_dio);
     _companies = CompaniesSection(_dio);
