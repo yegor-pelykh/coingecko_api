@@ -178,6 +178,12 @@ Each section will contain a table indicating the method, a short description of 
 | - | - | - |
 | getBtcExchangeRates | Get BTC-to-Currency exchange rates. | /exchange_rates |
 
+## search
+
+| Method name | Description | Query string |
+| - | - | - |
+| searchFor | Search for coins, categories and markets listed on CoinGecko ordered by largest Market Cap first. | /search |
+
 ## trending
 
 | Method name | Description | Query string |
