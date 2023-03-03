@@ -1,76 +1,62 @@
-# Change Log for coingecko_api
-Dart package that provides simple access to the CoinGecko API (Version 3)
+# CHANGELOG 
 
-## [v1.1.0+2](https://github.com/yegor-pelykh/coingecko_api/compare/v1.1.0+1...v1.1.0+2) - 2022-09-18
+## v1.1.1
+> 03-03-2023
 
-### Docs
-* Updated README.md [46da6d0](https://github.com/yegor-pelykh/coingecko_api/commit/46da6d0a3f07781cb21aba1c7815db2622c70239)
-* Updated CHANGELOG.md [d8a87ca](https://github.com/yegor-pelykh/coingecko_api/commit/d8a87ca9ac7d89079d09b9eb2469b223e096bdf9)
+* docs:  Updated CHANGELOG.md
+* fix:  Correction in type casting for error messages
 
-## [v1.1.0+1](https://github.com/yegor-pelykh/coingecko_api/compare/v1.1.0...v1.1.0+1) - 2022-09-18
+## v1.1.0+2
+> 18-09-2022
 
-### Docs
-* Updated CHANGELOG.md [ace81eb](https://github.com/yegor-pelykh/coingecko_api/commit/ace81eb993fa3f99218389a70a7881be50406869)
+* build:  Updated pubspec.yaml
+* docs:  Updated README.md
+* docs:  Updated CHANGELOG.md
 
-## [v1.1.0](https://github.com/yegor-pelykh/coingecko_api/compare/v1.0.2+2...v1.1.0) - 2022-09-18
+## v1.1.0+1
+> 18-09-2022
 
-### Feature
-* Added a new section / method for searching data on CoinGecko [9b3e27f](https://github.com/yegor-pelykh/coingecko_api/commit/9b3e27ff856fef3db2598779d5cc5f8b4b057dbb)
+* build:  Updated Dart SDK version
+* docs:  Updated CHANGELOG.md
 
-### Fixes
-* Removed deprecated methods and data types [69a221b](https://github.com/yegor-pelykh/coingecko_api/commit/69a221bb6b22060bf6b734ddff29ada268510661)
+## v1.1.0
+> 18-09-2022
 
-### Docs
-* Updated documentation [e28e05b](https://github.com/yegor-pelykh/coingecko_api/commit/e28e05b37453328d3d5cd98b343107919adc5c1b)
-* Updated documentation [64c1823](https://github.com/yegor-pelykh/coingecko_api/commit/64c18238cc4ec88032a36f2c48b6d24bc7820294)
+* build:  Updated pubspec.yaml
+* docs:  Updated documentation
+* docs:  Updated documentation
+* feat:  Added a new section &#x2F; method for searching data on CoinGecko
+* fix:  Removed deprecated methods and data types
+* test:  Updated tests
 
-### Refactor
-* Improvements and standardization of data conversion methods [36da5fe](https://github.com/yegor-pelykh/coingecko_api/commit/36da5fe3ec5e426a7d7ec3695f6bde6f013ba58d)
+## v1.0.2+1
+> 01-02-2022
 
-### Test
-* Updated tests [2073bd8](https://github.com/yegor-pelykh/coingecko_api/commit/2073bd82cc3c5ba38e5aa3a91a77c7fb87d99e3a)
+* fix:  Issues with incompatibility of versions of test packages have been fixed
 
-## [v1.0.2+2](https://github.com/yegor-pelykh/coingecko_api/compare/v1.0.2+1...v1.0.2+2) - 2022-02-02
+## v1.0.2
+> 31-01-2022
 
-### Refactor
-* Bringing the code in line with the linter's suggestions [fce9817](https://github.com/yegor-pelykh/coingecko_api/commit/fce981724cb5e8654ae12a4c04c65cbba2c51331)
+* feat:  improved methods getCoinMarketChart, getCoinOHLC, getContractMarketChart - support for obtaining information for the maximum number of days
 
-## [v1.0.2+1](https://github.com/yegor-pelykh/coingecko_api/compare/v1.0.2...v1.0.2+1) - 2022-02-01
+## v1.0.1
+> 03-10-2021
 
-### Fixes
-* Issues with incompatibility of versions of test packages have been fixed [7457780](https://github.com/yegor-pelykh/coingecko_api/commit/7457780d4fd2abe0ff1913e3b56ad9146bfaefd4)
+* fix:  Avoid possible errors from Helpers
 
-## [v1.0.2](https://github.com/yegor-pelykh/coingecko_api/compare/v1.0.1...v1.0.2) - 2022-01-31
+## v1.0.0+3
+> 02-10-2021
 
-### Feature
-* improved methods getCoinMarketChart, getCoinOHLC, getContractMarketChart - support for obtaining information for the maximum number of days [f650010](https://github.com/yegor-pelykh/coingecko_api/commit/f6500103ef7d83a6a056167288687a899812fdc1)
+* docs:  Various improvements. Please see the full description for details
 
-### Docs
-* removed irrelevant information [ae11a79](https://github.com/yegor-pelykh/coingecko_api/commit/ae11a798ad0875fa67f557978187d602d1d178f0)
+## v1.0.0+2
+> 30-09-2021
 
-## [v1.0.1](https://github.com/yegor-pelykh/coingecko_api/compare/v1.0.0+3...v1.0.1) - 2021-10-03
+* docs:  added an example of usage
 
-### Fixes
-* Avoid possible errors from Helpers [8a10783](https://github.com/yegor-pelykh/coingecko_api/commit/8a10783c0ab09851287f02deade160b87d6cceaf)
+## v1.0.0+1
+> 29-09-2021
 
-## [v1.0.0+3](https://github.com/yegor-pelykh/coingecko_api/compare/v1.0.0+2...v1.0.0+3) - 2021-10-02
+* docs:  Update pubspec.yaml
+* docs:  Update README.md
 
-### Docs
-* Various improvements. Please see the full description for details [c3d19fc](https://github.com/yegor-pelykh/coingecko_api/commit/c3d19fcdcd8f1955a4f5c0656e94fa85676e33fb)
-
-## [v1.0.0+2](https://github.com/yegor-pelykh/coingecko_api/compare/v1.0.0+1...v1.0.0+2) - 2021-09-30
-
-### Docs
-* added an example of usage [529922a](https://github.com/yegor-pelykh/coingecko_api/commit/529922ac777620589ef2e962a81229f9db6a516e)
-
-### Refactor
-* bringing category.dart and coin.dart files into compliance with a Dart Formatter [66c5f91](https://github.com/yegor-pelykh/coingecko_api/commit/66c5f91b05c64fa7d726b9ac4e320b79985d6ca0)
-
-## [v1.0.0+1](https://github.com/yegor-pelykh/coingecko_api/compare/v1.0.0...v1.0.0+1) - 2021-09-29
-
-### Docs
-* Update pubspec.yaml [92044ea](https://github.com/yegor-pelykh/coingecko_api/commit/92044ea8a30c9812d45b592aa04accd3752596fe)
-* Update README.md [07ba373](https://github.com/yegor-pelykh/coingecko_api/commit/07ba3738c3c5a4448407664324179c8dd65af7f6)
-
-
-This CHANGELOG.md was generated with [**Changelog for Dart**](https://pub.dartlang.org/packages/changelog)
