@@ -29,7 +29,7 @@ class CategoriesSection {
     } else {
       return CoinGeckoResult(
         [],
-        errorMessage: response.data,
+        errorMessage: response.data.toString(),
         errorCode: response.statusCode ?? null,
         isError: true,
       );
@@ -53,7 +53,7 @@ class CategoriesSection {
     } else {
       return CoinGeckoResult(
         [],
-        errorMessage: response.data,
+        errorMessage: response.data.toString(),
         errorCode: response.statusCode ?? null,
         isError: true,
       );

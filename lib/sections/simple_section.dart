@@ -63,7 +63,7 @@ class SimpleSection {
     } else {
       return CoinGeckoResult(
         [],
-        errorMessage: response.data,
+        errorMessage: response.data.toString(),
         errorCode: response.statusCode ?? null,
         isError: true,
       );
@@ -126,7 +126,7 @@ class SimpleSection {
     } else {
       return CoinGeckoResult(
         [],
-        errorMessage: response.data,
+        errorMessage: response.data.toString(),
         errorCode: response.statusCode ?? null,
         isError: true,
       );
@@ -150,7 +150,7 @@ class SimpleSection {
     } else {
       return CoinGeckoResult(
         [],
-        errorMessage: response.data,
+        errorMessage: response.data.toString(),
         errorCode: response.statusCode ?? 0,
         isError: true,
       );
