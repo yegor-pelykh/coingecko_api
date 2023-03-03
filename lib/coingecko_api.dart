@@ -105,8 +105,8 @@ class CoinGeckoApi {
   /// Default is true.
   ///
   CoinGeckoApi({
-    int connectTimeout = 30000,
-    int receiveTimeout = 10000,
+    Duration connectTimeout = const Duration(seconds: 30),
+    Duration receiveTimeout = const Duration(seconds: 10),
     bool? rateLimitManagement = true,
     this.enableLogging = true,
   }) {
