@@ -5,14 +5,14 @@ import 'package:coingecko_api/data/exchange_short.dart';
 import 'package:coingecko_api/data/exchange.dart';
 import 'package:coingecko_api/data/ticker.dart';
 import 'package:coingecko_api/data/exchange_volume_data.dart';
+import 'package:coingecko_api/helpers/client.dart';
 import 'package:coingecko_api/helpers/convert.dart';
-import 'package:dio/dio.dart';
 
 /// The section that brings together the requests that are related to exchanges
 class ExchangesSection {
-  final Dio _dio;
+  final Client _client;
 
-  const ExchangesSection(this._dio);
+  const ExchangesSection(this._client);
 
   ///
   /// List all exchanges.
@@ -27,7 +27,7 @@ class ExchangesSection {
     int itemsPerPage = 100,
     int page = 1,
   }) async {
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/exchanges',
       queryParameters: {
         'per_page': itemsPerPage,
@@ -54,7 +54,7 @@ class ExchangesSection {
   /// Query: **/exchanges/list**
   ///
   Future<CoinGeckoResult<List<ExchangeShort>>> listExchangesShort() async {
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/exchanges/list',
     );
     if (response.statusCode == 200) {
@@ -81,7 +81,7 @@ class ExchangesSection {
   Future<CoinGeckoResult<ExchangeExtended?>> getExchangeData({
     required String id,
   }) async {
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/exchanges/$id',
     );
     if (response.statusCode == 200) {
@@ -135,7 +135,7 @@ class ExchangesSection {
     if (page is int) {
       queryParameters['page'] = page;
     }
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/exchanges/$id/tickers',
       queryParameters: queryParameters,
     );
@@ -170,7 +170,7 @@ class ExchangesSection {
     required String id,
     required int days,
   }) async {
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/exchanges/$id/volume_chart',
       queryParameters: {
         'days': days,

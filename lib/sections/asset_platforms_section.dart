@@ -1,14 +1,14 @@
 import 'package:coingecko_api/coingecko_result.dart';
 import 'package:coingecko_api/data/asset_platform.dart';
+import 'package:coingecko_api/helpers/client.dart';
 import 'package:coingecko_api/helpers/convert.dart';
-import 'package:dio/dio.dart';
 
 /// The section that brings together the requests that are related
 /// to asset platforms
 class AssetPlatformsSection {
-  final Dio _dio;
+  final Client _client;
 
-  const AssetPlatformsSection(this._dio);
+  const AssetPlatformsSection(this._client);
 
   ///
   /// List all asset platforms (Blockchain networks).
@@ -16,7 +16,7 @@ class AssetPlatformsSection {
   /// Query: **/asset\_platforms**
   ///
   Future<CoinGeckoResult<List<AssetPlatform>>> listAssetPlatforms() async {
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/asset_platforms',
     );
     if (response.statusCode == 200) {

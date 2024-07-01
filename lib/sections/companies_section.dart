@@ -1,13 +1,13 @@
 import 'package:coingecko_api/coingecko_result.dart';
 import 'package:coingecko_api/data/companies_data.dart';
 import 'package:coingecko_api/data/enumerations.dart';
-import 'package:dio/dio.dart';
+import 'package:coingecko_api/helpers/client.dart';
 
 /// The section that brings together the requests that are related to companies
 class CompaniesSection {
-  final Dio _dio;
+  final Client _client;
 
-  const CompaniesSection(this._dio);
+  const CompaniesSection(this._client);
 
   ///
   /// Get public companies data.
@@ -21,7 +21,7 @@ class CompaniesSection {
   Future<CoinGeckoResult<CompaniesData?>> getCompaniesData({
     String coinId = CompanyHoldingsCoin.bitcoin,
   }) async {
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/companies/public_treasury/$coinId',
     );
     if (response.statusCode == 200) {

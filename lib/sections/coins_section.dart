@@ -7,16 +7,16 @@ import 'package:coingecko_api/data/ticker.dart';
 import 'package:coingecko_api/data/market.dart';
 import 'package:coingecko_api/data/market_chart_data.dart';
 import 'package:coingecko_api/data/ohlc_info.dart';
+import 'package:coingecko_api/helpers/client.dart';
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
-import 'package:dio/dio.dart';
 import 'package:intl/intl.dart';
 
 /// The section that brings together the requests that are related to coins
 class CoinsSection {
-  final Dio _dio;
+  final Client _client;
 
-  const CoinsSection(this._dio);
+  const CoinsSection(this._client);
 
   ///
   /// List all supported coins id, name and symbol.
@@ -29,7 +29,7 @@ class CoinsSection {
   Future<CoinGeckoResult<List<CoinShort>>> listCoins({
     bool includePlatforms = false,
   }) async {
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/coins/list',
       queryParameters: {
         'include_platform': includePlatforms,
@@ -105,7 +105,7 @@ class CoinsSection {
       queryParameters['price_change_percentage'] =
           priceChangePercentageIntervals.join(',');
     }
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/coins/markets',
       queryParameters: queryParameters,
     );
@@ -157,7 +157,7 @@ class CoinsSection {
     bool developerData = true,
     bool sparkline = false,
   }) async {
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/coins/$id',
       queryParameters: {
         'localization': localization,
@@ -208,7 +208,7 @@ class CoinsSection {
     String order = TickersOrder.trustScoreDescending,
     bool depth = true,
   }) async {
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/coins/$id/tickers',
       queryParameters: {
         'id': id,
@@ -254,7 +254,7 @@ class CoinsSection {
     bool localization = true,
   }) async {
     final dateFormatted = DateFormat('dd-MM-yyyy').format(date);
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/coins/$id/history',
       queryParameters: {
         'date': dateFormatted,
@@ -303,7 +303,7 @@ class CoinsSection {
     if (interval is String) {
       queryParameters['interval'] = interval;
     }
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/coins/$id/market_chart',
       queryParameters: queryParameters,
     );
@@ -341,7 +341,7 @@ class CoinsSection {
     required DateTime from,
     required DateTime to,
   }) async {
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/coins/$id/market_chart/range',
       queryParameters: {
         'vs_currency': vsCurrency,
@@ -384,7 +384,7 @@ class CoinsSection {
       'vs_currency': vsCurrency,
       'days': days is int ? days : 'max',
     };
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/coins/$id/ohlc',
       queryParameters: queryParameters,
     );

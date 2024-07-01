@@ -1,14 +1,14 @@
 import 'package:coingecko_api/coingecko_result.dart';
 import 'package:coingecko_api/data/price_info.dart';
+import 'package:coingecko_api/helpers/client.dart';
 import 'package:coingecko_api/helpers/convert.dart';
-import 'package:dio/dio.dart';
 
 /// The section that brings together the requests
 /// that are related to simple coins / currencies
 class SimpleSection {
-  final Dio _dio;
+  final Client _client;
 
-  const SimpleSection(this._dio);
+  const SimpleSection(this._client);
 
   ///
   /// Get the current price of any cryptocurrencies in any other
@@ -40,7 +40,7 @@ class SimpleSection {
     bool include24hChange = false,
     bool includeLastUpdatedAt = false,
   }) async {
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/simple/price',
       queryParameters: {
         'ids': ids.join(','),
@@ -103,7 +103,7 @@ class SimpleSection {
     bool include24hChange = false,
     bool includeLastUpdatedAt = false,
   }) async {
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/simple/token_price/$id',
       queryParameters: {
         'contract_addresses': contractAddresses.join(','),
@@ -139,7 +139,7 @@ class SimpleSection {
   /// Query: **/simple/supported\_vs\_currencies**
   ///
   Future<CoinGeckoResult<List<String>>> listSupportedVsCurrencies() async {
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/simple/supported_vs_currencies',
     );
     if (response.statusCode == 200) {

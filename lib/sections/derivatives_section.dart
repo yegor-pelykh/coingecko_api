@@ -4,14 +4,14 @@ import 'package:coingecko_api/data/derivative.dart';
 import 'package:coingecko_api/data/derivative_exchange.dart';
 import 'package:coingecko_api/data/derivative_exchange_short.dart';
 import 'package:coingecko_api/data/enumerations.dart';
+import 'package:coingecko_api/helpers/client.dart';
 import 'package:coingecko_api/helpers/convert.dart';
-import 'package:dio/dio.dart';
 
 /// The section that brings together the requests that are related to derivatives
 class DerivativesSection {
-  final Dio _dio;
+  final Client _client;
 
-  const DerivativesSection(this._dio);
+  const DerivativesSection(this._client);
 
   ///
   /// List all derivative tickers.
@@ -25,7 +25,7 @@ class DerivativesSection {
   Future<CoinGeckoResult<List<Derivative>>> listDerivatives({
     String includeTickers = DerivativeTickersFilter.unexpired,
   }) async {
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/derivatives',
       queryParameters: {
         'include_tickers': includeTickers,
@@ -72,7 +72,7 @@ class DerivativesSection {
     if (page is int) {
       queryParameters['page'] = page;
     }
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/derivatives/exchanges',
       queryParameters: queryParameters,
     );
@@ -105,7 +105,7 @@ class DerivativesSection {
     required String id,
     String? includeTickers,
   }) async {
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/derivatives/exchanges/$id',
       queryParameters: {
         'include_tickers': includeTickers,
@@ -131,7 +131,7 @@ class DerivativesSection {
   ///
   Future<CoinGeckoResult<List<DerivativeExchangeShort>>>
       listDerivativeExchangesShort() async {
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/derivatives/exchanges/list',
     );
     if (response.statusCode == 200) {

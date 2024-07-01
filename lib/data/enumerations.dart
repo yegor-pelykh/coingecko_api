@@ -74,3 +74,17 @@ abstract class CompanyHoldingsCoin {
   static const String bitcoin = 'bitcoin';
   static const String ethereum = 'ethereum';
 }
+
+/// NFTs list order
+abstract class NftsListOrder {
+  static const String h24VolumeUsdAscending = 'h24_volume_usd_asc';
+  static const String h24VolumeUsdDescending = 'h24_volume_usd_desc';
+  static const String h24VolumeNativeAscending = 'h24_volume_native_asc';
+  static const String h24VolumeNativeDescending = 'h24_volume_native_desc';
+  static const String floorPriceNativeAscending = 'floor_price_native_asc';
+  static const String floorPriceNativeDescending = 'floor_price_native_desc';
+  static const String marketCapNativeAscending = 'market_cap_native_asc';
+  static const String marketCapNativeDescending = 'market_cap_native_desc';
+  static const String marketCapUsdAscending = 'market_cap_usd_asc';
+  static const String marketCapUsdDescending = 'market_cap_usd_desc';
+}

@@ -1,14 +1,14 @@
 import 'package:coingecko_api/coingecko_result.dart';
 import 'package:coingecko_api/data/global_coin_data.dart';
 import 'package:coingecko_api/data/global_defi_data.dart';
+import 'package:coingecko_api/helpers/client.dart';
 import 'package:coingecko_api/helpers/convert.dart';
-import 'package:dio/dio.dart';
 
 /// The section that brings together the requests that are related to global information
 class GlobalSection {
-  final Dio _dio;
+  final Client _client;
 
-  const GlobalSection(this._dio);
+  const GlobalSection(this._client);
 
   ///
   /// Get cryptocurrency global data.
@@ -16,7 +16,7 @@ class GlobalSection {
   /// Query: **/global**
   ///
   Future<CoinGeckoResult<GlobalCoinData?>> getGlobalData() async {
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/global',
     );
     if (response.statusCode == 200) {
@@ -39,7 +39,7 @@ class GlobalSection {
   /// Query: **/global/decentralized\_finance\_defi**
   ///
   Future<CoinGeckoResult<GlobalDefiData?>> getGlobalDefiData() async {
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/global/decentralized_finance_defi',
     );
     if (response.statusCode == 200) {

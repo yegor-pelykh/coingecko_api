@@ -1,13 +1,13 @@
 import 'package:coingecko_api/coingecko_result.dart';
 import 'package:coingecko_api/data/search_results.dart';
-import 'package:dio/dio.dart';
+import 'package:coingecko_api/helpers/client.dart';
 
 /// The section that brings together the requests
 /// that are related to search
 class SearchSection {
-  final Dio _dio;
+  final Client _client;
 
-  const SearchSection(this._dio);
+  const SearchSection(this._client);
 
   ///
   /// Search for coins, categories and markets listed on CoinGecko
@@ -18,7 +18,7 @@ class SearchSection {
   Future<CoinGeckoResult<SearchResults?>> searchFor({
     required String query,
   }) async {
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/search',
       queryParameters: {
         'query': query,

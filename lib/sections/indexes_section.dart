@@ -2,14 +2,14 @@ import 'package:coingecko_api/coingecko_result.dart';
 import 'package:coingecko_api/data/market_index.dart';
 import 'package:coingecko_api/data/market_index_identified.dart';
 import 'package:coingecko_api/data/market_index_short.dart';
+import 'package:coingecko_api/helpers/client.dart';
 import 'package:coingecko_api/helpers/convert.dart';
-import 'package:dio/dio.dart';
 
 /// The section that brings together the requests that are related to indexes
 class IndexesSection {
-  final Dio _dio;
+  final Client _client;
 
-  const IndexesSection(this._dio);
+  const IndexesSection(this._client);
 
   ///
   /// List all market indexes.
@@ -31,7 +31,7 @@ class IndexesSection {
     if (page is int) {
       queryParameters['page'] = page;
     }
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/indexes',
       queryParameters: queryParameters,
     );
@@ -62,7 +62,7 @@ class IndexesSection {
     required String marketId,
     required String indexId,
   }) async {
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/indexes/$marketId/$indexId',
     );
     if (response.statusCode == 200) {
@@ -85,7 +85,7 @@ class IndexesSection {
   ///
   Future<CoinGeckoResult<List<MarketIndexShort>>>
       listMarketIndexesShort() async {
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/indexes/list',
     );
     if (response.statusCode == 200) {

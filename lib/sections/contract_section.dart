@@ -1,14 +1,14 @@
 import 'package:coingecko_api/coingecko_result.dart';
 import 'package:coingecko_api/data/coin.dart';
 import 'package:coingecko_api/data/market_chart_data.dart';
+import 'package:coingecko_api/helpers/client.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
-import 'package:dio/dio.dart';
 
 /// The section that brings together the requests that are related to contract tokens
 class ContractSection {
-  final Dio _dio;
+  final Client _client;
 
-  const ContractSection(this._dio);
+  const ContractSection(this._client);
 
   ///
   /// Get coin info from contract address.
@@ -23,7 +23,7 @@ class ContractSection {
     required String id,
     required String contractAddress,
   }) async {
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/coins/$id/contract/$contractAddress',
     );
     if (response.statusCode == 200) {
@@ -65,7 +65,7 @@ class ContractSection {
       'vs_currency': vsCurrency,
       'days': days is int ? days : 'max',
     };
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/coins/$id/contract/$contractAddress/market_chart',
       queryParameters: queryParameters,
     );
@@ -106,7 +106,7 @@ class ContractSection {
     required DateTime from,
     required DateTime to,
   }) async {
-    final response = await _dio.get(
+    final response = await _client.dio.get(
       '/coins/$id/contract/$contractAddress/market_chart/range',
       queryParameters: {
         'vs_currency': vsCurrency,
