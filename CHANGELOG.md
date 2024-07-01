@@ -1,5 +1,10 @@
 # CHANGELOG 
 
+## v2.0.0+1
+> 01-07-2024
+
+* docs:  Update README.md
+
 ## v2.0.0
 > 01-07-2024
 
