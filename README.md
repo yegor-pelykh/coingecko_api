@@ -5,8 +5,9 @@
 
 <h1 align="center">Simple Dart wrapper for the CoinGecko API</h1>
 
-[![popularity](https://badges.bar/coingecko_api/popularity)](https://pub.dev/packages/coingecko_api)
-[![likes](https://badges.bar/coingecko_api/likes)](https://pub.dev/packages/coingecko_api)
+![Pub Points](https://img.shields.io/pub/points/coingecko_api)
+![Pub Popularity](https://img.shields.io/pub/popularity/coingecko_api)
+![Pub Likes](https://img.shields.io/pub/likes/coingecko_api)
 
 Table of contents
 =================
@@ -20,16 +21,17 @@ Table of contents
         * [simple](#simple)
         * [coins](#coins)
         * [contract](#contract)
-        * [asset_platforms](#asset_platforms)
         * [categories](#categories)
+        * [nfts](#nfts)
         * [exchanges](#exchanges)
-        * [indexes](#indexes)
         * [derivatives](#derivatives)
+        * [asset_platforms](#asset_platforms)
         * [exchange_rates](#exchange_rates)
         * [search](#search)
         * [trending](#trending)
         * [global](#global)
         * [companies](#companies)
+        * [indexes](#indexes)
     * [Full Example](#full-example)
     * [Tests](#tests)
     * [Roadmap](#roadmap)
@@ -43,7 +45,7 @@ Installation
 Add the dependency to your Dart / Flutter project:
 ```yaml
 dependencies:
-  coingecko_api: ^1.1.0
+  coingecko_api: ^2.0.0
 ```
 
 Usage
@@ -129,18 +131,20 @@ Each section will contain a table indicating the method, a short description of 
 | getContractMarketChart | Get historical market data include price, market cap, and 24h volume (granularity auto) from a contract address. | /coins/{id}/contract/{contract_address}/market_chart |
 | getContractMarketChartRanged | Get historical market data include price, market cap, and 24h volume within a range of timestamp (granularity auto) from a contract address. | /coins/{id}/contract/{contract_address}/market_chart/range |
 
-## asset_platforms
-
-| Method name | Description | Query string |
-| - | - | - |
-| listAssetPlatforms | List all asset platforms (Blockchain networks). | /asset_platforms |
-
 ## categories
 
 | Method name | Description | Query string |
 | - | - | - |
 | listCategoriesShort | List all categories. | /coins/categories/list |
 | listCategories | List all categories with market data. | /coins/categories |
+
+## nfts
+
+| Method name | Description | Query string |
+| - | - | - |
+| listNfts | Get all supported NFTs with id, contract address, name, asset platform id and symbol. | /nfts/list |
+| getDataById | Get all the NFT data (name, floor price, 24 hr volume...) based on the NFT collection id | /nfts/{id} |
+| getDataByContractAddress | Get all the NFT data (name, floor price, 24 hr volume...) based on the NFT collection contract address and respective asset platform | /nfts/{asset_platform_id}/contract/{contract_address} |
 
 ## exchanges
 
@@ -152,14 +156,6 @@ Each section will contain a table indicating the method, a short description of 
 | getExchangeTickers | Get exchange tickers (paginated, 100 tickers per page). | /exchanges/{id}/tickers |
 | getExchangeVolumeChartData | Get volume_chart data for a given exchange. | /exchanges/{id}/volume_chart |
 
-## indexes
-
-| Method name | Description | Query string |
-| - | - | - |
-| listMarketIndexes | List all market indexes. | /indexes |
-| getMarketIndex | Get market index by market id and index id. | /indexes/{market_id}/{id} |
-| listMarketIndexesShort | List market indexes id and name. | /indexes/list |
-
 ## derivatives
 
 | Method name | Description | Query string |
@@ -168,6 +164,12 @@ Each section will contain a table indicating the method, a short description of 
 | listDerivativeExchanges | List all derivative exchanges. | /derivatives/exchanges |
 | getDerivativeExchange | Show derivative exchange data. | /derivatives/exchanges/{id} |
 | listDerivativeExchangesShort | List all derivative exchanges name and identifier. | /derivatives/exchanges/list |
+
+## asset_platforms
+
+| Method name | Description | Query string |
+| - | - | - |
+| listAssetPlatforms | List all asset platforms (Blockchain networks). | /asset_platforms |
 
 ## exchange_rates
 
@@ -199,6 +201,14 @@ Each section will contain a table indicating the method, a short description of 
 | Method name | Description | Query string |
 | - | - | - |
 | getCompaniesData | Get public companies data. | /companies/public_treasury/{coin_id} |
+
+## indexes
+
+| Method name | Description | Query string |
+| - | - | - |
+| listMarketIndexes | List all market indexes. | /indexes |
+| getMarketIndex | Get market index by market id and index id. | /indexes/{market_id}/{id} |
+| listMarketIndexesShort | List market indexes id and name. | /indexes/list |
 
 # Full Example
 
