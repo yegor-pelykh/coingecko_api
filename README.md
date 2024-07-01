@@ -1,8 +1,6 @@
 <p align="center">
     <img src="https://static.coingecko.com/s/thumbnail-007177f3eca19695592f0b8b0eabbdae282b54154e1be912285c9034ea6cbaf2.png" height="200" />
-</p>
-<p align="center">
-    <img src="https://dart.dev/assets/shared/dart-logo-for-shares.png" height="200" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Dart-logo.png" height="200" />
 </p>
 
 <h1 align="center">Simple Dart wrapper for the CoinGecko API</h1>
