@@ -1,5 +1,10 @@
 # CHANGELOG 
 
+## v2.0.0
+> 01-07-2024
+
+* feat:  Bringing documentation into compliance with version 3.0.1, providing the ability to use Demo and Pro keys for authorization
+
 ## v1.1.1+1
 > 03-03-2023
 
