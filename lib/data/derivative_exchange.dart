@@ -1,41 +1,44 @@
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
-/// Derivative exchange data wrapper
+/// A class representing a derivative exchange with various attributes.
 class DerivativeExchange {
-  /// Exchange identifier
+  /// The unique identifier of the exchange.
   final String id;
 
-  /// Exchange name
+  /// The name of the exchange.
   final String name;
 
-  /// Exchange trade volume in BTC in 24 hours
+  /// The trade volume of the exchange in BTC over the last 24 hours.
   final double tradeVolume24hBtc;
 
-  /// Open interest in BTC
+  /// The open interest in BTC.
   final double? openInterestBtc;
 
-  /// Number of perpetual pairs
+  /// The number of perpetual pairs available on the exchange.
   final int numberOfPerpetualPairs;
 
-  /// Number of futures pairs
+  /// The number of futures pairs available on the exchange.
   final int numberOfFuturesPairs;
 
-  /// Exchange image
+  /// The URL of the exchange's image.
   final String image;
 
-  /// The year in which the exchange was established
+  /// The year the exchange was established.
   final int? yearEstablished;
 
-  /// The country of the exchange
+  /// The country where the exchange is based.
   final String? country;
 
-  /// Exchange description
+  /// A description of the exchange.
   final String description;
 
-  /// Exchange url
+  /// The URL of the exchange's website.
   final String url;
 
+  /// Constructs a [DerivativeExchange] instance from a JSON map.
+  ///
+  /// [json] is a map containing the exchange data.
   DerivativeExchange.fromJson(Map<String, dynamic> json)
       : this.id = Convert.toStr(json['id'], ''),
         this.name = Convert.toStr(json['name'], ''),
@@ -52,6 +55,7 @@ class DerivativeExchange {
         this.description = Convert.toStr(json['description'], ''),
         this.url = Convert.toStr(json['url'], '');
 
+  /// Returns a string representation of the [DerivativeExchange] instance.
   @override
   String toString() {
     return '${Helpers.getTypeName(DerivativeExchange)}: name = $name';

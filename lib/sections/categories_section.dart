@@ -5,17 +5,17 @@ import 'package:coingecko_api/helpers/client.dart';
 import 'package:coingecko_api/helpers/convert.dart';
 
 /// The section that brings together the requests that are
-/// related to categories
+/// related to categories.
 class CategoriesSection {
+  /// The client used to make HTTP requests.
   final Client _client;
 
+  /// Creates an instance of [CategoriesSection] with the given [Client].
   const CategoriesSection(this._client);
 
-  ///
   /// List all categories.
   ///
-  /// Query: **/coins/categories/list**
-  ///
+  /// Query path: /coins/categories/list
   Future<CoinGeckoResult<List<CategoryShort>>> listCategoriesShort() async {
     final response = await _client.dio.get(
       '/coins/categories/list',
@@ -36,11 +36,9 @@ class CategoriesSection {
     }
   }
 
-  ///
   /// List all categories with market data.
   ///
-  /// Query: **/coins/categories**
-  ///
+  /// Query path: /coins/categories
   Future<CoinGeckoResult<List<Category>>> listCategories() async {
     final response = await _client.dio.get(
       '/coins/categories',

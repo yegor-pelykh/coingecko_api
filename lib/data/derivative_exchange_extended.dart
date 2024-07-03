@@ -37,6 +37,11 @@ class DerivativeExchangeExtended {
   /// Exchange tickers
   final List<DerivativeTicker>? tickers;
 
+  /// Parses a list of tickers from JSON.
+  ///
+  /// [json] - The JSON data to parse.
+  ///
+  /// Returns a list of [DerivativeTicker] objects or null if the input is null.
   static List<DerivativeTicker>? _parseTickers(dynamic json) {
     final jsonList = Convert.toListN(json);
     return jsonList != null
@@ -44,6 +49,9 @@ class DerivativeExchangeExtended {
         : null;
   }
 
+  /// Constructs a [DerivativeExchangeExtended] instance from JSON data.
+  ///
+  /// [json] - The JSON data to parse.
   DerivativeExchangeExtended.fromJson(Map<String, dynamic> json)
       : this.name = Convert.toStr(json['name'], ''),
         this.openInterestBtc = Convert.toDoubleN(json['open_interest_btc']),
@@ -60,6 +68,7 @@ class DerivativeExchangeExtended {
         this.url = Convert.toStr(json['url'], ''),
         this.tickers = _parseTickers(json['tickers']);
 
+  /// Returns a string representation of the [DerivativeExchangeExtended] instance.
   @override
   String toString() {
     return '${Helpers.getTypeName(DerivativeExchangeExtended)}: name = $name';

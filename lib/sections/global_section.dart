@@ -6,15 +6,15 @@ import 'package:coingecko_api/helpers/convert.dart';
 
 /// The section that brings together the requests that are related to global information
 class GlobalSection {
+  /// The client used to make HTTP requests.
   final Client _client;
 
+  /// Creates an instance of [GlobalSection] with the given [Client].
   const GlobalSection(this._client);
 
-  ///
   /// Get cryptocurrency global data.
   ///
-  /// Query: **/global**
-  ///
+  /// Query path: /global
   Future<CoinGeckoResult<GlobalCoinData?>> getGlobalData() async {
     final response = await _client.dio.get(
       '/global',
@@ -33,11 +33,9 @@ class GlobalSection {
     }
   }
 
-  ///
   /// Get cryptocurrency global decentralized finance (defi) data.
   ///
-  /// Query: **/global/decentralized\_finance\_defi**
-  ///
+  /// Query path: /global/decentralized_finance_defi
   Future<CoinGeckoResult<GlobalDefiData?>> getGlobalDefiData() async {
     final response = await _client.dio.get(
       '/global/decentralized_finance_defi',

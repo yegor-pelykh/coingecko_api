@@ -14,18 +14,18 @@ import 'package:intl/intl.dart';
 
 /// The section that brings together the requests that are related to coins
 class CoinsSection {
+  /// The client used to make requests to the CoinGecko API.
   final Client _client;
 
+  /// Constructs a [CoinsSection] with the given [Client].
   const CoinsSection(this._client);
 
-  ///
   /// List all supported coins id, name and symbol.
   ///
-  /// **[includePlatforms]** sets whether platform information
+  /// [includePlatforms] sets whether platform information
   /// should be included. Default is false.
   ///
-  /// Query: **/coins/list**
-  ///
+  /// Query path: /coins/list
   Future<CoinGeckoResult<List<CoinShort>>> listCoins({
     bool includePlatforms = false,
   }) async {
@@ -51,33 +51,31 @@ class CoinsSection {
     }
   }
 
-  ///
   /// List all supported coins price, market cap, volume,
   /// and market related data.
   ///
-  /// **[vsCurrency]** sets the target currency of market data
+  /// [vsCurrency] sets the target currency of market data
   /// (usd, eur, jpy, etc.).
   ///
-  /// **[coinIds]** sets the ids of the coins (cryptocurrency symbols).
+  /// [coinIds] sets the ids of the coins (cryptocurrency symbols).
   ///
-  /// **[category]** filters by coin category.
+  /// [category] filters by coin category.
   ///
-  /// **[order]** sorts results by field. Use [CoinMarketsOrder] enumeration
+  /// [order] sorts results by field. Use [CoinMarketsOrder] enumeration
   /// as values. Default is [CoinMarketsOrder.marketCapDescending]
   ///
-  /// **[itemsPerPage]** sets total results per page. Default is 100.
+  /// [itemsPerPage] sets total results per page. Default is 100.
   ///
-  /// **[page]** sets page through results. Default is 1.
+  /// [page] sets page through results. Default is 1.
   ///
-  /// **[sparkline]** sets whether sparkline in 7 days should be included.
+  /// [sparkline] sets whether sparkline in 7 days should be included.
   /// Default is false.
   ///
-  /// **[priceChangePercentageIntervals]** sets the intervals
+  /// [priceChangePercentageIntervals] sets the intervals
   /// at which the price change percentage should be included.
   /// Use [PriceChangeInterval] enumeration as values.
   ///
-  /// Query: **/coins/markets**
-  ///
+  /// Query path: /coins/markets
   Future<CoinGeckoResult<List<Market>>> listCoinMarkets({
     required String vsCurrency,
     List<String> coinIds = const [],
@@ -125,29 +123,27 @@ class CoinsSection {
     }
   }
 
-  ///
   /// Get current data (name, price, market, ... including exchange tickers)
   /// for a coin.
   ///
-  /// **[id]** sets coin id.
+  /// [id] sets coin id.
   ///
-  /// **[localization]** sets whether to include all localized
+  /// [localization] sets whether to include all localized
   /// languages in response. Default is true.
   ///
-  /// **[tickers]** sets whether to include tickers data. Default is true.
+  /// [tickers] sets whether to include tickers data. Default is true.
   ///
-  /// **[marketData]** sets whether to include market data. Default is true.
+  /// [marketData] sets whether to include market data. Default is true.
   ///
-  /// **[communityData]** sets whether to include community data.
+  /// [communityData] sets whether to include community data.
   /// Default is true.
   ///
-  /// **[developerData]** sets whether to include developer data.
+  /// [developerData] sets whether to include developer data.
   /// Default is true.
   ///
-  /// **[sparkline]** sets whether to include sparkline. Default is false.
+  /// [sparkline] sets whether to include sparkline. Default is false.
   ///
-  /// Query: **/coins/{id}**
-  ///
+  /// Query path: /coins/{id}
   Future<CoinGeckoResult<Coin?>> getCoinData({
     required String id,
     bool localization = true,
@@ -181,25 +177,23 @@ class CoinsSection {
     }
   }
 
-  ///
   /// Get coin tickers (paginated to 100 items).
   ///
-  /// **[id]** sets coin id.
+  /// [id] sets coin id.
   ///
-  /// **[exchangeIds]** filters results by exchange ids.
+  /// [exchangeIds] filters results by exchange ids.
   ///
-  /// **[includeExchangeLogo]** sets whether to include exchange logo.
+  /// [includeExchangeLogo] sets whether to include exchange logo.
   /// Default is true.
   ///
-  /// **[page]** sets page through results. Default is 1.
+  /// [page] sets page through results. Default is 1.
   ///
-  /// **[order]** sets tickers order. Use [TickersOrder] enumeration
+  /// [order] sets tickers order. Use [TickersOrder] enumeration
   /// as values. Default is [TickersOrder.trustScoreDescending].
   ///
-  /// **[depth]** sets whether to include 2% orderbook depth. Default is true.
+  /// [depth] sets whether to include 2% orderbook depth. Default is true.
   ///
-  /// Query: **/coins/{id}/tickers**
-  ///
+  /// Query path: /coins/{id}/tickers
   Future<CoinGeckoResult<List<Ticker>>> listCoinTickers({
     required String id,
     List<String> exchangeIds = const [],
@@ -235,19 +229,17 @@ class CoinsSection {
     }
   }
 
-  ///
   /// Get historical data (name, price, market, stats) at a given
   /// date for a coin.
   ///
-  /// **[id]** sets coin id.
+  /// [id] sets coin id.
   ///
-  /// **[date]** sets the date of data snapshot.
+  /// [date] sets the date of data snapshot.
   ///
-  /// **[localization]** sets whether to include all localized
+  /// [localization] sets whether to include all localized
   /// languages in response. Default is true.
   ///
-  /// Query: **/coins/{id}/history**
-  ///
+  /// Query path: /coins/{id}/history
   Future<CoinGeckoResult<CoinHistory?>> getCoinHistory({
     required String id,
     required DateTime date,
@@ -273,23 +265,21 @@ class CoinsSection {
     }
   }
 
-  ///
   /// Get historical market data include price, market cap
   /// and 24h volume (granularity auto).
   ///
-  /// **[id]** sets coin id.
+  /// [id] sets coin id.
   ///
-  /// **[vsCurrency]** sets the target currency of market data
+  /// [vsCurrency] sets the target currency of market data
   /// (usd, eur, jpy, etc.).
   ///
-  /// **[days]** indicates in how many days to include information.
+  /// [days] indicates in how many days to include information.
   /// If the parameter is not specified, the maximum possible number of days is assumed.
   ///
-  /// **[interval]** sets data interval. Use [CoinMarketChartInterval]
+  /// [interval] sets data interval. Use [CoinMarketChartInterval]
   /// enumeration as values.
   ///
-  /// Query: **/coins/{id}/market\_chart**
-  ///
+  /// Query path: /coins/{id}/market_chart
   Future<CoinGeckoResult<List<MarketChartData>>> getCoinMarketChart({
     required String id,
     required String vsCurrency,
@@ -320,21 +310,19 @@ class CoinsSection {
     }
   }
 
-  ///
   /// Get historical market data include price, market cap
   /// and 24h volume within a range of timestamp (granularity auto).
   ///
-  /// **[id]** sets coin id.
+  /// [id] sets coin id.
   ///
-  /// **[vsCurrency]** sets the target currency of market data
+  /// [vsCurrency] sets the target currency of market data
   /// (usd, eur, jpy, etc.).
   ///
-  /// **[from]** sets FROM date.
+  /// [from] sets FROM date.
   ///
-  /// **[to]** sets TO date.
+  /// [to] sets TO date.
   ///
-  /// Query: **/coins/{id}/market\_chart/range**
-  ///
+  /// Query path: /coins/{id}/market_chart/range
   Future<CoinGeckoResult<List<MarketChartData>>> getCoinMarketChartRanged({
     required String id,
     required String vsCurrency,
@@ -362,19 +350,17 @@ class CoinsSection {
     }
   }
 
-  ///
   /// Get coin's OHLC.
   ///
-  /// **[id]** sets coin id.
+  /// [id] sets coin id.
   ///
-  /// **[vsCurrency]** sets the target currency of market data
+  /// [vsCurrency] sets the target currency of market data
   /// (usd, eur, jpy, etc.).
   ///
-  /// **[days]** indicates in how many days to include information.
+  /// [days] indicates in how many days to include information.
   /// If the parameter is not specified, the maximum possible number of days is assumed.
   ///
-  /// Query: **/coins/{id}/ohlc**
-  ///
+  /// Query path: /coins/{id}/ohlc
   Future<CoinGeckoResult<List<OHLCInfo>>> getCoinOHLC({
     required String id,
     required String vsCurrency,

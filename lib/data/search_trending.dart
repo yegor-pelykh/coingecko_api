@@ -1,41 +1,44 @@
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
-/// Search trending coin data wrapper
+/// A class representing a trending coin search result.
 class SearchTrendingCoin {
-  /// Identifier
+  /// The unique identifier of the coin.
   final String id;
 
-  /// Coin identifier
+  /// The numerical identifier of the coin.
   final int coinId;
 
-  /// Coin name
+  /// The name of the coin.
   final String name;
 
-  /// Coin symbol
+  /// The symbol of the coin.
   final String symbol;
 
-  /// Market capitalization rank
+  /// The market capitalization rank of the coin.
   final int marketCapRank;
 
-  /// Thumbnail image url
+  /// The URL of the thumbnail image of the coin.
   final String thumb;
 
-  /// Small image url
+  /// The URL of the small image of the coin.
   final String small;
 
-  /// Large image url
+  /// The URL of the large image of the coin.
   final String large;
 
-  /// Slug
+  /// The slug of the coin.
   final String slug;
 
-  /// Price in BTC
+  /// The price of the coin in BTC.
   final double priceBtc;
 
-  /// Score
+  /// The score of the coin.
   final int score;
 
+  /// Constructs a [SearchTrendingCoin] instance from a JSON object.
+  ///
+  /// [json] is a map containing the coin data.
   SearchTrendingCoin.fromJson(Map<String, dynamic> json)
       : this.id = Convert.toStr(json['id'], ''),
         this.coinId = Convert.toInt(json['coin_id'], 0),
@@ -49,15 +52,22 @@ class SearchTrendingCoin {
         this.priceBtc = Convert.toDouble(json['price_btc'], 0),
         this.score = Convert.toInt(json['score'], 0);
 
+  /// Returns a string representation of the [SearchTrendingCoin] instance.
   @override
   String toString() {
     return 'SearchTrendingCoin: id = $id, name = $name';
   }
 }
 
+/// A class representing a collection of trending coins.
 class SearchTrending {
+  /// A list of trending coins.
   final List<SearchTrendingCoin> coins;
 
+  /// Parses a list of [SearchTrendingCoin] from a JSON object.
+  ///
+  /// [json] is a map containing the list of coins.
+  /// Returns a list of [SearchTrendingCoin] instances.
   static List<SearchTrendingCoin> _parseCoins(Map<String, dynamic> json) {
     final list = Convert.toListN(json['coins']);
     final List<SearchTrendingCoin> coins = [];
@@ -71,9 +81,13 @@ class SearchTrending {
     return coins;
   }
 
+  /// Constructs a [SearchTrending] instance from a JSON object.
+  ///
+  /// [json] is a map containing the trending coins data.
   SearchTrending.fromJson(Map<String, dynamic> json)
       : this.coins = _parseCoins(json);
 
+  /// Returns a string representation of the [SearchTrending] instance.
   @override
   String toString() {
     return '${Helpers.getTypeName(SearchTrendingCoin)}';

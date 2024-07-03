@@ -2,29 +2,32 @@ import 'package:coingecko_api/data/status_update_project.dart';
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
-/// Status update data wrapper
+/// A class representing a status update.
 class StatusUpdate {
-  /// Status update description
+  /// A brief description of the status update.
   final String description;
 
-  /// Status update category
+  /// The category of the status update.
   final String category;
 
-  /// The moment at which the status update was created
+  /// The date and time when the status update was created.
   final DateTime createdAt;
 
-  /// Status update user
+  /// The user who made the status update.
   final String user;
 
-  /// Status update user title
+  /// The title of the user who made the status update.
   final String userTitle;
 
-  /// Indicates if the status update pinned
+  /// Indicates whether the status update is pinned.
   final bool? pin;
 
-  /// Status update project
+  /// The project associated with the status update.
   final StatusUpdateProject? project;
 
+  /// Constructs a [StatusUpdate] instance from a JSON map.
+  ///
+  /// [json] is a map containing the key-value pairs for the status update properties.
   StatusUpdate.fromJson(Map<String, dynamic> json)
       : this.description = Convert.toStr(json['description'], ''),
         this.category = Convert.toStr(json['category'], ''),
@@ -37,6 +40,7 @@ class StatusUpdate {
             ? StatusUpdateProject.fromJson(json['project'])
             : null;
 
+  /// Returns a string representation of the status update.
   @override
   String toString() {
     return '${Helpers.getTypeName(StatusUpdate)}: createdAt = $createdAt, category = $category, description = $description';

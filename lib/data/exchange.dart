@@ -1,44 +1,47 @@
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
-/// Exchange data wrapper
+/// A class representing an exchange with various attributes.
 class Exchange {
-  /// Exchange id
+  /// The unique identifier of the exchange.
   final String id;
 
-  /// Exchange name
+  /// The name of the exchange.
   final String name;
 
-  /// The year in which the exchange was established
+  /// The year in which the exchange was established.
   final int yearEstablished;
 
-  /// The country of the exchange
+  /// The country where the exchange is located.
   final String country;
 
-  /// Exchange description
+  /// A description of the exchange.
   final String description;
 
-  /// Exchange url
+  /// The URL of the exchange's website.
   final String url;
 
-  /// Exchange image
+  /// The URL of the exchange's image.
   final String image;
 
-  /// Indicates if the exchange has a trading incentive
+  /// A flag indicating whether the exchange has a trading incentive.
   final bool hasTradingIncentive;
 
-  /// Trust score
+  /// The trust score of the exchange.
   final int trustScore;
 
-  /// Trust score rank
+  /// The rank of the exchange based on its trust score.
   final int trustScoreRank;
 
-  /// Exchange trade volume in BTC in 24 hours
+  /// The trade volume of the exchange in BTC over the last 24 hours.
   final double tradeVolume24hBtc;
 
-  /// Exchange trade volume (normalized) in BTC in 24 hours
+  /// The normalized trade volume of the exchange in BTC over the last 24 hours.
   final double tradeVolume24hBtcNormalized;
 
+  /// Constructs an [Exchange] instance from a JSON map.
+  ///
+  /// [json] is a map containing the exchange data.
   Exchange.fromJson(Map<String, dynamic> json)
       : this.id = Convert.toStr(json['id'], ''),
         this.name = Convert.toStr(json['name'], ''),
@@ -56,6 +59,7 @@ class Exchange {
         this.tradeVolume24hBtcNormalized =
             Convert.toDouble(json['trade_volume_24h_btc_normalized'], 0);
 
+  /// Returns a string representation of the [Exchange] instance.
   @override
   String toString() {
     return '${Helpers.getTypeName(Exchange)}: id = $id, name = $name';

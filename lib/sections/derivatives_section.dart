@@ -9,19 +9,19 @@ import 'package:coingecko_api/helpers/convert.dart';
 
 /// The section that brings together the requests that are related to derivatives
 class DerivativesSection {
+  /// The client used to make HTTP requests.
   final Client _client;
 
+  /// Constructs a [DerivativesSection] with the given [Client].
   const DerivativesSection(this._client);
 
-  ///
   /// List all derivative tickers.
   ///
-  /// **[includeTickers]** filters tickers by expiration.
+  /// [includeTickers] filters tickers by expiration.
   /// Use [DerivativeTickersFilter] enumeration as values.
   /// Default is [DerivativeTickersFilter.unexpired].
   ///
-  /// Query: **/derivatives**
-  ///
+  /// Query path: /derivatives
   Future<CoinGeckoResult<List<Derivative>>> listDerivatives({
     String includeTickers = DerivativeTickersFilter.unexpired,
   }) async {
@@ -45,19 +45,17 @@ class DerivativesSection {
     }
   }
 
-  ///
   /// List all derivative exchanges.
   ///
-  /// **[order]** sets results order.
+  /// [order] sets results order.
   /// Use [DerivativeExchangesOrder] enumeration as values.
   /// Default is [DerivativeExchangesOrder.nameAscending].
   ///
-  /// **[itemsPerPage]** sets total results per page.
+  /// [itemsPerPage] sets total results per page.
   ///
-  /// **[page]** sets page through results.
+  /// [page] sets page through results.
   ///
-  /// Query: **/derivatives/exchanges**
-  ///
+  /// Query path: /derivatives/exchanges
   Future<CoinGeckoResult<List<DerivativeExchange>>> listDerivativeExchanges({
     String order = DerivativeExchangesOrder.nameAscending,
     int? itemsPerPage,
@@ -90,17 +88,15 @@ class DerivativesSection {
     }
   }
 
-  ///
   /// Show derivative exchange data.
   ///
-  /// **[id]** sets the exchange identifier.
+  /// [id] sets the exchange identifier.
   ///
-  /// **[includeTickers]** filters tickers by expiration.
+  /// [includeTickers] filters tickers by expiration.
   /// Use [DerivativeTickersFilter] enumeration as values.
   /// If null, tickers data in response will be omitted.
   ///
-  /// Query: **/derivatives/exchanges/{id}**
-  ///
+  /// Query path: /derivatives/exchanges/{id}
   Future<CoinGeckoResult<DerivativeExchangeExtended?>> getDerivativeExchange({
     required String id,
     String? includeTickers,
@@ -124,11 +120,9 @@ class DerivativesSection {
     }
   }
 
-  ///
   /// List all derivative exchanges name and identifier.
   ///
-  /// Query: **/derivatives/exchanges/list**
-  ///
+  /// Query path: /derivatives/exchanges/list
   Future<CoinGeckoResult<List<DerivativeExchangeShort>>>
       listDerivativeExchangesShort() async {
     final response = await _client.dio.get(

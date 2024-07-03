@@ -2,38 +2,41 @@ import 'package:coingecko_api/data/coin_developer_data_code_changes.dart';
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
-/// Coin developer data wrapper
+/// A class that encapsulates various developer-related metrics for a cryptocurrency.
 class CoinDeveloperData {
-  /// Number of forks
+  /// The number of forks of the project's repository.
   final int? forks;
 
-  /// Number of stars
+  /// The number of stars the project's repository has received.
   final int? stars;
 
-  /// Number of subscribers
+  /// The number of subscribers to the project's repository.
   final int? subscribers;
 
-  /// Total number of issues
+  /// The total number of issues reported in the project's repository.
   final int? totalIssues;
 
-  /// Number of closed issues
+  /// The number of closed issues in the project's repository.
   final int? closedIssues;
 
-  /// Number of merged pull requests
+  /// The number of pull requests that have been merged in the project's repository.
   final int? pullRequestsMerged;
 
-  /// Number of pull requests contributors
+  /// The number of contributors who have submitted pull requests to the project's repository.
   final int? pullRequestContributors;
 
-  /// Code changes in last 4 weeks
+  /// The code changes (additions and deletions) in the last 4 weeks.
   final CoinDeveloperDataCodeChanges? codeAdditionsDeletions4Weeks;
 
-  /// Commit count in last 4 weeks
+  /// The number of commits made in the last 4 weeks.
   final int? commitCount4Weeks;
 
-  /// Commit activity series in last 4 weeks
+  /// A series representing commit activity over the last 4 weeks.
   final List<int>? last4WeeksCommitActivitySeries;
 
+  /// Constructs a [CoinDeveloperData] instance from a JSON map.
+  ///
+  /// [json] is a map containing key-value pairs corresponding to the fields of this class.
   CoinDeveloperData.fromJson(Map<String, dynamic> json)
       : this.forks = Convert.toIntN(json['forks']),
         this.stars = Convert.toIntN(json['stars']),
@@ -52,6 +55,7 @@ class CoinDeveloperData {
         this.last4WeeksCommitActivitySeries =
             Convert.toListOfInt(json['last_4_weeks_commit_activity_series']);
 
+  /// Returns a string representation of the [CoinDeveloperData] instance.
   @override
   String toString() {
     return '${Helpers.getTypeName(CoinDeveloperData)}';

@@ -1,29 +1,32 @@
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
-/// Company data wrapper
+/// A class representing a company's data.
 class Company {
-  /// Company name
+  /// The name of the company.
   final String name;
 
-  /// Company symbol
+  /// The stock symbol of the company.
   final String symbol;
 
-  /// Country of the company
+  /// The country where the company is based.
   final String country;
 
-  /// Total holdings
+  /// The total holdings of the company.
   final double totalHoldings;
 
-  /// Total entry value in USD
+  /// The total entry value of the company's holdings in USD.
   final double totalEntryValueUsd;
 
-  /// Total current value in USD
+  /// The total current value of the company's holdings in USD.
   final double totalCurrentValueUsd;
 
-  /// Percentage of total supply
+  /// The percentage of the total supply held by the company.
   final double percentageOfTotalSupply;
 
+  /// Constructs a [Company] instance from a JSON map.
+  ///
+  /// [json] is a map containing the company data.
   Company.fromJson(Map<String, dynamic> json)
       : this.name = Convert.toStr(json['name'], ''),
         this.symbol = Convert.toStr(json['symbol'], ''),
@@ -36,6 +39,7 @@ class Company {
         this.percentageOfTotalSupply =
             Convert.toDouble(json['percentage_of_total_supply'], 0);
 
+  /// Returns a string representation of the [Company] instance.
   @override
   String toString() {
     return '${Helpers.getTypeName(Company)}: name = $name, totalHoldings = $totalHoldings';

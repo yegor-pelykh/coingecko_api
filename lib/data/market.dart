@@ -2,110 +2,113 @@ import 'package:coingecko_api/data/market_sparkline.dart';
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
-/// Market data wrapper
+/// Market data wrapper class that holds various market-related information.
 class Market {
-  /// Market identifier
+  /// Market identifier.
   final String id;
 
-  /// Market symbol
+  /// Market symbol.
   final String symbol;
 
-  /// Market name
+  /// Market name.
   final String name;
 
-  /// Market image
+  /// Market image URL.
   final String? image;
 
-  /// Current price
+  /// Current price of the market.
   final double? currentPrice;
 
-  /// Market capitalization
+  /// Market capitalization.
   final double? marketCap;
 
-  /// Market capitalization rank
+  /// Market capitalization rank.
   final int? marketCapRank;
 
-  /// Fully Diluted Valuation
+  /// Fully Diluted Valuation.
   final double? fullyDilutedValuation;
 
-  /// Total volume
+  /// Total volume of the market.
   final double? totalVolume;
 
-  /// High in 24 hours
+  /// Highest price in the last 24 hours.
   final double? high24h;
 
-  /// Low in 24 hours
+  /// Lowest price in the last 24 hours.
   final double? low24h;
 
-  /// Price change in 24 hours
+  /// Price change in the last 24 hours.
   final double? priceChange24h;
 
-  /// Price change percentage in 24 hours
+  /// Price change percentage in the last 24 hours.
   final double? priceChangePercentage24h;
 
-  /// Market capitalization change in 24 hours
+  /// Market capitalization change in the last 24 hours.
   final double? marketCapChange24h;
 
-  /// Market capitalization change percentage in 24 hours
+  /// Market capitalization change percentage in the last 24 hours.
   final double? marketCapChangePercentage24h;
 
-  /// Circulating supply
+  /// Circulating supply of the market.
   final double? circulatingSupply;
 
-  /// Total supply
+  /// Total supply of the market.
   final double? totalSupply;
 
-  /// Max supply
+  /// Maximum supply of the market.
   final double? maxSupply;
 
-  /// All Time High
+  /// All Time High price.
   final double? ath;
 
-  /// All Time High change percentage
+  /// All Time High change percentage.
   final double? athChangePercentage;
 
-  /// All Time High date
+  /// Date of All Time High.
   final DateTime? athDate;
 
-  /// All Time Low
+  /// All Time Low price.
   final double? atl;
 
-  /// All Time Low change percentage
+  /// All Time Low change percentage.
   final double? atlChangePercentage;
 
-  /// All Time Low date
+  /// Date of All Time Low.
   final DateTime? atlDate;
 
-  /// Return On Investment (profitability or efficiency of investment)
+  /// Return On Investment (profitability or efficiency of investment).
   final double? roi;
 
-  /// The moment at which the data was updated
+  /// The moment at which the data was updated.
   final DateTime? lastUpdated;
 
-  /// Sparkline in 7 days
+  /// Sparkline data for the last 7 days.
   final MarketSparkline? sparklineIn7d;
 
-  /// Price change percentage in currency in 1 hour
+  /// Price change percentage in currency in the last 1 hour.
   final double? priceChangePercentage1hInCurrency;
 
-  /// Price change percentage in currency in 24 hours
+  /// Price change percentage in currency in the last 24 hours.
   final double? priceChangePercentage24hInCurrency;
 
-  /// Price change percentage in currency in 7 days
+  /// Price change percentage in currency in the last 7 days.
   final double? priceChangePercentage7dInCurrency;
 
-  /// Price change percentage in currency in 14 days
+  /// Price change percentage in currency in the last 14 days.
   final double? priceChangePercentage14dInCurrency;
 
-  /// Price change percentage in currency in 30 days
+  /// Price change percentage in currency in the last 30 days.
   final double? priceChangePercentage30dInCurrency;
 
-  /// Price change percentage in currency in 200 days
+  /// Price change percentage in currency in the last 200 days.
   final double? priceChangePercentage200dInCurrency;
 
-  /// Price change percentage in currency in 1 year
+  /// Price change percentage in currency in the last 1 year.
   final double? priceChangePercentage1yInCurrency;
 
+  /// Constructs a Market instance from a JSON map.
+  ///
+  /// [json] is a map containing the market data.
   Market.fromJson(Map<String, dynamic> json)
       : id = Convert.toStr(json['id'], ''),
         symbol = Convert.toStr(json['symbol'], ''),
@@ -154,6 +157,7 @@ class Market {
             ? MarketSparkline.fromJson(json['sparkline_in_7d'])
             : null;
 
+  /// Returns a string representation of the Market instance.
   @override
   String toString() {
     return '${Helpers.getTypeName(Market)}: id = $id, symbol = $symbol, name = $name';

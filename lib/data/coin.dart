@@ -111,6 +111,10 @@ class Coin {
   /// List of tickers
   final List<Ticker>? tickers;
 
+  /// Parses a list of status updates from JSON.
+  ///
+  /// [json] - The JSON data to parse.
+  /// Returns a list of [StatusUpdate] objects or null.
   static List<StatusUpdate>? _parseStatusUpdates(dynamic json) {
     final jsonList = Convert.toListN(json);
     return jsonList != null
@@ -118,6 +122,10 @@ class Coin {
         : null;
   }
 
+  /// Parses a list of tickers from JSON.
+  ///
+  /// [json] - The JSON data to parse.
+  /// Returns a list of [Ticker] objects or null.
   static List<Ticker>? _parseTickers(dynamic json) {
     final jsonList = Convert.toListN(json);
     return jsonList != null
@@ -125,6 +133,9 @@ class Coin {
         : null;
   }
 
+  /// Constructs a [Coin] object from JSON data.
+  ///
+  /// [json] - The JSON data to parse.
   Coin.fromJson(Map<String, dynamic> json)
       : this.id = Convert.toStr(json['id'], ''),
         this.symbol = Convert.toStr(json['symbol'], ''),

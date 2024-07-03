@@ -7,35 +7,38 @@ import 'package:coingecko_api/data/localized_string.dart';
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
-/// Coin history data wrapper
+/// A class that represents the historical data of a cryptocurrency.
 class CoinHistory {
-  /// Coin identifier
+  /// The unique identifier of the coin.
   final String id;
 
-  /// Coin symbol
+  /// The symbol of the coin.
   final String symbol;
 
-  /// Coin name
+  /// The name of the coin.
   final String name;
 
-  /// Coin name in different localizations
+  /// The name of the coin in different localizations.
   final LocalizedString? localization;
 
-  /// Coin image
+  /// The image information of the coin.
   final ImageInfo? image;
 
-  /// Market data
+  /// The market data of the coin.
   final List<MarketData>? marketData;
 
-  /// Community data
+  /// The community data of the coin.
   final CoinCommunityData? communityData;
 
-  /// Developer data
+  /// The developer data of the coin.
   final CoinDeveloperData? developerData;
 
-  /// Public interest stats
+  /// The public interest statistics of the coin.
   final CoinPublicInterestsStats? publicInterestStats;
 
+  /// Constructs a [CoinHistory] instance from a JSON object.
+  ///
+  /// [json] is a map containing the key-value pairs of the coin's data.
   CoinHistory.fromJson(Map<String, dynamic> json)
       : this.id = Convert.toStr(json['id'], ''),
         this.symbol = Convert.toStr(json['symbol'], ''),
@@ -57,6 +60,7 @@ class CoinHistory {
             ? CoinPublicInterestsStats.fromJson(json['public_interest_stats'])
             : null;
 
+  /// Returns a string representation of the [CoinHistory] instance.
   @override
   String toString() {
     return '${Helpers.getTypeName(CoinHistory)}: id = $id, symbol = $symbol, name = $name';

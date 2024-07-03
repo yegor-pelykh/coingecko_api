@@ -10,19 +10,19 @@ import 'package:coingecko_api/helpers/convert.dart';
 
 /// The section that brings together the requests that are related to exchanges
 class ExchangesSection {
+  /// Client for making HTTP requests
   final Client _client;
 
+  /// Constructor for ExchangesSection
   const ExchangesSection(this._client);
 
-  ///
   /// List all exchanges.
   ///
-  /// **[itemsPerPage]** sets total results per page. Default is 100.
+  /// [itemsPerPage] sets total results per page. Default is 100.
   ///
-  /// **[page]** sets page through results. Default is 1.
+  /// [page] sets page through results. Default is 1.
   ///
-  /// Query: **/exchanges**
-  ///
+  /// Query path: /exchanges
   Future<CoinGeckoResult<List<Exchange>>> listExchanges({
     int itemsPerPage = 100,
     int page = 1,
@@ -48,11 +48,9 @@ class ExchangesSection {
     }
   }
 
-  ///
   /// List all supported exchanges: id and name.
   ///
-  /// Query: **/exchanges/list**
-  ///
+  /// Query path: /exchanges/list
   Future<CoinGeckoResult<List<ExchangeShort>>> listExchangesShort() async {
     final response = await _client.dio.get(
       '/exchanges/list',
@@ -71,13 +69,11 @@ class ExchangesSection {
     }
   }
 
-  ///
   /// Get exchange volume in BTC and top 100 tickers only.
   ///
-  /// **[id]** sets the exchange id.
+  /// [id] sets the exchange id.
   ///
-  /// Query: **/exchanges/{id}**
-  ///
+  /// Query path: /exchanges/{id}
   Future<CoinGeckoResult<ExchangeExtended?>> getExchangeData({
     required String id,
   }) async {
@@ -97,25 +93,23 @@ class ExchangesSection {
     }
   }
 
-  ///
   /// Get exchange tickers (paginated, 100 tickers per page).
   ///
-  /// **[id]** sets the exchange id.
+  /// [id] sets the exchange id.
   ///
-  /// **[coinIds]** filters tickers by coin identifiers.
+  /// [coinIds] filters tickers by coin identifiers.
   ///
-  /// **[page]** sets page through results.
+  /// [page] sets page through results.
   ///
-  /// **[includeExchangeLogo]** sets whether to include exchange logo.
+  /// [includeExchangeLogo] sets whether to include exchange logo.
   /// Default is false.
   ///
-  /// **[depth]** sets whether to include 2% orderbook depth. Default is false.
+  /// [depth] sets whether to include 2% orderbook depth. Default is false.
   ///
-  /// **[order]** sets tickers order. Use [TickersOrder] enumeration
+  /// [order] sets tickers order. Use [TickersOrder] enumeration
   /// as values. Default is [TickersOrder.trustScoreDescending].
   ///
-  /// Query: **/exchanges/{id}/tickers**
-  ///
+  /// Query path: /exchanges/{id}/tickers
   Future<CoinGeckoResult<List<Ticker>>> getExchangeTickers({
     required String id,
     List<String> coinIds = const [],
@@ -157,15 +151,13 @@ class ExchangesSection {
     }
   }
 
-  ///
   /// Get volume_chart data for a given exchange.
   ///
-  /// **[id]** sets the exchange id.
+  /// [id] sets the exchange id.
   ///
-  /// **[days]** indicates in how many days to include information.
+  /// [days] indicates in how many days to include information.
   ///
-  /// Query: **/exchanges/{id}/volume\_chart**
-  ///
+  /// Query path: /exchanges/{id}/volume_chart
   Future<CoinGeckoResult<List<ExchangeVolumeData>>> getExchangeVolumeChartData({
     required String id,
     required int days,

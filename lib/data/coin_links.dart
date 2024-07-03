@@ -2,41 +2,44 @@ import 'package:coingecko_api/data/coin_repos_url.dart';
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
-/// Link data wrapper
+/// A class that wraps various links related to a cryptocurrency.
 class CoinLinks {
-  /// Homepage
+  /// A list of homepage URLs.
   final List<String>? homepage;
 
-  /// Blockchain site
+  /// A list of blockchain site URLs.
   final List<String>? blockchainSite;
 
-  /// Official forum url
+  /// A list of official forum URLs.
   final List<String>? officialForumUrl;
 
-  /// Chat url
+  /// A list of chat URLs.
   final List<String>? chatUrl;
 
-  /// Announcement url
+  /// A list of announcement URLs.
   final List<String>? announcementUrl;
 
-  /// Twitter screen name
+  /// The Twitter screen name.
   final String? twitterScreenName;
 
-  /// Facebook username
+  /// The Facebook username.
   final String? facebookUsername;
 
-  /// Bitcointalk thread identifier
+  /// The Bitcointalk thread identifier.
   final String? bitcointalkThreadIdentifier;
 
-  /// Telegram channel identifier
+  /// The Telegram channel identifier.
   final String? telegramChannelIdentifier;
 
-  /// Subreddit url
+  /// The subreddit URL.
   final String? subredditUrl;
 
-  /// Repository urls
+  /// The repository URLs.
   final CoinReposUrl? reposUrl;
 
+  /// Constructs a [CoinLinks] instance from a JSON map.
+  ///
+  /// [json] is a map containing the JSON data.
   CoinLinks.fromJson(Map<String, dynamic> json)
       : this.homepage = Convert.toListOfString(json['homepage']),
         this.blockchainSite = Convert.toListOfString(json['blockchain_site']),
@@ -55,6 +58,7 @@ class CoinLinks {
             ? CoinReposUrl.fromJson(json['repos_url'])
             : null;
 
+  /// Returns a string representation of the [CoinLinks] instance.
   @override
   String toString() {
     return '${Helpers.getTypeName(CoinLinks)}';

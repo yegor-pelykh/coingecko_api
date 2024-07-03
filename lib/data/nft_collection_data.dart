@@ -5,101 +5,104 @@ import 'package:coingecko_api/data/nft_links_data.dart';
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
-/// NFT collection data wrapper
+/// A class representing data for an NFT collection.
 class NftCollectionData {
-  /// NFT collection identifier
+  /// The unique identifier for the NFT collection.
   final String id;
 
-  /// NFT collection contract address
+  /// The contract address of the NFT collection.
   final String contractAddress;
 
-  /// NFT collection name
+  /// The name of the NFT collection.
   final String name;
 
-  /// NFT collection asset platform id
+  /// The asset platform ID of the NFT collection.
   final String assetPlatformId;
 
-  /// NFT collection symbol
+  /// The symbol of the NFT collection.
   final String symbol;
 
-  /// NFT collection image
+  /// The image associated with the NFT collection.
   final ImageInfo? image;
 
-  /// NFT collection description
+  /// The description of the NFT collection.
   final String description;
 
-  /// NFT collection native currency
+  /// The native currency of the NFT collection.
   final String nativeCurrency;
 
-  /// NFT collection native currency symbol
+  /// The symbol of the native currency of the NFT collection.
   final String nativeCurrencySymbol;
 
-  /// NFT collection floor price
+  /// The floor price of the NFT collection.
   final NativeCurrencyUsdData floorPrice;
 
-  /// NFT collection market cap
+  /// The market cap of the NFT collection.
   final NativeCurrencyUsdData marketCap;
 
-  /// NFT collection volume in 24 hours
+  /// The 24-hour volume of the NFT collection.
   final NativeCurrencyUsdData volume24h;
 
-  /// NFT collection floor price in usd 24 hours percentage change
+  /// The 24-hour percentage change in floor price in USD.
   final double floorPriceInUsd24hPercentageChange;
 
-  /// NFT collection volume in usd 24 hours percentage change
+  /// The 24-hour percentage change in volume in USD.
   final double volumeInUsd24hPercentageChange;
 
-  /// NFT collection floor price in 24 hours percentage change
+  /// The 24-hour percentage change in floor price.
   final NativeCurrencyUsdData floorPrice24hPercentageChange;
 
-  /// NFT collection market cap 24 hours percentage change
+  /// The 24-hour percentage change in market cap.
   final NativeCurrencyUsdData marketCap24PercentageChange;
 
-  /// NFT collection volume in 24 hours percentage change
+  /// The 24-hour percentage change in volume.
   final NativeCurrencyUsdData volume24hPercentageChange;
 
-  /// Number of unique address owning the NFTs
+  /// The number of unique addresses owning the NFTs.
   final int? numberOfUniqueAddresses;
 
-  /// Number of unique address owning the nfts 24 hours percentage change
+  /// The 24-hour percentage change in the number of unique addresses owning the NFTs.
   final double? numberOfUniqueAddresses24hPercentageChange;
 
-  /// NFT collection total supply
+  /// The total supply of the NFT collection.
   final double totalSupply;
 
-  /// NFT collection one day sales
+  /// The one-day sales of the NFT collection.
   final double oneDaySales;
 
-  /// NFT collection one day sales 24 hours percentage change
+  /// The 24-hour percentage change in one-day sales.
   final double oneSaySales24hPercentageChange;
 
-  /// NFT collection one day average sale price
+  /// The one-day average sale price of the NFT collection.
   final double oneDayAverageSalePrice;
 
-  /// NFT collection one day average sale price 24 hours percentage change
+  /// The 24-hour percentage change in one-day average sale price.
   final double oneDayAverageSalePrice24hPercentageChange;
 
-  /// NFT collection links
+  /// The links associated with the NFT collection.
   final NftLinksData links;
 
-  /// NFT collection floor price 7 days percentage change
+  /// The 7-day percentage change in floor price.
   final NativeCurrencyUsdData floorPrice7dPercentageChange;
 
-  /// NFT collection floor price 14 days percentage change
+  /// The 14-day percentage change in floor price.
   final NativeCurrencyUsdData floorPrice14dPercentageChange;
 
-  /// NFT collection floor price 30 days percentage change
+  /// The 30-day percentage change in floor price.
   final NativeCurrencyUsdData floorPrice30dPercentageChange;
 
-  /// NFT collection floor price 60 days percentage change
+  /// The 60-day percentage change in floor price.
   final NativeCurrencyUsdData floorPrice60dPercentageChange;
 
-  /// NFT collection floor price 1 year percentage change
+  /// The 1-year percentage change in floor price.
   final NativeCurrencyUsdData floorPrice1yPercentageChange;
 
-// NFT collection block explorers links
+  /// The list of block explorer links for the NFT collection.
   final List<ExplorerInfo>? explorers;
 
+  /// Constructs an instance of [NftCollectionData] from a JSON object.
+  ///
+  /// [json] is a map containing the JSON data.
   NftCollectionData.fromJson(Map<String, dynamic> json)
       : this.id = Convert.toStr(json['id'], ''),
         this.contractAddress = Convert.toStr(json['contract_address'], ''),
@@ -151,6 +154,9 @@ class NftCollectionData {
             json['floor_price_1y_percentage_change']),
         this.explorers = _parseExplorers(json['explorers']) {}
 
+  /// Parses a list of [ExplorerInfo] from a JSON object.
+  ///
+  /// [json] is the JSON data to parse.
   static List<ExplorerInfo>? _parseExplorers(dynamic json) {
     final jsonList = Convert.toListN(json);
     return jsonList != null

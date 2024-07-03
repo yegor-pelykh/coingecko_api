@@ -7,19 +7,19 @@ import 'package:coingecko_api/helpers/convert.dart';
 
 /// The section that brings together the requests that are related to indexes
 class IndexesSection {
+  /// The client used to make requests to the CoinGecko API
   final Client _client;
 
+  /// Constructs an [IndexesSection] with the given [Client].
   const IndexesSection(this._client);
 
-  ///
   /// List all market indexes.
   ///
-  /// **[itemsPerPage]** sets total results per page.
+  /// [itemsPerPage] sets total results per page.
   ///
-  /// **[page]** sets page through results.
+  /// [page] sets page through results.
   ///
-  /// Query: **/indexes**
-  ///
+  /// Query path: /indexes
   Future<CoinGeckoResult<List<MarketIndexIdentified>>> listMarketIndexes({
     int? itemsPerPage,
     int? page,
@@ -49,15 +49,13 @@ class IndexesSection {
     }
   }
 
-  ///
   /// Get market index by market id and index id.
   ///
-  /// **[marketId]** sets the market id.
+  /// [marketId] sets the market id.
   ///
-  /// **[indexId]** sets the index id.
+  /// [indexId] sets the index id.
   ///
-  /// Query: **/indexes/{market\_id}/{id}**
-  ///
+  /// Query path: /indexes/{market_id}/{id}
   Future<CoinGeckoResult<MarketIndex?>> getMarketIndex({
     required String marketId,
     required String indexId,
@@ -78,11 +76,9 @@ class IndexesSection {
     }
   }
 
-  ///
   /// List market indexes id and name.
   ///
-  /// Query: **/indexes/list**
-  ///
+  /// Query path: /indexes/list
   Future<CoinGeckoResult<List<MarketIndexShort>>>
       listMarketIndexesShort() async {
     final response = await _client.dio.get(

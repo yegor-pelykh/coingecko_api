@@ -1,59 +1,62 @@
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
-/// Derivative ticker data wrapper
+/// A class representing the data for a derivative ticker.
 class DerivativeTicker {
-  /// Ticker symbol
+  /// The ticker symbol.
   final String symbol;
 
-  /// Base asset
+  /// The base asset.
   final String base;
 
-  /// Target asset
+  /// The target asset.
   final String target;
 
-  /// Ticker trade url
+  /// The URL for trading the ticker.
   final String tradeUrl;
 
-  /// Ticker contract type
+  /// The type of contract for the ticker.
   final String contractType;
 
-  /// Ticker last value
+  /// The last traded value of the ticker.
   final double last;
 
-  /// Ticker price percentage change in 24 hours
+  /// The percentage change in price over the last 24 hours.
   final double h24PercentageChange;
 
-  /// Ticker index
+  /// The index value of the ticker, if available.
   final double? index;
 
-  /// Ticker index basis percentage
+  /// The index basis percentage.
   final double indexBasisPercentage;
 
-  /// Bid / Ask spread
+  /// The bid/ask spread.
   final double bidAskSpread;
 
-  /// Funding rate
+  /// The funding rate.
   final double fundingRate;
 
-  /// Open interest in USD
+  /// The open interest in USD.
   final double openInterestUsd;
 
-  /// Volume in 24 hours
+  /// The trading volume over the last 24 hours.
   final double h24Volume;
 
-  /// Converted volume
+  /// The converted volume in different currencies.
   final Map<String, double> convertedVolume;
 
-  /// Converted last
+  /// The last traded value converted into different currencies.
   final Map<String, double> convertedLast;
 
-  /// The moment at which derivative was last traded
+  /// The timestamp of the last trade.
   final DateTime lastTraded;
 
-  /// The moment at which derivative was (will be) expired
+  /// The timestamp when the derivative expired or will expire, if available.
   final DateTime? expiredAt;
 
+  /// Constructs a [DerivativeTicker] instance from a JSON map.
+  ///
+  /// [json] is a map containing the data to be converted into a [DerivativeTicker] instance.
   DerivativeTicker.fromJson(Map<String, dynamic> json)
       : this.symbol = Convert.toStr(json['symbol'], ''),
         this.base = Convert.toStr(json['base'], ''),
@@ -78,6 +81,7 @@ class DerivativeTicker {
             Convert.toDateTime(json['last_traded'], Helpers.defaultDateTime()),
         this.expiredAt = Convert.toDateTimeN(json['expired_at']);
 
+  /// Returns a string representation of the [DerivativeTicker] instance.
   @override
   String toString() {
     return '${Helpers.getTypeName(DerivativeTicker)}: symbol = $symbol, base = $base, target = $target, last = $last';

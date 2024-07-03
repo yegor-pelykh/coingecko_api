@@ -1,26 +1,30 @@
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
-/// Category data wrapper
+/// A class representing a cryptocurrency category with various financial metrics.
 class Category {
-  /// Category identifier
+  /// The unique identifier for the category.
   final String id;
 
-  /// Category name
+  /// The name of the category.
   final String name;
 
-  /// Market capitalization for category
+  /// The market capitalization of the category.
   final double marketCap;
 
-  /// Market capitalization change in 24 hours
+  /// The change in market capitalization over the last 24 hours.
   final double marketCapChange24h;
 
-  /// Trading volume in 24 hours
+  /// The trading volume of the category over the last 24 hours.
   final double volume24h;
 
-  /// The moment at which the data was updated
+  /// The timestamp when the data was last updated.
   final DateTime updatedAt;
 
+  /// Constructs a [Category] instance from a JSON map.
+  ///
+  /// Parameters:
+  /// - `json`: A map containing the category data.
   Category.fromJson(Map<String, dynamic> json)
       : this.id = Convert.toStr(json['id'], ''),
         this.name = Convert.toStr(json['name'], ''),
@@ -31,6 +35,9 @@ class Category {
         this.updatedAt =
             Convert.toDateTime(json['updated_at'], Helpers.defaultDateTime());
 
+  /// Returns a string representation of the [Category] instance.
+  ///
+  /// The string contains the type name and the id and name of the category.
   @override
   String toString() {
     return '${Helpers.getTypeName(Category)}: id = $id, name = $name';

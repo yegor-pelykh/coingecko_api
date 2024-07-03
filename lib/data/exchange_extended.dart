@@ -74,6 +74,10 @@ class ExchangeExtended {
   /// List of status updates
   final List<StatusUpdate> statusUpdates;
 
+  /// Parses a list of tickers from JSON
+  ///
+  /// [json] - The JSON data to parse
+  /// Returns a list of [Ticker] objects
   static List<Ticker> _parseTickers(dynamic json) {
     final jsonList = Convert.toListN(json);
     return jsonList != null
@@ -81,6 +85,10 @@ class ExchangeExtended {
         : [];
   }
 
+  /// Parses a list of status updates from JSON
+  ///
+  /// [json] - The JSON data to parse
+  /// Returns a list of [StatusUpdate] objects
   static List<StatusUpdate> _parseStatusUpdates(dynamic json) {
     final jsonList = Convert.toListN(json);
     return jsonList != null
@@ -88,6 +96,9 @@ class ExchangeExtended {
         : [];
   }
 
+  /// Constructs an [ExchangeExtended] object from JSON data
+  ///
+  /// [json] - The JSON data to parse
   ExchangeExtended.fromJson(Map<String, dynamic> json)
       : this.name = Convert.toStr(json['name'], ''),
         this.yearEstablished = Convert.toInt(json['year_established'], 0),
@@ -116,6 +127,7 @@ class ExchangeExtended {
         this.tickers = _parseTickers(json['tickers']),
         this.statusUpdates = _parseStatusUpdates(json['status_updates']);
 
+  /// Returns a string representation of the [ExchangeExtended] object
   @override
   String toString() {
     return '${Helpers.getTypeName(ExchangeExtended)}: name = $name, url = $url';

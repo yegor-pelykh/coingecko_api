@@ -2,68 +2,71 @@ import 'package:coingecko_api/data/exchange_market.dart';
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
-/// Ticker data wrapper
+/// A class representing the ticker data for a specific trading pair.
 class Ticker {
-  /// Base asset
+  /// The base asset of the trading pair.
   final String base;
 
-  /// Target asset
+  /// The target asset of the trading pair.
   final String target;
 
-  /// Ticker market data
+  /// The market data for the ticker.
   final ExchangeMarket market;
 
-  /// Ticker last value
+  /// The last traded value of the ticker.
   final double last;
 
-  /// Ticker volume
+  /// The trading volume of the ticker.
   final double volume;
 
-  /// Ticker cost to move up in USD
+  /// The cost to move the ticker up in USD.
   final double? costToMoveUpUsd;
 
-  /// Ticker cost to move down in USD
+  /// The cost to move the ticker down in USD.
   final double? costToMoveDownUsd;
 
-  /// Ticker converted last
+  /// The last traded value of the ticker converted to different currencies.
   final Map<String, double> convertedLast;
 
-  /// Ticker converted volume
+  /// The trading volume of the ticker converted to different currencies.
   final Map<String, double> convertedVolume;
 
-  /// Ticker trust score
+  /// The trust score of the ticker.
   final String trustScore;
 
-  /// Bid / Ask spread percentage
+  /// The bid/ask spread percentage of the ticker.
   final double bidAskSpreadPercentage;
 
-  /// The moment for which the ticker is relevant
+  /// The timestamp when the ticker data is relevant.
   final DateTime timestamp;
 
-  /// The moment at which the ticker was last traded
+  /// The timestamp when the ticker was last traded.
   final DateTime lastTradedAt;
 
-  /// The moment at which the ticker was last fetched
+  /// The timestamp when the ticker data was last fetched.
   final DateTime lastFetchAt;
 
-  /// Indicates if the ticker is anomaly
+  /// Indicates whether the ticker data is considered an anomaly.
   final bool isAnomaly;
 
-  /// Indicates if the ticker is stale
+  /// Indicates whether the ticker data is considered stale.
   final bool isStale;
 
-  /// Trade url
+  /// The URL for trading the asset.
   final String tradeUrl;
 
-  /// Token info url
+  /// The URL for token information.
   final String? tokenInfoUrl;
 
-  /// Coin identifier
+  /// The identifier of the coin.
   final String coinId;
 
-  /// Target coin identifier
+  /// The identifier of the target coin.
   final String? targetCoinId;
 
+  /// Constructs a [Ticker] instance from a JSON object.
+  ///
+  /// [json] is a map containing the ticker data.
   Ticker.fromJson(Map<String, dynamic> json)
       : this.base = Convert.toStr(json['base'], ''),
         this.target = Convert.toStr(json['target'], ''),
@@ -93,6 +96,7 @@ class Ticker {
         this.coinId = Convert.toStr(json['coin_id'], ''),
         this.targetCoinId = Convert.toStrN(json['target_coin_id']);
 
+  /// Returns a string representation of the [Ticker] instance.
   @override
   String toString() {
     return '${Helpers.getTypeName(Ticker)}: base = $base, target = $target, last = $last';

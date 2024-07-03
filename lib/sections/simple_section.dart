@@ -6,32 +6,32 @@ import 'package:coingecko_api/helpers/convert.dart';
 /// The section that brings together the requests
 /// that are related to simple coins / currencies
 class SimpleSection {
+  /// The client used to make HTTP requests.
   final Client _client;
 
+  /// Creates an instance of [SimpleSection] with the given [Client].
   const SimpleSection(this._client);
 
-  ///
   /// Get the current price of any cryptocurrencies in any other
   /// supported currencies that you need.
   ///
-  /// **[ids]** sets identifiers of coins.
+  /// [ids] sets identifiers of coins.
   ///
-  /// **[vsCurrencies]** sets vs currency of coins.
+  /// [vsCurrencies] sets vs currency of coins.
   ///
-  /// **[includeMarketCap]** sets whether to include market capitalization.
+  /// [includeMarketCap] sets whether to include market capitalization.
   /// Default is false.
   ///
-  /// **[include24hVol]** sets whether to include volume in 24 hours.
+  /// [include24hVol] sets whether to include volume in 24 hours.
   /// Default is false.
   ///
-  /// **[include24hChange]** sets whether to include change in 24 hours.
+  /// [include24hChange] sets whether to include change in 24 hours.
   /// Default is false.
   ///
-  /// **[includeLastUpdatedAt]** sets whether to include last updated date.
+  /// [includeLastUpdatedAt] sets whether to include last updated date.
   /// Default is false.
   ///
-  /// Query: **/simple/price**
-  ///
+  /// Query path: /simple/price
   Future<CoinGeckoResult<List<PriceInfo>>> listPrices({
     required List<String> ids,
     required List<String> vsCurrencies,
@@ -70,30 +70,28 @@ class SimpleSection {
     }
   }
 
-  ///
   /// Get current price of tokens (using contract addresses) for
   /// a given platform in any other currency that you need.
   ///
-  /// **[id]** sets the id of the platform issuing tokens.
+  /// [id] sets the id of the platform issuing tokens.
   ///
-  /// **[contractAddresses]** sets the contract addresses of tokens.
+  /// [contractAddresses] sets the contract addresses of tokens.
   ///
-  /// **[vsCurrencies]** sets vs currencies of coins.
+  /// [vsCurrencies] sets vs currencies of coins.
   ///
-  /// **[includeMarketCap]** sets whether to include market capitalization.
+  /// [includeMarketCap] sets whether to include market capitalization.
   /// Default is false.
   ///
-  /// **[include24hVol]** sets whether to include volume in 24 hours.
+  /// [include24hVol] sets whether to include volume in 24 hours.
   /// Default is false.
   ///
-  /// **[include24hChange]** sets whether to include change in 24 hours.
+  /// [include24hChange] sets whether to include change in 24 hours.
   /// Default is false.
   ///
-  /// **[includeLastUpdatedAt]** sets whether to include last updated date.
+  /// [includeLastUpdatedAt] sets whether to include last updated date.
   /// Default is false.
   ///
-  /// Query: **/simple/token\_price/{id}**
-  ///
+  /// Query path: /simple/token_price/{id}
   Future<CoinGeckoResult<List<PriceInfo>>> listTokenPrices({
     required String id,
     required List<String> contractAddresses,
@@ -133,11 +131,9 @@ class SimpleSection {
     }
   }
 
-  ///
   /// Get list of supported vs currencies.
   ///
-  /// Query: **/simple/supported\_vs\_currencies**
-  ///
+  /// Query path: /simple/supported_vs_currencies
   Future<CoinGeckoResult<List<String>>> listSupportedVsCurrencies() async {
     final response = await _client.dio.get(
       '/simple/supported_vs_currencies',

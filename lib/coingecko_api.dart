@@ -24,6 +24,7 @@ import 'package:dio_smart_retry/dio_smart_retry.dart';
 
 /// The main class for making requests to the CoinGecko API.
 class CoinGeckoApi {
+  /// Client object to make requests to the CoinGecko API.
   late Client _client;
 
   // sections
@@ -43,76 +44,69 @@ class CoinGeckoApi {
   late CompaniesSection _companies;
   late IndexesSection _indexes;
 
-  /// The section for ping requests
+  /// Getter for the PingSection object.
   PingSection get ping => _ping;
 
-  /// The section that brings together the requests
-  /// that are related to simple coins / currencies
+  /// Getter for the SimpleSection object.
   SimpleSection get simple => _simple;
 
-  /// The section that brings together the requests that are related to coins
+  /// Getter for the CoinsSection object.
   CoinsSection get coins => _coins;
 
-  /// The section that brings together the requests that are related to contract tokens
+  /// Getter for the ContractSection object.
   ContractSection get contract => _contract;
 
-  /// The section that brings together the requests that are related to categories
+  /// Getter for the CategoriesSection object.
   CategoriesSection get categories => _categories;
 
-  /// The section that brings together the requests that are related to NFTs
+  /// Getter for the NftsSection object.
   NftsSection get nfts => _nfts;
 
-  /// The section that brings together the requests that are related to exchanges
+  /// Getter for the ExchangesSection object.
   ExchangesSection get exchanges => _exchanges;
 
-  /// The section that brings together the requests that are related to derivatives
+  /// Getter for the DerivativesSection object.
   DerivativesSection get derivatives => _derivatives;
 
-  /// The section that brings together the requests that are related
-  /// to asset platforms
+  /// Getter for the AssetPlatformsSection object.
   AssetPlatformsSection get assetPlatforms => _assetPlatforms;
 
-  /// The section that brings together the requests that are related to exchange rates
+  /// Getter for the ExchangeRatesSection object.
   ExchangeRatesSection get exchangeRates => _exchangeRates;
 
-  /// The section that brings together the requests
-  /// that are related to search
+  /// Getter for the SearchSection object.
   SearchSection get search => _search;
 
-  /// The section that brings together the requests
-  /// that are related to trending stats
+  /// Getter for the TrendingSection object.
   TrendingSection get trending => _trending;
 
-  /// The section that brings together the requests that are related to global information
+  /// Getter for the GlobalSection object.
   GlobalSection get global => _global;
 
-  /// The section that brings together the requests that are related to companies
+  /// Getter for the CompaniesSection object.
   CompaniesSection get companies => _companies;
 
-  /// The section that brings together the requests that are related to indexes
+  /// Getter for the IndexesSection object.
   IndexesSection get indexes => _indexes;
 
+  /// Constructor for the CoinGeckoApi class.
   ///
-  /// Used to initialize the http client
-  ///
-  /// **[connectTimeout]** sets the timeout (milliseconds) for establishing
-  /// a connection. Default is 30 seconds.
-  ///
-  /// **[receiveTimeout]** sets the timeout (milliseconds) for receiving data
-  /// from server. Default is 10 seconds.
-  ///
-  /// **[rateLimitManagement]** sets whether to monitor the request per
-  /// minute rate. Default is true.
-  ///
+  /// [connectTimeout] is the maximum amount of time the API will wait for a connection before giving up.
+  /// [receiveTimeout] is the maximum amount of time the API will wait for a response before giving up.
+  /// [autoRetry] determines whether the API should automatically retry failed requests.
+  /// [credentials] are the credentials used to authenticate with the CoinGecko API.
   CoinGeckoApi({
     Duration connectTimeout = const Duration(seconds: 30),
     Duration receiveTimeout = const Duration(seconds: 10),
     bool autoRetry = true,
     Credentials? credentials,
   }) {
+    // Determine the base URL based on the provided credentials
     final baseUrl = credentials is ProCredentials
         ? 'https://pro-api.coingecko.com/api/v3/'
         : 'https://api.coingecko.com/api/v3';
+
+    // Create the base options for the Dio client
     final options = BaseOptions(
       baseUrl: baseUrl,
       connectTimeout: connectTimeout,
@@ -120,12 +114,18 @@ class CoinGeckoApi {
       responseType: ResponseType.json,
       validateStatus: (status) => status != status429TooManyRequests,
     );
+
+    // If credentials are provided, add them to the headers
     if (credentials != null) {
       options.headers = {
         'x-cg-demo-api-key': credentials.apiKey,
       };
     }
+
+    // Create the Dio client
     final dio = Dio(options);
+
+    // If autoRetry is enabled, add a RetryInterceptor to the Dio client
     if (autoRetry) {
       final retryDelays = List.generate(
         24,
@@ -139,10 +139,11 @@ class CoinGeckoApi {
           retryEvaluator: DefaultRetryEvaluator({
             status429TooManyRequests,
           }).evaluate,
-          // retryableExtraStatuses: {status429TooManyRequests}),
         ),
       );
     }
+
+    // Create the client and all the API sections
     _client = Client(
       credentials: credentials,
       dio: dio,

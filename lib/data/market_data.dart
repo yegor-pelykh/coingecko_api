@@ -1,79 +1,83 @@
 import 'package:coingecko_api/helpers/helpers.dart';
 
-/// Market data wrapper
+/// A class representing market data for a specific cryptocurrency.
 class MarketData {
-  /// Coin identifier
+  /// The identifier of the coin.
   final String coinId;
 
-  /// Current price
+  /// The current price of the coin.
   double? currentPrice;
 
-  /// Market capitalization
+  /// The market capitalization of the coin.
   double? marketCap;
 
-  /// Total volume
+  /// The total volume of the coin traded.
   double? totalVolume;
 
-  /// All Time High
+  /// The all-time high price of the coin.
   double? ath;
 
-  /// All Time High change percentage
+  /// The percentage change from the all-time high price.
   double? athChangePercentage;
 
-  /// All Time High date
+  /// The date when the all-time high price was reached.
   DateTime? athDate;
 
-  /// All Time Low
+  /// The all-time low price of the coin.
   double? atl;
 
-  /// All Time Low change percentage
+  /// The percentage change from the all-time low price.
   double? atlChangePercentage;
 
-  /// All Time Low date
+  /// The date when the all-time low price was reached.
   DateTime? atlDate;
 
-  /// Fully Diluted Valuation
+  /// The fully diluted valuation of the coin.
   double? fullyDilutedValuation;
 
-  /// High in 24 hours
+  /// The highest price of the coin in the last 24 hours.
   double? high24h;
 
-  /// Low in 24 hours
+  /// The lowest price of the coin in the last 24 hours.
   double? low24h;
 
-  /// Price change in currency in 24 hours
+  /// The price change of the coin in the last 24 hours.
   double? priceChange24hInCurrency;
 
-  /// Price change percentage in currency in 1 hour
+  /// The percentage price change of the coin in the last 1 hour.
   double? priceChangePercentage1hInCurrency;
 
-  /// Price change percentage in currency in 24 hours
+  /// The percentage price change of the coin in the last 24 hours.
   double? priceChangePercentage24hInCurrency;
 
-  /// Price change percentage in currency in 7 days
+  /// The percentage price change of the coin in the last 7 days.
   double? priceChangePercentage7dInCurrency;
 
-  /// Price change percentage in currency in 14 days
+  /// The percentage price change of the coin in the last 14 days.
   double? priceChangePercentage14dInCurrency;
 
-  /// Price change percentage in currency in 30 days
+  /// The percentage price change of the coin in the last 30 days.
   double? priceChangePercentage30dInCurrency;
 
-  /// Price change percentage in currency in 60 days
+  /// The percentage price change of the coin in the last 60 days.
   double? priceChangePercentage60dInCurrency;
 
-  /// Price change percentage in currency in 200 days
+  /// The percentage price change of the coin in the last 200 days.
   double? priceChangePercentage200dInCurrency;
 
-  /// Price change percentage in currency in 1 year
+  /// The percentage price change of the coin in the last 1 year.
   double? priceChangePercentage1yInCurrency;
 
-  /// Market capitalization change in currency in 24 hours
+  /// The market capitalization change of the coin in the last 24 hours.
   double? marketCapChange24hInCurrency;
 
-  /// Market capitalization change percentage in currency in 24 hours
+  /// The percentage market capitalization change of the coin in the last 24 hours.
   double? marketCapChangePercentage24hInCurrency;
 
+  /// Constructs a [MarketData] instance.
+  ///
+  /// [coinId] is the identifier of the coin.
+  /// Optional named parameters can be provided to initialize the respective fields.
   MarketData(
     this.coinId, {
     this.currentPrice,
@@ -101,6 +105,7 @@ class MarketData {
     this.marketCapChangePercentage24hInCurrency,
   });
 
+  /// Returns a string representation of the [MarketData] instance.
   @override
   String toString() {
     return '${Helpers.getTypeName(MarketData)}: coinId = $coinId';

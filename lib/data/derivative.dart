@@ -1,50 +1,53 @@
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
-/// Derivative data wrapper
+/// A class representing a derivative data wrapper.
 class Derivative {
-  /// Market name
+  /// The name of the market.
   final String market;
 
-  /// Derivative symbol
+  /// The symbol of the derivative.
   final String symbol;
 
-  /// Derivative index id
+  /// The index ID of the derivative.
   final String indexId;
 
-  /// Derivative price
+  /// The price of the derivative.
   final double price;
 
-  /// Derivative price percentage change in 24 hours
+  /// The percentage change in price over the last 24 hours.
   final double pricePercentageChange24h;
 
-  /// Contract type
+  /// The type of contract.
   final String contractType;
 
-  /// Index
+  /// The index value of the derivative.
   final double? index;
 
-  /// Basis
+  /// The basis value of the derivative.
   final double basis;
 
-  /// Spread
+  /// The spread value of the derivative.
   final double? spread;
 
-  /// Funding rate
+  /// The funding rate of the derivative.
   final double fundingRate;
 
-  /// Open interest
+  /// The open interest of the derivative.
   final double openInterest;
 
-  /// Volume in 24 hours
+  /// The trading volume over the last 24 hours.
   final double volume24h;
 
-  /// The moment at which derivative was last traded
+  /// The timestamp of the last trade.
   final DateTime lastTradedAt;
 
-  /// The moment at which derivative was (will be) expired
+  /// The expiration timestamp of the derivative.
   final DateTime? expiredAt;
 
+  /// Constructs a [Derivative] instance from a JSON map.
+  ///
+  /// [json] is a map containing the data to initialize the instance.
   Derivative.fromJson(Map<String, dynamic> json)
       : this.market = Convert.toStr(json['market'], ''),
         this.symbol = Convert.toStr(json['symbol'], ''),
@@ -63,6 +66,7 @@ class Derivative {
             json['last_traded_at'], Helpers.defaultDateTime()),
         this.expiredAt = Convert.toDateTimeN(json['expired_at']);
 
+  /// Returns a string representation of the [Derivative] instance.
   @override
   String toString() {
     return '${Helpers.getTypeName(Derivative)}: market = $market, symbol = $symbol';

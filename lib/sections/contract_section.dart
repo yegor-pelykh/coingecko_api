@@ -4,21 +4,21 @@ import 'package:coingecko_api/data/market_chart_data.dart';
 import 'package:coingecko_api/helpers/client.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
-/// The section that brings together the requests that are related to contract tokens
+/// The section that brings together the requests that are related to contract tokens.
 class ContractSection {
+  /// The client used to make HTTP requests.
   final Client _client;
 
+  /// Creates an instance of [ContractSection] with the given [Client].
   const ContractSection(this._client);
 
-  ///
   /// Get coin info from contract address.
   ///
-  /// **[id]** sets asset platform identifier.
+  /// [id] sets asset platform identifier.
   ///
-  /// **[contractAddress]** is token's contract address.
+  /// [contractAddress] is token's contract address.
   ///
-  /// Query: **/coins/{id}/contract/{contract\_address}**
-  ///
+  /// Query path: /coins/{id}/contract/{contract_address}
   Future<CoinGeckoResult<Coin?>> getContractTokenData({
     required String id,
     required String contractAddress,
@@ -39,22 +39,19 @@ class ContractSection {
     }
   }
 
-  ///
-  /// Get historical market data include price, market cap, and 24h volume
+  /// Get historical market data including price, market cap, and 24h volume
   /// (granularity auto) from a contract address.
   ///
-  /// **[id]** sets the id of the platform issuing tokens.
+  /// [id] sets the id of the platform issuing tokens.
   ///
-  /// **[contractAddress]** is token's contract address.
+  /// [contractAddress] is token's contract address.
   ///
-  /// **[vsCurrency]** sets the target currency of market data
-  /// (usd, eur, jpy, etc.).
+  /// [vsCurrency] sets the target currency of market data (usd, eur, jpy, etc.).
   ///
-  /// **[days]** indicates in how many days to include information.
+  /// [days] indicates in how many days to include information.
   /// If the parameter is not specified, the maximum possible number of days is assumed.
   ///
-  /// Query: **/coins/{id}/contract/{contract\_address}/market\_chart**
-  ///
+  /// Query path: /coins/{id}/contract/{contract_address}/market_chart
   Future<CoinGeckoResult<List<MarketChartData>>> getContractMarketChart({
     required String id,
     required String contractAddress,
@@ -82,23 +79,20 @@ class ContractSection {
     }
   }
 
+  /// Get historical market data including price, market cap, and 24h volume
+  /// within a range of timestamps (granularity auto) from a contract address.
   ///
-  /// Get historical market data include price, market cap, and 24h volume
-  /// within a range of timestamp (granularity auto) from a contract address.
+  /// [id] sets the id of the platform issuing tokens.
   ///
-  /// **[id]** sets the id of the platform issuing tokens.
+  /// [contractAddress] is token's contract address.
   ///
-  /// **[contractAddress]** is token's contract address.
+  /// [vsCurrency] sets the target currency of market data (usd, eur, jpy, etc.).
   ///
-  /// **[vsCurrency]** sets the target currency of market data
-  /// (usd, eur, jpy, etc.).
+  /// [from] sets FROM date.
   ///
-  /// **[from]** sets FROM date.
+  /// [to] sets TO date.
   ///
-  /// **[to]** sets TO date.
-  ///
-  /// Query: **/coins/{id}/contract/{contract\_address}/market\_chart/range**
-  ///
+  /// Query path: /coins/{id}/contract/{contract_address}/market_chart/range
   Future<CoinGeckoResult<List<MarketChartData>>> getContractMarketChartRanged({
     required String id,
     required String contractAddress,

@@ -2,23 +2,26 @@ import 'package:coingecko_api/data/image_info.dart';
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
-/// Status update project data wrapper
+/// A class representing the status update project data.
 class StatusUpdateProject {
-  /// Project type
+  /// The type of the project.
   final String type;
 
-  /// Project identifier
+  /// The identifier of the project.
   final String id;
 
-  /// Project name
+  /// The name of the project.
   final String name;
 
-  /// Project symbol
+  /// The symbol of the project, if available.
   final String? symbol;
 
-  /// Project image
+  /// The image associated with the project, if available.
   final ImageInfo? image;
 
+  /// Constructs a [StatusUpdateProject] instance from a JSON map.
+  ///
+  /// The [json] parameter is a map containing the project data.
   StatusUpdateProject.fromJson(Map<String, dynamic> json)
       : this.type = Convert.toStr(json['type'], ''),
         this.id = Convert.toStr(json['id'], ''),
@@ -28,6 +31,7 @@ class StatusUpdateProject {
             ? ImageInfo.fromJson(json['image'])
             : null;
 
+  /// Returns a string representation of the [StatusUpdateProject] instance.
   @override
   String toString() {
     return '${Helpers.getTypeName(StatusUpdateProject)}: type = $type, id = $id, name = $name';

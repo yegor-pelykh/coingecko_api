@@ -3,68 +3,71 @@ import 'package:coingecko_api/data/market_sparkline.dart';
 import 'package:coingecko_api/helpers/convert.dart';
 import 'package:coingecko_api/helpers/helpers.dart';
 
-/// Coin market data wrapper
+/// A class that encapsulates various market data for a cryptocurrency.
 class CoinMarketData {
-  /// Market data by currency
+  /// A list of market data categorized by currency.
   final List<MarketData> dataByCurrency;
 
-  /// Total Value Locked
+  /// The total value locked in the cryptocurrency.
   final double? totalValueLocked;
 
-  /// Market capitalization to TVL ratio
+  /// The ratio of market capitalization to total value locked.
   final double? mcapToTvlRatio;
 
-  /// Fully Diluted Valuation to TVL ratio
+  /// The ratio of fully diluted valuation to total value locked.
   final double? fdvToTvlRatio;
 
-  /// Return On Investment (profitability or efficiency of investment)
+  /// The return on investment, indicating the profitability or efficiency of the investment.
   final double? roi;
 
-  /// Price change in 24 hours
+  /// The price change in the last 24 hours.
   final double? priceChange24h;
 
-  /// Price change percentage in 24 hours
+  /// The percentage price change in the last 24 hours.
   final double? priceChangePercentage24h;
 
-  /// Price change percentage in 7 days
+  /// The percentage price change in the last 7 days.
   final double? priceChangePercentage7d;
 
-  /// Price change percentage in 14 days
+  /// The percentage price change in the last 14 days.
   final double? priceChangePercentage14d;
 
-  /// Price change percentage in 30 days
+  /// The percentage price change in the last 30 days.
   final double? priceChangePercentage30d;
 
-  /// Price change percentage in 60 days
+  /// The percentage price change in the last 60 days.
   final double? priceChangePercentage60d;
 
-  /// Price change percentage in 200 days
+  /// The percentage price change in the last 200 days.
   final double? priceChangePercentage200d;
 
-  /// Price change percentage in 1 year
+  /// The percentage price change in the last year.
   final double? priceChangePercentage1y;
 
-  /// Market capitalization change in 24 hours
+  /// The market capitalization change in the last 24 hours.
   final double? marketCapChange24h;
 
-  /// Market capitalization change percentage in 24 hours
+  /// The percentage market capitalization change in the last 24 hours.
   final double? marketCapChangePercentage24h;
 
-  /// Total supply
+  /// The total supply of the cryptocurrency.
   final double? totalSupply;
 
-  /// Max supply
+  /// The maximum supply of the cryptocurrency.
   final double? maxSupply;
 
-  /// Circulating supply
+  /// The circulating supply of the cryptocurrency.
   final double? circulatingSupply;
 
-  /// Sparkline in 7 days
+  /// The sparkline data for the last 7 days.
   final MarketSparkline? sparkline7d;
 
-  /// The moment at which the data was last updated
+  /// The timestamp of the last update of the data.
   final DateTime? lastUpdated;
 
+  /// Constructs a [CoinMarketData] instance from a JSON object.
+  ///
+  /// [json] is a map containing the key-value pairs of the data.
   CoinMarketData.fromJson(Map<String, dynamic> json)
       : this.dataByCurrency = Helpers.parseMarketData(json),
         this.totalValueLocked = Convert.toDoubleN(json['total_value_locked']),
@@ -98,6 +101,7 @@ class CoinMarketData {
             : null,
         this.lastUpdated = Convert.toDateTimeN(json['last_updated']);
 
+  /// Returns a string representation of the [CoinMarketData] instance.
   @override
   String toString() {
     return '${Helpers.getTypeName(CoinMarketData)}';
