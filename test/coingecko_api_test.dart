@@ -30,11 +30,7 @@ void main() async {
   }
 
   /// Initializes the CoinGecko API client with the provided API key.
-  CoinGeckoApi api = CoinGeckoApi(
-    credentials: DemoCredentials(
-      apiKey: key,
-    ),
-  );
+  CoinGeckoApi api = CoinGeckoApi(credentials: DemoCredentials(apiKey: key));
 
   /// Tests the /ping endpoint to check if the API is reachable.
   test('check /ping', () async {
@@ -52,14 +48,18 @@ void main() async {
       include24hChange: true,
       includeLastUpdatedAt: true,
     );
-    final price =
-        result.data.isNotEmpty ? result.data[0].getPriceIn('usd') : null;
-    final marketCap =
-        result.data.isNotEmpty ? result.data[0].getMarketCapIn('usd') : null;
-    final vol =
-        result.data.isNotEmpty ? result.data[0].get24hVolIn('usd') : null;
-    final change =
-        result.data.isNotEmpty ? result.data[0].get24hChangeIn('usd') : null;
+    final price = result.data.isNotEmpty
+        ? result.data[0].getPriceIn('usd')
+        : null;
+    final marketCap = result.data.isNotEmpty
+        ? result.data[0].getMarketCapIn('usd')
+        : null;
+    final vol = result.data.isNotEmpty
+        ? result.data[0].get24hVolIn('usd')
+        : null;
+    final change = result.data.isNotEmpty
+        ? result.data[0].get24hChangeIn('usd')
+        : null;
     final isOk =
         price != null && marketCap != null && vol != null && change != null;
     expect(isOk, true);
@@ -77,14 +77,18 @@ void main() async {
       include24hChange: true,
       includeLastUpdatedAt: true,
     );
-    final price =
-        result.data.isNotEmpty ? result.data[0].getPriceIn('usd') : null;
-    final marketCap =
-        result.data.isNotEmpty ? result.data[0].getMarketCapIn('usd') : null;
-    final vol =
-        result.data.isNotEmpty ? result.data[0].get24hVolIn('usd') : null;
-    final change =
-        result.data.isNotEmpty ? result.data[0].get24hChangeIn('usd') : null;
+    final price = result.data.isNotEmpty
+        ? result.data[0].getPriceIn('usd')
+        : null;
+    final marketCap = result.data.isNotEmpty
+        ? result.data[0].getMarketCapIn('usd')
+        : null;
+    final vol = result.data.isNotEmpty
+        ? result.data[0].get24hVolIn('usd')
+        : null;
+    final change = result.data.isNotEmpty
+        ? result.data[0].get24hChangeIn('usd')
+        : null;
     final isOk =
         price != null && marketCap != null && vol != null && change != null;
     expect(isOk, true);
@@ -99,10 +103,9 @@ void main() async {
 
   /// Tests the /coins/list endpoint to retrieve the list of coins.
   test('check /coins/list', () async {
-    final result = await api.coins.listCoins(
-      includePlatforms: true,
-    );
-    final isOk = !result.isError &&
+    final result = await api.coins.listCoins(includePlatforms: true);
+    final isOk =
+        !result.isError &&
         result.data.any((element) => element.symbol == 'btc');
     expect(isOk, true);
   }, timeout: Timeout(Duration(minutes: 2)));
@@ -139,7 +142,8 @@ void main() async {
       id: 'bitcoin',
       includeExchangeLogo: true,
     );
-    bool isOk = !result.isError &&
+    bool isOk =
+        !result.isError &&
         result.data.any((e) => e.base.toLowerCase() == 'btc');
     expect(isOk, true);
   }, timeout: Timeout(Duration(minutes: 2)));
@@ -188,54 +192,68 @@ void main() async {
       vsCurrency: 'usd',
       days: 7,
     );
-    final isOk = !result.isError &&
+    final isOk =
+        !result.isError &&
         result.data.isNotEmpty &&
-        result.data.every((e) =>
-            !Helpers.isDefaultDateTime(e.timestamp) &&
-            e.open > 0 &&
-            e.high > 0 &&
-            e.low > 0 &&
-            e.close > 0);
+        result.data.every(
+          (e) =>
+              !Helpers.isDefaultDateTime(e.timestamp) &&
+              e.open > 0 &&
+              e.high > 0 &&
+              e.low > 0 &&
+              e.close > 0,
+        );
     expect(isOk, true);
   }, timeout: Timeout(Duration(minutes: 2)));
 
   /// Tests the /coins/{id}/contract/{contract_address} endpoint to retrieve token data for a specific contract.
-  test('check /coins/{id}/contract/{contract_address}', () async {
-    var result = await api.contract.getContractTokenData(
-      id: 'ethereum',
-      contractAddress: '0x4fabb145d64652a948d72533023f6e7a623c7c53',
-    );
-    final isOk = !result.isError && result.data != null;
-    expect(isOk, true);
-  }, timeout: Timeout(Duration(minutes: 2)));
+  test(
+    'check /coins/{id}/contract/{contract_address}',
+    () async {
+      var result = await api.contract.getContractTokenData(
+        id: 'ethereum',
+        contractAddress: '0x4fabb145d64652a948d72533023f6e7a623c7c53',
+      );
+      final isOk = !result.isError && result.data != null;
+      expect(isOk, true);
+    },
+    timeout: Timeout(Duration(minutes: 2)),
+  );
 
   /// Tests the /coins/{id}/contract/{contract_address}/market_chart endpoint to retrieve market chart data for a specific contract.
-  test('check /coins/{id}/contract/{contract_address}/market_chart', () async {
-    final result = await api.contract.getContractMarketChart(
-      id: 'ethereum',
-      contractAddress: '0x4fabb145d64652a948d72533023f6e7a623c7c53',
-      vsCurrency: 'usd',
-      days: 30,
-    );
-    final isOk = !result.isError && result.data.isNotEmpty;
-    expect(isOk, true);
-  }, timeout: Timeout(Duration(minutes: 2)));
+  test(
+    'check /coins/{id}/contract/{contract_address}/market_chart',
+    () async {
+      final result = await api.contract.getContractMarketChart(
+        id: 'ethereum',
+        contractAddress: '0x4fabb145d64652a948d72533023f6e7a623c7c53',
+        vsCurrency: 'usd',
+        days: 30,
+      );
+      final isOk = !result.isError && result.data.isNotEmpty;
+      expect(isOk, true);
+    },
+    timeout: Timeout(Duration(minutes: 2)),
+  );
 
   /// Tests the /coins/{id}/contract/{contract_address}/market_chart/range endpoint to retrieve market chart data for a specific contract within a date range.
-  test('check /coins/{id}/contract/{contract_address}/market_chart/range',
-      () async {
-    final toDate = DateTime.now();
-    final fromDate = toDate.subtract(Duration(days: 90));
-    final result = await api.contract.getContractMarketChartRanged(
-      id: 'ethereum',
-      contractAddress: '0x4fabb145d64652a948d72533023f6e7a623c7c53',
-      vsCurrency: 'usd',
-      from: fromDate,
-      to: toDate,
-    );
-    final isOk = !result.isError && result.data.isNotEmpty;
-    expect(isOk, true);
-  }, timeout: Timeout(Duration(minutes: 2)));
+  test(
+    'check /coins/{id}/contract/{contract_address}/market_chart/range',
+    () async {
+      final toDate = DateTime.now();
+      final fromDate = toDate.subtract(Duration(days: 90));
+      final result = await api.contract.getContractMarketChartRanged(
+        id: 'ethereum',
+        contractAddress: '0x4fabb145d64652a948d72533023f6e7a623c7c53',
+        vsCurrency: 'usd',
+        from: fromDate,
+        to: toDate,
+      );
+      final isOk = !result.isError && result.data.isNotEmpty;
+      expect(isOk, true);
+    },
+    timeout: Timeout(Duration(minutes: 2)),
+  );
 
   /// Tests the /asset_platforms endpoint to list all asset platforms.
   test('check /asset_platforms', () async {
@@ -247,7 +265,8 @@ void main() async {
   /// Tests the /coins/categories/list endpoint to list all coin categories in a short format.
   test('check /coins/categories/list', () async {
     final result = await api.categories.listCategoriesShort();
-    final isOk = !result.isError &&
+    final isOk =
+        !result.isError &&
         result.data.any((element) => element.id == 'stablecoins');
     expect(isOk, true);
   }, timeout: Timeout(Duration(minutes: 2)));
@@ -255,7 +274,8 @@ void main() async {
   /// Tests the /coins/categories endpoint to list all coin categories.
   test('check /coins/categories', () async {
     final result = await api.categories.listCategories();
-    final isOk = !result.isError &&
+    final isOk =
+        !result.isError &&
         result.data.any((element) => element.id == 'stablecoins');
     expect(isOk, true);
   }, timeout: Timeout(Duration(minutes: 2)));
@@ -269,22 +289,24 @@ void main() async {
 
   /// Tests the /nfts/{id} endpoint to get NFT data by ID.
   test('check /nfts/{id}', () async {
-    final result = await api.nfts.getDataById(
-      id: 'cryptopunks',
-    );
+    final result = await api.nfts.getDataById(id: 'cryptopunks');
     final isOk = !result.isError && result.data != null;
     expect(isOk, true);
   }, timeout: Timeout(Duration(minutes: 2)));
 
   /// Tests the /nfts/{asset_platform_id}/contract/{contract_address} endpoint to get NFT data by contract address.
-  test('check /nfts/{asset_platform_id}/contract/{contract_address}', () async {
-    final result = await api.nfts.getDataByContractAddress(
-      assetPlatformId: 'ethereum',
-      contractAddress: '0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB',
-    );
-    final isOk = !result.isError && result.data != null;
-    expect(isOk, true);
-  }, timeout: Timeout(Duration(minutes: 2)));
+  test(
+    'check /nfts/{asset_platform_id}/contract/{contract_address}',
+    () async {
+      final result = await api.nfts.getDataByContractAddress(
+        assetPlatformId: 'ethereum',
+        contractAddress: '0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB',
+      );
+      final isOk = !result.isError && result.data != null;
+      expect(isOk, true);
+    },
+    timeout: Timeout(Duration(minutes: 2)),
+  );
 
   /// Tests the /exchanges endpoint to list all exchanges.
   test('check /exchanges', () async {
@@ -305,10 +327,9 @@ void main() async {
 
   /// Tests the /exchanges/{id} endpoint to get exchange data by ID.
   test('check /exchanges/{id}', () async {
-    final result = await api.exchanges.getExchangeData(
-      id: 'binance',
-    );
-    final isOk = result.data != null &&
+    final result = await api.exchanges.getExchangeData(id: 'binance');
+    final isOk =
+        result.data != null &&
         !result.isError &&
         result.data!.yearEstablished == 2017;
     expect(isOk, true);
@@ -405,9 +426,7 @@ void main() async {
 
   /// Tests the /search endpoint to search for a query.
   test('check /search', () async {
-    final result = await api.search.searchFor(
-      query: 'search',
-    );
+    final result = await api.search.searchFor(query: 'search');
     bool isOk = !result.isError && result.data != null;
     expect(isOk, true);
   }, timeout: Timeout(Duration(minutes: 2)));
@@ -423,26 +442,36 @@ void main() async {
   /// Tests the /global endpoint to get global cryptocurrency data.
   test('check /global', () async {
     final result = await api.global.getGlobalData();
-    bool isOk = !result.isError &&
+    bool isOk =
+        !result.isError &&
         result.data != null &&
         result.data!.activeCryptocurrencies > 0;
     expect(isOk, true);
   }, timeout: Timeout(Duration(minutes: 2)));
 
   /// Tests the /global/decentralized_finance_defi endpoint to get global DeFi data.
-  test('check /global/decentralized_finance_defi', () async {
-    final result = await api.global.getGlobalDefiData();
-    bool isOk = !result.isError &&
-        result.data != null &&
-        result.data!.defiMarketCap != null &&
-        result.data!.defiMarketCap! > 0;
-    expect(isOk, true);
-  }, timeout: Timeout(Duration(minutes: 2)));
+  test(
+    'check /global/decentralized_finance_defi',
+    () async {
+      final result = await api.global.getGlobalDefiData();
+      bool isOk =
+          !result.isError &&
+          result.data != null &&
+          result.data!.defiMarketCap != null &&
+          result.data!.defiMarketCap! > 0;
+      expect(isOk, true);
+    },
+    timeout: Timeout(Duration(minutes: 2)),
+  );
 
   /// Tests the /companies/public_treasury/{coin_id} endpoint to get companies' public treasury data.
-  test('check /companies/public_treasury/{coin_id}', () async {
-    final result = await api.companies.getCompaniesData();
-    bool isOk = !result.isError && result.data != null;
-    expect(isOk, true);
-  }, timeout: Timeout(Duration(minutes: 2)));
+  test(
+    'check /companies/public_treasury/{coin_id}',
+    () async {
+      final result = await api.companies.getCompaniesData();
+      bool isOk = !result.isError && result.data != null;
+      expect(isOk, true);
+    },
+    timeout: Timeout(Duration(minutes: 2)),
+  );
 }
